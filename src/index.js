@@ -4,11 +4,12 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const usuarioRutas = require('./apis/usuario/index');
 const articulosRutas = require('./apis/articulo/index'); 
+const { DB_LOCAL } = require('./config/config');
 
 const app = express();
 
 //connecting to db
-mongoose.connect('mongodb://localhost/controlStockSuperMami') 
+mongoose.connect(DB_LOCAL) 
 	.then(db => console.log('Db connected'))
 	.catch(err => console.log(err));
 
