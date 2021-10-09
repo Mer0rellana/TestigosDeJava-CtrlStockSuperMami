@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 //const usuarioRutas = require('./apis/usuario/index');
 const articulosRutas = require('./apis/articulo/index'); 
-const { DB_LOCAL } = require('./config/config');
+const { DB_LOCAL, PORT } = require('./config/config');
 
 const app = express();
 
@@ -14,7 +14,7 @@ mongoose.connect(DB_LOCAL)
 	.catch(err => console.log(err));
 
 //settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); 
 
