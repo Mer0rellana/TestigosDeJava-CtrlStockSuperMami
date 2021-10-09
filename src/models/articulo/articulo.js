@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
+const { ENV } = require('../../config/config');
 const Schema = mongoose.Schema;
 const collection = 'articulos'
-mongoose.set('debug', true);
+
+if(ENV==="dev"){
+  mongoose.set('debug', true);
+}
 
 const valoresSchema = require('./valoresSchema');
 /* const codigoSchema = {

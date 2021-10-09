@@ -10,11 +10,12 @@ const getById = async (req, res) => {
 };
 
 
-const getArticuloBy = (req, res) => {
+const getArticuloBy = async (req, res) => {
   const { estado } = req.params;
-  getArticuloSchema.find({estado})
-  .then((data)=>res.send(data))
-  
+  /* getArticuloSchema.find({estado})
+  .then((data)=>res.send(data)) */
+  const articulo = await getArticuloSchema.find({estado})
+  res.send(articulo)
 
   /* res.render('index',{
     articulos
