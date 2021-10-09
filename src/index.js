@@ -4,10 +4,12 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 //const usuarioRutas = require('./apis/usuario/index');
 const articulosRutas = require('./apis/articulo/index'); 
-const { DB_LOCAL, PORT } = require('./config/config');
+const { DB_LOCAL,ENV,PORT } = require('./config/config');
 
 const app = express();
-
+if(ENV==='dev'){
+	console.log(ENV)
+}
 //connecting to db
 mongoose.connect(DB_LOCAL) 
 	.then(db => console.log('Db connected'))
