@@ -1,9 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const morgan = require('morgan');
 const path = require('path');
+
+//connecting to db
+mongoose.connect('mongodb://localhost/super-mami-stock')
+    .then(db => console.log('db connected'))
+    .catch(err => console.log(err));
+
 //importing routes
-require('./controllers/movimientos/index');
+const indexRoutes = require('./controllers/usuarios/index');
 
 //settings
 app.set('port', process.env.PORT || 3000)
@@ -16,7 +23,7 @@ app.use(express.urlencoded({extended: false}))
 
 
 //routes
-//app.use('/', indexRoutes);
+app.use('/', indexRoutes);
 
 //starting the server
 app.listen(app.get('port'), ()=> {
