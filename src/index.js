@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const usuarioRutas = require('./apis/usuario/index');
-const articulosRutas = require('./apis/articulo/index'); 
+const userRoute = require('./apis/usuario/index');
+const itemRoute = require('./apis/articulo/index'); 
 const { DB_LOCAL } = require('./config/config');
 
 const app = express();
@@ -24,8 +24,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //routes
-app.use('/usuario', usuarioRutas);
-app.use('/articulo', articulosRutas);
+app.use('/user', userRoute);
+app.use('/item', itemRoute);
 
 //starting the server
 app.listen(app.get('port'), () => {
