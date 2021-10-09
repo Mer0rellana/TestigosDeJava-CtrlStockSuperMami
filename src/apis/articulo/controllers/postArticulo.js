@@ -1,5 +1,5 @@
 const { altaArticuloSchema } = require("../../../models/articulo/articulo");
-
+const moment = require('moment');
 const postArticulo=async (req,res)=>{
   const articulo= new altaArticuloSchema({
     ...req.body,

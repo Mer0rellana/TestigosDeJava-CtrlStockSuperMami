@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const collection = 'articulos'
-
+mongoose.set('debug', true);
 
 const valoresSchema = require('./valoresSchema');
 /* const codigoSchema = {
@@ -76,6 +76,31 @@ const altaArticuloSchema = mongoose.model('altaArticulo', new Schema({
 ), collection)
 
 const getArticuloSchema = mongoose.model('getArticulo', new Schema({
+  codigo: {
+    ...valoresSchema.codigoSchema
+  },
+  descripcion: {
+    ...valoresSchema.descripcionSchema
+  },
+  familia: {
+    ...valoresSchema.familiaSchema
+  },
+  grupo: {
+    ...valoresSchema.grupoSchema
+  },
+  precio: {
+    ...valoresSchema.precioSchema
+  },
+  unidadMedida: {
+    ...valoresSchema.unidadMedidaSchema
+  },
+  cantidad: {
+    ...valoresSchema.cantidadSchema
+  },
+  fechaCreacion: {
+    ...valoresSchema.fechaCreacionSchema
+  },
+  estado: { ...valoresSchema.estadoSchema },
 },
   { versionKey: false }
 ), collection)
