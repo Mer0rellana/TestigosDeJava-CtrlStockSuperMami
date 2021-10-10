@@ -4,17 +4,20 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const userRoute = require('./apis/usuario/index');
 const itemRoute = require('./apis/articulo/index'); 
-const { DB_LOCAL } = require('./config/config');
+const cors = require('cors');
+const { ENV, DB_LOCAL, PORT } = require('./config/config');
 
 const app = express();
-
+if(ENV==='dev'){
+	console.log(ENV)
+}
 //connecting to db
 mongoose.connect(DB_LOCAL) 
 	.then(db => console.log('Db connected'))
 	.catch(err => console.log(err));
 
 //settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); 
 
@@ -22,6 +25,10 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors({
+    origin: "*",
+    allowedHeaders: "*"
+}));
 
 //routes
 app.use('/user', userRoute);

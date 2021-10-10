@@ -6,13 +6,13 @@ const ErrorModel = require('../models/api-error');
 
 const ALGHORITM = "HS256";
 
-const createUserToken = (legajo, nombre, rol, estado) => {
+const createUserToken = (id, name, role, state) => {
     const payload = {
-        legajo,
-        nombre,
-        rol,
-        estado,
-        expiracion: moment().add(1, "days").unix(),
+        id,
+        name,
+        role,
+        state,
+        exp: moment().add(1, "days").unix(),
     };
     return jwt.encode(payload, SECRET_TOKEN_USER_AUTH, ALGHORITM);
 }
@@ -22,7 +22,7 @@ const ensureUserAuthenticated = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     try {
         const payload = jwt.decode(token, SECRET_TOKEN_USER_AUTH, false, ALGHORITM);
-        if (payload.expiracion <= moment().unix()) return new ErrorModel().newUnauthorized("Token expired").send(res);
+        if (payload.exp <= moment().unix()) return new ErrorModel().newUnauthorized("Token expired").send(res);
         res.locals.payload = payload;
         return next();
     } catch (err) {

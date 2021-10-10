@@ -29,6 +29,11 @@ const UserSchema = Schema({
         validate: [ validator.isEmail, 'Email inválido' ]
 
     },
+    tel : {
+        type: Number,
+        required: true,
+        trim: true
+    },
     password: {
         type: String,
         required: true

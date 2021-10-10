@@ -1,3 +1,4 @@
+const { ENV } = require("../config/config");
 
 class ErrorModel {
 
@@ -36,10 +37,12 @@ class ErrorModel {
     }
 
     print() {
-        console.log(`
-                👹 Error: ${this.status}
-                👹 Cause: ${this.cause}
-                👹 Message: ${this.message}`);
+        if (ENV === "dev") {
+            console.log(`
+            👹 Error: ${this.status}
+            👹 Cause: ${this.cause}
+            👹 Message: ${this.message}`);
+        }
         return this
     }
 

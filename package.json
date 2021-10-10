@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "env.json": "^2.0.1",
     "express": "^4.17.1",
@@ -18,7 +19,11 @@
     "moment": "^2.29.1",
     "mongoose": "^6.0.9",
     "morgan": "^1.10.0",
-    "validator": "^13.6.0"
+    "nodemailer": "^6.6.5",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "secure-random-password": "^0.2.3",
+    "validator": "^13.6.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
