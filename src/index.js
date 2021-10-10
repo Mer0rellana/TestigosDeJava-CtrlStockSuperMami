@@ -2,9 +2,10 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-//const usuarioRutas = require('./apis/usuario/index');
-const articulosRutas = require('./apis/articulo/index'); 
-const { DB_LOCAL,ENV,PORT } = require('./config/config');
+const userRoute = require('./apis/usuario/index');
+const itemRoute = require('./apis/articulo/index'); 
+const cors = require('cors');
+const { ENV, DB_LOCAL, PORT } = require('./config/config');
 
 const app = express();
 if(ENV==='dev'){
@@ -16,7 +17,7 @@ mongoose.connect(DB_LOCAL)
 	.catch(err => console.log(err));
 
 //settings
-app.set('port', PORT || 3000);
+app.set('port', PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); 
 
@@ -24,10 +25,14 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors({
+    origin: "*",
+    allowedHeaders: "*"
+}));
 
 //routes
-//app.use('/usuario', usuarioRutas);
-app.use('/articulo', articulosRutas);
+app.use('/user', userRoute);
+app.use('/item', itemRoute);
 
 //starting the server
 app.listen(app.get('port'), () => {

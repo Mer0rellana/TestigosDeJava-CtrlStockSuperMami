@@ -1,16 +1,17 @@
-const config = require('dotenv');
+const config = require('./env.json');
 
-const nodeEnv = (process.env.ENV = process.env.ENV || 'dev').trim();
-
-const PORT=config.PORT
+const ENV = config.ENV
+    ,PORT = config.PORT
     ,EMAIL = config.EMAIL
     ,EMAIL_PASSWORD = config.EMAIL_PASSWORD
     ,DB_LOCAL = config.DB_LOCAL
+    ,SECRET_TOKEN_USER_AUTH = config.SECRET_TOKEN_USER_AUTH
 
 module.exports = {
     ENV,
     PORT,
     EMAIL,
     EMAIL_PASSWORD,
-    DB_LOCAL
+    DB_LOCAL,
+    SECRET_TOKEN_USER_AUTH
 }
