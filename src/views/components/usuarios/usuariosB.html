@@ -23,7 +23,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link defer rel="stylesheet" href="./IndexStyles.css">
     <link rel="stylesheet" href="./usuarios.css">
-
+    <script defer src="/src/views/validaciones/validaciones.js"></script>
 
 
 </head>
@@ -86,13 +86,13 @@
                         </div>
                         <hr>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="">DNI</label>
-                                <input type="number" class="verde form-control" id="inputDni"
-                                    placeholder="Ingrese Documento" name="dni">
+                            <div class="form-group col-md-3">
+                                <label for="">Legajo</label>
+                                <input type="number" class="verde form-control" id="inputDni" placeholder="Ingrese Legajo" name="inputLegajo" >
+                                
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label for="">Rol</label>
                                 <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
                                     <option selected disabled value="">Seleccione Rol</option>
@@ -104,8 +104,17 @@
                                 </select>
 
                             </div>
+                            <div class="form-group col-md-3">
+                                <label for="">Estado</label>
+                                <select id="inputEstado" class="form-control" name="Estado" placeholder="Seleccione un estado">
+                                    <option selected disabled value="">Seleccione Estado</option>
+                                    <option value="1">Activo </option>
+                                    <option value="2">Inactivo</option>
+                                </select>
+
+                            </div>
                             <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                <button id="btnFiltrarUsario" onclick="" type="button"
+                                <button id="btnFiltrarUsario" onclick=""  type="button"
                                     class="btn btn-primary">Filtrar</button>
                             </div>
                         </div>
@@ -118,7 +127,7 @@
                                         <th scope="col">DNI</th>
                                         <th scope="col">Télefono</th>
                                         <th scope="col">E-mail</th>
-                                        <th scope="col">Fecha-Ingreso</th>
+                                        <th scope="col">Rol</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -155,8 +164,11 @@
                         <div class=" mb-5 ml-5 mt-4 d-flex align-items">
                             <button id="btnEliminarU" onclick="" type="button"
                                 class="btn btn-primary mr-1">Eliminar</button>
-                            <button id="btnModificarU" onclick="" type="button"
-                                class="btn btn-primary">Modificar</button>
+                            <button id="btnModificarU" onclick="window.location='usuariosM.html'" type="button"
+                                class="btn btn-primary mr-1">Modificar</button>
+                            <button id="btnModificarU" onclick="window.location='usuariosA.html'" type="button"
+                                class="btn btn-primary">Registrar nuevo
+                                usuario</button>
                         </div>
                     </form>
                 </div>
