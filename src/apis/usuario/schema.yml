@@ -77,10 +77,67 @@ paths:
           $ref: "#/components/responses/ServerError"
         535:
           $ref: "#/components/responses/EmailError"
-
+          
+  /user/myProfile:
+    get:
+      tags:
+      - User
+      summary: Get My Profile
+      security:
+        - userToken: []
+      responses:
+        200:
+          description: (OK) El usuario se obtuvo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /user/:
+    get:
+      tags:
+      - User
+      summary: Get Users
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: query
+        required: false
+        description: Legajo del usuario
+        example: 1000
+        schema:
+          type: string
+      - name: role
+        in: query
+        required: false
+        description: Rol del usuario
+        example: Encargado stock
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Los usuarios se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetUsers'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
    
 components:
- 
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      description: Example eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzg5NDU2LCJuYW1lIjoiQWd1c3RpbmEgR2FyY8OtYSBSZXkiLCJyb2xlIjoiQWRtaW4iLCJzdGF0ZSI6dHJ1ZSwiZXhwIjoxNjMzOTk1OTMxfQ.ZQh3DtulWkIGQHJqrFP5Ouqk8Qvn3LTb28_sVsy-NCY
+      
   responses:
     Unauthorized:
       description: (Unauthorized) Usuario no autorizado
@@ -119,4 +176,28 @@ components:
         mail:
           type: string
           example: agus.garciarey@gmail.com
+    
+    ResponseUser:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dni:
+          type: number
+        tel:
+          type: string
+        mail:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
+    
+    ResponseGetUsers:
+      type: array
+      items:
+          $ref: '#/components/schemas/ResponseUser'
+        
 
