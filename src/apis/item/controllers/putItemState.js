@@ -9,7 +9,7 @@ const ItemUpdateState = async (req, res) => {
     if (token.role === "Admin") {
       const fecha = Moment.now();
       const { id } = req.params;
-      await Item.updateOne({ code: id }, { $set: { state: "inactivo",  updateDate: fecha} });
+      await Item.updateOne({ code: id }, { $set: { state: "Eliminado",  updateDate: fecha} });
       return res.status(200).send({ message: "Un Exito" });
     } else {
       return new ErrorModel()

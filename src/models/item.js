@@ -56,6 +56,7 @@ const ItemSchema = mongoose.model('item', new Schema({
   },
   state: {
     type: String,
+    enum: ['Activo','Eliminado','Bloqueado'],
     trim: true,
   },
 },

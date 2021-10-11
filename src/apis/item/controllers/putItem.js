@@ -11,9 +11,8 @@ const schema = yup.object().shape({
   price: yup.number().positive(),
   unit: yup.string().min(3).max(30),
   amount: yup.number().max(30),
-  creationDate: yup.number(),
-  updateDate: yup.number(),
-  state: yup.string().min(3).max(30),
+  //discutir en que endpoint va a ir cada estado
+  state: yup.string().oneOf(["Activo", "Bloqueado"]).default("Activo"),
 });
 
 const ItemUpdate = async (req, res) => {
