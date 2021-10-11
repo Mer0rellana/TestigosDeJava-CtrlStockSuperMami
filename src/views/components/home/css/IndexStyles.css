@@ -8329,8 +8329,8 @@ a[data-toggle="collapse"] {
   background: #1E450C;
   border-color: #1E450C; }
   .btn.btn-primary:hover, .btn.btn-primary:focus {
-    background:#1E450C !important;
-    border-color: #1E450C !important; }
+    background:#357a15 !important;
+    border-color: #377c16 !important; }
 
 .footer p {
   color: rgba(255, 255, 255, 0.5); }
