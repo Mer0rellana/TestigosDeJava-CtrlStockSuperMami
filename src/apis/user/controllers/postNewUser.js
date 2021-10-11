@@ -6,6 +6,7 @@ const yup = require('yup');
 const Validator = require('../../../utils/validator');
 const SendTemplate = require('../../../utils/sendMail');
 const { createUserToken } = require('../../../utils/token');
+const { PasswordReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
     id: yup.number().required(),
@@ -13,7 +14,7 @@ const schema = yup.object().shape({
     dni: yup.number().required(),
     mail: yup.string().email().required().transform((dato) => dato.toLowerCase()),
     tel: yup.number().required(),
-    password: yup.string().required(),
+    password: yup.string().matches(PasswordReg).required(),
     role: yup.string().required()
 })
 
