@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const userRoute = require('./apis/usuario/index');
+const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index'); 
+
 const cors = require('cors');
 const { ENV, DB_LOCAL, PORT } = require('./config/config');
 
