@@ -15,6 +15,6 @@ router.post('/add', CreateUser);
 router.post('/recoverPassword', RecoverPassword);
 router.get('/myProfile', ensureUserAuthenticated, MyProfile);
 router.get('/', ensureUserAuthenticated, GetUsers);
-router.put('/update-user', ensureUserAuthenticated ,UpdateUser);
+router.put('/updateUser', ensureUserAuthenticated ,UpdateUser);
 
 module.exports = router;

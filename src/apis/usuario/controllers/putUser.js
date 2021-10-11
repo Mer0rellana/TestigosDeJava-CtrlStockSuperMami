@@ -1,6 +1,9 @@
 const  Validator  = require('../../../utils/validator');
 const yup = require("yup");
 const ErrorModel = require('../../../models/api-error');
+const User = require('../../../models/user');
+const moment = require('moment')
+
 
 const schema = yup.object().shape({
     name: yup.string(),
@@ -14,6 +17,7 @@ const UpdateUser = async (req, res) =>{
         const request = await Validator(req.body, schema);
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
+        const token = res.locals.payload;
         const id = token.id;
 
         const user = new User({
