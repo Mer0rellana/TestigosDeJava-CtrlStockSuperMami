@@ -5,7 +5,7 @@ const Validator = require('../../../utils/validator');
 
 const schema = yup.object().shape({
     id: yup.number(),
-    role: yup.string().oneOf(["Admin", "Gerencia", "Encargado stock"])
+    role: yup.string().oneOf(["Admin", "Gerencia", "Encargado stock", "Operario stock", "Operario almacén"])
 });
 
 const GetUsers = async (req, res) => {
