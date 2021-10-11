@@ -7,8 +7,6 @@ const Validator = require('../../../utils/validator');
 const SendTemplate = require('../../../utils/sendMail');
 const { createUserToken } = require('../../../utils/token');
 
-
-
 const schema = yup.object().shape({
     id: yup.number().required(),
     name: yup.string().required(),
@@ -23,7 +21,6 @@ const CreateUser = async (req, res) => {
     try {
 
         const token = res.locals.payload;
-        console.log(token);
         if (token.role === "Admin") {  
 
             const request = await Validator(req.body, schema);
@@ -50,7 +47,9 @@ const CreateUser = async (req, res) => {
             if (sending.error) return new ErrorModel(535, sending.error, "Error en el envío de email").send(res);
 
             const token = createUserToken( user.id, user.name, user.role, user.state );
-            return res.status(200).json({ token });
+            
+            return res.status(200).send({message: "Usuario cargado con exito"});
+
         } else{
             return new ErrorModel().newUnauthorized().send(res); 
         }
