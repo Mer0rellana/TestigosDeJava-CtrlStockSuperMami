@@ -10,8 +10,9 @@ const postItem = async (req, res) => {
     if (token.role === "Admin") {
       const item = new ItemSchema({
         ...req.body,
-        state: "activo",
-        creationDate: moment.now()
+        state: "Activo",
+        createdAt: moment.now()
+
       });
       const err = item.validateSync();
       if (err) return new ErrorModel().newBadRequest(err.message).send(res);
