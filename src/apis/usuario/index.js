@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/ejemplo', ensureUserAuthenticated, Ejemplo); //ejemplo para sacar datos del token
 router.post('/login', LoginUser);
-router.post('/add', CreateUser);
+router.post('/add', ensureUserAuthenticated ,CreateUser);
 router.post('/recoverPassword', RecoverPassword);
 router.get('/myProfile', ensureUserAuthenticated, MyProfile);
 router.get('/', ensureUserAuthenticated, GetUsers);
