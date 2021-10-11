@@ -6,6 +6,7 @@ const MyProfile = require('./controllers/getMyProfile');
 const LoginUser = require('./controllers/postLogin');
 const CreateUser = require('./controllers/postNewUser');
 const RecoverPassword = require('./controllers/postRecoverPassword');
+const UpdateUser = require('./controllers/putUser');
 const router = express.Router();
 
 router.get('/ejemplo', ensureUserAuthenticated, Ejemplo); //ejemplo para sacar datos del token
@@ -14,5 +15,6 @@ router.post('/add', CreateUser);
 router.post('/recoverPassword', RecoverPassword);
 router.get('/myProfile', ensureUserAuthenticated, MyProfile);
 router.get('/', ensureUserAuthenticated, GetUsers);
+router.put('/update-user', ensureUserAuthenticated ,UpdateUser);
 
 module.exports = router;
