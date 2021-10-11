@@ -46,16 +46,17 @@ const ItemSchema = mongoose.model('item', new Schema({
     trim: true,
     min: 0,
   },
-  creationDate: {
+  createdAt: {
     type: String,
     trim: true,
   },
-  updateDate: {
+  updatedAt: {
     type: String,
     trim: true,
   },
   state: {
     type: String,
+    enum: ['Activo', 'Eliminado ', 'Bloqueado'],
     trim: true,
   },
 },
