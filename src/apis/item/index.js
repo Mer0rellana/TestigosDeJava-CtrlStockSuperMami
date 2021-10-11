@@ -7,10 +7,10 @@ const router = express.Router();
 router.post('/ejemplo', Ejemplo);
 module.exports = router; */
 
-const getAllItems = require('./controllers/getAllItem');
+const getItems = require('./controllers/getItem');
 const postItem = require('./controllers/postItem');
 
-router.get('/',ensureUserAuthenticated ,getAllItems);
+router.get('/',ensureUserAuthenticated ,getItems);
 router.post('/add',ensureUserAuthenticated,postItem)
 
 module.exports=router;
