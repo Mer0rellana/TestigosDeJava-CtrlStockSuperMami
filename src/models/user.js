@@ -40,7 +40,7 @@ const UserSchema = Schema({
     },
     role: {
         type: String,
-        enum: ['Operario almacén', 'Operario stock', 'Admin', 'Encargado stock', 'Gestión'],
+        enum: ['Operario almacén', 'Operario stock', 'Admin', 'Encargado stock', 'Gerencia'],
         required: true,
         trim: true,
     },

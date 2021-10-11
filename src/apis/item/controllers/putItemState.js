@@ -9,8 +9,8 @@ const ItemUpdateState = async (req, res) => {
     if (token.role === "Admin") {
       const fecha = Moment.now();
       const { id } = req.params;
-      await Item.updateOne({ _id: id }, { $set: { state: "inactivo",  updateDate: fecha} });
-      return res.status(200).send({ message: "Un Exito" });
+      await Item.updateOne({ code: id }, { $set: { state: "Eliminado",  updatedAt: fecha} });
+      return res.status(200).send({ message: "Artículo eliminado con éxito" });
     } else {
       return new ErrorModel()
         .newUnauthorized("Usuario no autorizado")

@@ -11,9 +11,8 @@ const schema = yup.object().shape({
   price: yup.number().positive(),
   unit: yup.string().min(3).max(30),
   amount: yup.number().max(30),
-  creationDate: yup.number(),
-  updateDate: yup.number(),
-  state: yup.string().min(3).max(30),
+  //discutir en que endpoint va a ir cada estado
+  state: yup.string().oneOf(["Activo", "Bloqueado"]).default("Activo"),
 });
 
 const ItemUpdate = async (req, res) => {
@@ -22,14 +21,14 @@ const ItemUpdate = async (req, res) => {
     if (token.role === "Admin") {
       const request = await Validator(req.body, schema);
       if (request.err)
-        return new ErrorModel().newBadRequest(request.err).send(res);
+        return new ErrorModel().newBadRequest(request.data).send(res);
       const { id } = req.params;
       await Item.updateOne(
-        { _id: id },
-        { ...req.body, updateDate: Moment.now() }
+        { code: id },
+        { ...req.body, updatedAt: Moment.now() }
       );
-      console.log(req.body);
-      return res.status(200).send({ message: "Un Exito" });
+      
+      return res.status(200).send({ message: "Artículo actualizado con éxito" });
     } else {
       return new ErrorModel()
         .newUnauthorized("Usuario no autorizado")

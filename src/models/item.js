@@ -6,10 +6,10 @@ if (ENV === "dev") {
   mongoose.set('debug', true);
 }
 
-const collection = 'item'
+const collection = 'items'
 const ItemSchema = mongoose.model('item', new Schema({
   code: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
     trim: true,
@@ -46,16 +46,17 @@ const ItemSchema = mongoose.model('item', new Schema({
     trim: true,
     min: 0,
   },
-  creationDate: {
+  createdAt: {
     type: String,
     trim: true,
   },
-  updateDate: {
+  updatedAt: {
     type: String,
     trim: true,
   },
   state: {
     type: String,
+    enum: ['Activo', 'Eliminado ', 'Bloqueado'],
     trim: true,
   },
 },
