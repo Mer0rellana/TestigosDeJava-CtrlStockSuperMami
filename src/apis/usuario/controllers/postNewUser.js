@@ -45,8 +45,6 @@ const CreateUser = async (req, res) => {
 
             const sending = await SendTemplate(user.mail, "Control Stock Super Mami - Bienvenida", "sendEmail", { principalInfo: "Bienvenido al equipo de Super Mami!", secondaryInfo: `Su legajo es ${user.id}. Su contraseña es ${request.data.password}` });
             if (sending.error) return new ErrorModel(535, sending.error, "Error en el envío de email").send(res);
-
-            const token = createUserToken( user.id, user.name, user.role, user.state );
             
             return res.status(200).send({message: "Usuario cargado con exito"});
 
