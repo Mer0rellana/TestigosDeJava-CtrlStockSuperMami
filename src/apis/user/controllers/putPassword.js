@@ -1,4 +1,3 @@
-
 const User = require('../../../models/user');
 const ErrorModel = require('../../../models/api-error');
 const yup = require("yup");

@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const userRoute = require('./apis/usuario/index');
+const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index'); 
 
 const cors = require('cors');
@@ -33,7 +33,7 @@ app.use(cors({
 
 //routes
 app.use('/user', userRoute);
-//app.use('/item', itemRoute);
+app.use('/item', itemRoute);
 
 //starting the server
 app.listen(app.get('port'), () => {
