@@ -3,7 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const userRoute = require('./apis/usuario/index');
-const itemRoute = require('./apis/articulo/index'); 
+const itemRoute = require('./apis/item/index'); 
 const cors = require('cors');
 const { ENV, DB_LOCAL, PORT } = require('./config/config');
 
@@ -17,7 +17,7 @@ mongoose.connect(DB_LOCAL)
 	.catch(err => console.log(err));
 
 //settings
-app.set('port', PORT);
+app.set('port', PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); 
 
