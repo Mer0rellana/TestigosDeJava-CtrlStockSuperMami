@@ -22,10 +22,10 @@ const ItemUpdate = async (req, res) => {
     if (token.role === "Admin") {
       const request = await Validator(req.body, schema);
       if (request.err)
-        return new ErrorModel().newBadRequest(request.err).send(res);
+        return new ErrorModel().newBadRequest(request.data).send(res);
       const { id } = req.params;
       await Item.updateOne(
-        { _id: id },
+        { code: id },
         { ...req.body, updateDate: Moment.now() }
       );
       console.log(req.body);
