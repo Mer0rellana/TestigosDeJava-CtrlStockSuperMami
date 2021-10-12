@@ -5,15 +5,14 @@ const moment = require('moment');
 const yup = require('yup');
 const Validator = require('../../../utils/validator');
 const SendTemplate = require('../../../utils/sendMail');
-const { createUserToken } = require('../../../utils/token');
-const { PasswordReg } = require('../../../utils/reg-exp');
+const { PasswordReg, PhoneReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
     id: yup.number().required(),
     name: yup.string().required(),
     dni: yup.number().required(),
     mail: yup.string().email().required().transform((dato) => dato.toLowerCase()),
-    tel: yup.number().required(),
+    tel: yup.number().matches(PhoneReg).required(),
     password: yup.string().matches(PasswordReg).required(),
     role: yup.string().required()
 })

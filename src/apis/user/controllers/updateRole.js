@@ -3,10 +3,9 @@ const yup = require("yup");
 const ErrorModel = require('../../../models/api-error');
 const User = require('../../../models/user');
 const moment = require('moment');
-const SendTemplate = require('../../../utils/sendMail');
 
 const schema = yup.object().shape({
-    role: yup.string()
+    role: yup.string().oneOf(["Admin", "Gerencia", "Encargado stock", "Operario stock", "Operario almacén"])
 })
 
 const UpdateRole = async (req, res) => {
