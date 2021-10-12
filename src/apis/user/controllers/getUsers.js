@@ -17,10 +17,10 @@ const GetUsers = async (req, res) => {
         let users = [];
 
         if (token.role === "Admin") {
-            if (request.data.role) {
-                users = await User.find({ role: request.data.role })
-            } else if(request.data.id){
+            if(request.data.id){
                 users = await User.find({ id: Number(request.data.id) })
+            } else if (request.data.role) {
+                users = await User.find({ role: request.data.role })
             } else {
                 users = await User.find();
             }

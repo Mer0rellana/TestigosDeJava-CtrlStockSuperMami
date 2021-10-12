@@ -7,7 +7,7 @@ const { PhoneReg } = require('../../../utils/reg-exp')
 
 const schema = yup.object().shape({
     name: yup.string(),
-    tel: yup.number().matches(PhoneReg),
+    tel: yup.string().matches(PhoneReg),
     mail: yup.string().email().transform((dato) => dato.toLowerCase())
 })
 

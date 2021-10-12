@@ -10,7 +10,7 @@ const DeleteUser = require('./controllers/deleteUser');
 const UpdateRole = require('./controllers/updateRole');
 const PutPassword = require('./controllers/putPassword');
 const UpdateProfile = require('./controllers/putUser');
-const PutPassword = require('./controllers/putPassword');
+
 
 const router = express.Router();
 
