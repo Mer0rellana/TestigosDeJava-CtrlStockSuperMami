@@ -19,14 +19,3 @@
 })(jQuery);
 
 
-$(document).ready(function(){
-    $("button").click(function(){
-        $('#login1').animate({
-            left: '-=190'}, {
-            duration: 5000
-            
-                
-            
-         });
-    });
-  });
