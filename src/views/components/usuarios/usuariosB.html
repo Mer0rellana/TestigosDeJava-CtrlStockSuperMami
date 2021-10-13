@@ -23,15 +23,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link defer rel="stylesheet" href="./IndexStyles.css">
     <link rel="stylesheet" href="./usuarios.css">
-
+    <script defer src="/src/views/validaciones/validaciones.js"></script>
 
 
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="topBar img-fluid ">
-            <img src="./img/logo-super-mami.png" class="logo" alt="">
+        <div class="topBar ">
+            <a href="../home/home.html"><img src="./img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -42,38 +42,38 @@
                     </button>
                 </div>
                 <div class="p-4">
-                    <h1><a href="index.html" class="logo"></a></h1>
                     <ul class="list-unstyled components mb-5">
                         <li class="active">
-                            <a href="#"><span class="fa fa-home mr-3"></span> Articulos</a>
+                            <a href="#"><span class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-user mr-3"></span> Depositos</a>
+                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-briefcase mr-3"></span> Pedidos</a>
+                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-suitcase mr-3"></span> Usuarios</a>
+                            <a href="../usuarios/usuariosB.html"><span class="fa fa-users mr-3"></span> Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Stock</a>
+                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Mi Perfil</a>
+                            <a href="../usuarios/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Configuracion</a>
+                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
                         </li>
                     </ul>
                 </div>
             </nav>
+
 
             <!-- Page Content  -->
 
@@ -86,13 +86,14 @@
                         </div>
                         <hr>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="">DNI</label>
+                            <div class="form-group col-md-3">
+                                <label for="">Legajo</label>
                                 <input type="number" class="verde form-control" id="inputDni"
-                                    placeholder="Ingrese Documento" name="dni">
+                                    placeholder="Ingrese Legajo" name="inputLegajo">
+
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label for="">Rol</label>
                                 <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
                                     <option selected disabled value="">Seleccione Rol</option>
@@ -101,6 +102,16 @@
                                     <option value="3">Encargado Stock</option>
                                     <option value="4">Operario de Stock</option>
                                     <option value="5 ">Operario de almacenamiento</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="">Estado</label>
+                                <select id="inputEstado" class="form-control" name="Estado"
+                                    placeholder="Seleccione un estado">
+                                    <option selected disabled value="">Seleccione Estado</option>
+                                    <option value="1">Activo </option>
+                                    <option value="2">Inactivo</option>
                                 </select>
 
                             </div>
@@ -118,7 +129,7 @@
                                         <th scope="col">DNI</th>
                                         <th scope="col">Télefono</th>
                                         <th scope="col">E-mail</th>
-                                        <th scope="col">Fecha-Ingreso</th>
+                                        <th scope="col">Rol</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -155,8 +166,11 @@
                         <div class=" mb-5 ml-5 mt-4 d-flex align-items">
                             <button id="btnEliminarU" onclick="" type="button"
                                 class="btn btn-primary mr-1">Eliminar</button>
-                            <button id="btnModificarU" onclick="" type="button"
-                                class="btn btn-primary">Modificar</button>
+                            <button id="btnModificarU" onclick="window.location='usuariosM.html'" type="button"
+                                class="btn btn-primary mr-1">Modificar</button>
+                            <button id="btnModificarU" onclick="window.location='usuariosA.html'" type="button"
+                                class="btn btn-primary">Registrar nuevo
+                                usuario</button>
                         </div>
                     </form>
                 </div>
