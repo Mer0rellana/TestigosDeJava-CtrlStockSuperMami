@@ -25,10 +25,10 @@ const ItemUpdate = async (req, res) => {
       const { id } = req.params;
       await Item.updateOne(
         { code: id },
-        { ...req.body, updateDate: Moment.now() }
+        { ...req.body, updatedAt: Moment.now() }
       );
-      console.log(req.body);
-      return res.status(200).send({ message: "Un Exito" });
+      
+      return res.status(200).send({ message: "Artículo actualizado con éxito" });
     } else {
       return new ErrorModel()
         .newUnauthorized("Usuario no autorizado")
