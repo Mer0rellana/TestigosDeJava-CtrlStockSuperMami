@@ -30,8 +30,8 @@
 
 <body>
     <div class="wrapper">
-        <div class="topBar img-fluid ">
-            <img src="./img/logo-super-mami.png" class="logo" alt="">
+        <div class="topBar ">
+            <a href="../home/home.html"><img src="./img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -42,34 +42,33 @@
                     </button>
                 </div>
                 <div class="p-4">
-                    <h1><a href="index.html" class="logo"></a></h1>
                     <ul class="list-unstyled components mb-5">
                         <li class="active">
-                            <a href="#"><span class="fa fa-home mr-3"></span> Articulos</a>
+                            <a href="#"><span class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-user mr-3"></span> Depositos</a>
+                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-briefcase mr-3"></span> Pedidos</a>
+                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-suitcase mr-3"></span> Usuarios</a>
+                            <a href="../usuarios/usuariosB.html"><span class="fa fa-users mr-3"></span> Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Stock</a>
+                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Mi Perfil</a>
+                            <a href="../usuarios/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Configuracion</a>
+                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
                         </li>
                     </ul>
                 </div>
@@ -138,7 +137,8 @@
                                     Datos</button>
                             </div>
                             <div class=" mt-5">
-                                <button id="btnCambiarContraseña" onclick="" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdlCambiarContraseña">Cambiar
+                                <button id="btnCambiarContraseña" onclick="" type="button" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#mdlCambiarContraseña">Cambiar
                                     Contraseña</button>
                             </div>
                         </div>
@@ -150,28 +150,30 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="mdlCambiarContraseña" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="mdlCambiarContraseña" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
-                    <button type="button" data-bs-dismiss="modal" class="btn-close btn-close-white" aria-label="Close"></button>
+                    <button type="button" data-bs-dismiss="modal" class="btn-close btn-close-white"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group col-md-12">
                         <label for="">Contraseña Actual</label>
                         <input disabled type="text" class="form-control" id="inputContraseñaActual"
-                            name="inputContraseñaActual" >
+                            name="inputContraseñaActual">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="">Contraseña Nueva</label>
                         <input disabled type="text" class="form-control" id="inputContraseñaNueva"
-                            name="inputContraseñaNueva" >
+                            name="inputContraseñaNueva">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="">Confirmar Contraseña Nueva</label>
                         <input disabled type="text" class="form-control" id="inputConfirmarContraseña"
-                            name="inputConfirmarContraseña" >
+                            name="inputConfirmarContraseña">
                     </div>
                 </div>
                 <div class="modal-footer">

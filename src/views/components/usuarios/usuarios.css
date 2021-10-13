@@ -15,9 +15,15 @@ hr{
 border-top: 2px solid #1E450C ;
 }
 
-bg-verde{
-    background-color: #1E450C;
+input{
+    background-color: #35990750 !important;
 }
+
+select{
+    background-color: #35990750 !important;
+}
+
+
 
 
 
