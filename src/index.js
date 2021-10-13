@@ -4,10 +4,6 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index'); 
-<<<<<<< HEAD
-=======
-
->>>>>>> 95a973e108bfb9c17b6f2cb8a64ea50807c3aae4
 const cors = require('cors');
 const { ENV, DB_LOCAL, PORT } = require('./config/config');
 
