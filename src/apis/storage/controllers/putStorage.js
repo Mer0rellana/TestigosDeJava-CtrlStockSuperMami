@@ -8,7 +8,8 @@ const StorageUpdateState = async (req,res) => {
         if (token.role === "Admin"||token.role === "Encargado stock"||token.role === "Gerencia"){
             const fecha = Moment.now();
             const { id } = req.params;
-            await StorageSchema.updateOne({id : id}, {$set: {state:"Inactivo", updatedAt: fecha}});
+            const storageDoc = await StorageSchema.updateOne({id : id}, {...req.body, state:"Inactivo", updatedAt: fecha});
+            if (storageDoc.matchedCount === 0) return new ErrorModel().newNotFound("El almacenamiento no existe").send(res);
             return res.status(200).send({message: "El almacenamiento fue dado de bajo de forma exitosa"});
         }
         else{
