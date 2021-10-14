@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index'); 
 const storageRoute = require('./apis/storage/index');
+const autoIncrement = require('mongoose-auto-increment');
 
 const cors = require('cors');
 const { ENV, DB_LOCAL, PORT } = require('./config/config');
@@ -14,6 +15,7 @@ if(ENV==='dev'){
 	console.log(ENV)
 }
 //connecting to db
+
 mongoose.connect(DB_LOCAL) 
 	.then(db => console.log('Db connected'))
 	.catch(err => console.log(err));
