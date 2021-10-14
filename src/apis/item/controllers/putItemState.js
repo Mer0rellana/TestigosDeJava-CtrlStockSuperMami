@@ -10,8 +10,10 @@ const ItemUpdateState = async (req, res) => {
     const { id } = req.params;
 
     if (token.role === "Admin") {
-      const doc = await Item.updateOne({ code: id }, { $set: { state: "Eliminado",  updatedAt: fecha} });
-      if(doc.matchedCount === 0) return new ErrorModel().newNotFound("El artículo no existe").send(res);
+      const doc = await Item.updateOne(
+        { code: id },
+        { $set: { state: "Eliminado", updatedAt: fecha } });
+      if (doc.matchedCount === 0) return new ErrorModel().newNotFound("El artículo no existe").send(res);
 
       return res.status(200).send({ message: "Artículo eliminado con éxito" });
     } else {
