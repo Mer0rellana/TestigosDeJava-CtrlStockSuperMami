@@ -37,17 +37,6 @@ paths:
         400:
           $ref: "#/components/responses/BadRequest"
           
-        402:
-          description: Contraseña incorrecta
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    enum: [La contraseña no coincide]
-
         404:
           $ref: "#/components/responses/NotFound"
         
@@ -130,7 +119,30 @@ paths:
           $ref: '#/components/responses/Unauthorized' 
         500:
           $ref: '#/components/responses/ServerError'
-   
+          
+  /user/updatePassword:
+    put:
+      tags:
+        - User
+      summary: Update password
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyPasswordPut"
+      responses:
+        200:
+          description: (OK) Contraseña actualizada con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/Unauthorized"
+        500:
+          $ref: "#/components/responses/ServerError"
+
+  
 components:
   securitySchemes:
     userToken:
@@ -146,7 +158,7 @@ components:
       description: (Not Found) Datos no encontrados
 
     BadRequest:
-      description: (Bad Request) Error en el tipo de dato o campos incompletos
+      description: (Bad Request) Campos incompletos o erróneos
 
     ServerError:
       description: (Internal Server Error) Error interno del servidor
@@ -166,7 +178,7 @@ components:
           example: 789456
         password:
           type: string
-          example: HBoP56kw
+          example: Testigos123
 
     BodyRecoverPasswordPost:
       type: object
@@ -176,6 +188,23 @@ components:
         mail:
           type: string
           example: agus.garciarey@gmail.com
+          
+    BodyPasswordPut:
+      type: object
+      required:
+        - currentPassword
+        - newPassword
+        - confirmNewPassword
+      properties:
+        currentPassword:
+          type: string
+          example: Testigos123
+        newPassword:
+          type: string
+          example: Testigos1234
+        confirmNewPassword:
+          type: string
+          example: Testigos1234
     
     ResponseUser:
       type: object

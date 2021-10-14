@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index'); 
+const storageRoute = require('./apis/storage/index');
 
 const cors = require('cors');
 const { ENV, DB_LOCAL, PORT } = require('./config/config');
@@ -34,6 +35,7 @@ app.use(cors({
 //routes
 app.use('/user', userRoute);
 app.use('/item', itemRoute);
+app.use('/storage', storageRoute);
 
 //starting the server
 app.listen(app.get('port'), () => {

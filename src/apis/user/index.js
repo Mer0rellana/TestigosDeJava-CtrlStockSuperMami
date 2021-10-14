@@ -7,10 +7,10 @@ const LoginUser = require('./controllers/postLogin');
 const CreateUser = require('./controllers/postNewUser');
 const RecoverPassword = require('./controllers/postRecoverPassword');
 const DeleteUser = require('./controllers/deleteUser');
-const UpdateRole = require('./controllers/updateRole');
+const UpdateRole = require('./controllers/putRole');
 const PutPassword = require('./controllers/putPassword');
 const UpdateProfile = require('./controllers/putUser');
-const PutPassword = require('./controllers/putPassword');
+
 
 const router = express.Router();
 
