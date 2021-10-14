@@ -28,7 +28,7 @@ const CreateUser = async (req, res) => {
 
             const query = await User.find({ id: request.data.id, mail: request.data.mail });
 
-            if (query.length) return ErrorModel().newBadRequest("El usuario ya existe").send(res);
+            if (query.length) return new ErrorModel().newBadRequest("El usuario ya existe").send(res);
 
             const hashed_password = await Hash(req.body.password);
 

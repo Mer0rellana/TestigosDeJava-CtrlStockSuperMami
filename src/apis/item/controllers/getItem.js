@@ -18,8 +18,8 @@ const getAllItems = async (req, res) => {
 
       }else if(state){
         //get por estado
-        const item = await ItemSchema.find({ state });
-        return res.status(200).send(item);
+        const items = await ItemSchema.find({ state });
+        return res.status(200).send(items);
       }
     };
 
