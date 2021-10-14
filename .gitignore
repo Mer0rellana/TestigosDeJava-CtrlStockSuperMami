@@ -1,8 +1,9 @@
+# Dependency directories
 **/node_modules
 
 node_modules/
 node_modules
 
+# dotenv environment variables file
 .env
-env.json
 src/config/env.json
