@@ -1,6 +1,5 @@
 const { ItemSchema: Item } = require("../../../models/item");
 const ErrorModel = require("../../../models/api-error");
-const yup = require("yup");
 const Moment = require("moment");
 
 const ItemUpdateState = async (req, res) => {

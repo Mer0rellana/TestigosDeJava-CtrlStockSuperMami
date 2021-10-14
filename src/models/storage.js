@@ -19,7 +19,7 @@ const AreaSchema = new Schema({
     { versionKey: false },
 )
 
-StorageSchema.set('collection', 'area');
+//StorageSchema.set('collection', 'area');
 
 const StorageSchema = new Schema({
     id: {
