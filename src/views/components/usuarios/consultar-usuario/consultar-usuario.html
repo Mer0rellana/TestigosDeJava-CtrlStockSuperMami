@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"
@@ -18,23 +18,20 @@
     <script defer src="./usuarios.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="./IndexStyles.css">
-    <link rel="stylesheet" href="./usuarios.css">
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
+    <link rel="stylesheet" href="../usuarios.css">
     <script defer src="/src/views/validaciones/validaciones.js"></script>
-    <link rel="stylesheet" href="./Tabla.css">
-
-
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../home/home.html"><img src="./img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -91,8 +88,8 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="">Legajo</label>
-                                <input type="number" class="verde form-control" id="inputDni"
-                                    placeholder="Ingrese Legajo" name="inputLegajo">
+                                <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
+                                    name="inputLegajo">
 
                             </div>
 
@@ -154,8 +151,9 @@
                                         <td class="text-center">89 Chiaroscuro Rd, Portland, Phnom Penh</td>
                                         <td class="text-center">0966686371</td>
                                         <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
+                                            <a href="" class="edit" data-bs-toggle="modal"
+                                                data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
+                                                    title="Editar"></i></a>
                                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
@@ -240,13 +238,112 @@
                                 class="btn btn-primary">Registrar nuevo
                                 usuario</button>
                         </div>
-                    </div>
-                    </form>
                 </div>
+                </form>
             </div>
+        </div>
 
+    </div>
+    </div>
+
+    <!-- Edit Modal HTML -->
+    <div id="editEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Employee</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Employee</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete these Records?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>
 
 </html>
+
+<!--   <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="">DNI</label>
+                                <input type="number" class="verde form-control" id="inputDni"
+                                    placeholder="Ingrese Documento" name="dni">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Rol</label>
+                                <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
+                                    <option selected disabled value="">Seleccione Rol</option>
+                                    <option value="1">Administrador </option>
+                                    <option value="2">Gerencia</option>
+                                    <option value="3">Encargado Stock</option>
+                                    <option value="4">Operario de Stock</option>
+                                    <option value="5 ">Operario de almacenamiento</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="">Nombre</label>
+                                <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese Nombre"
+                                    name="nombre">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="">Teléfono</label>
+                                <input type="text" class="form-control" id="inputTelefono"
+                                    placeholder="Ingrese Telefono" name="telefono">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="">E-mail</label>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese E-mail"
+                                    name="email">
+                            </div>
+                        </div>
+                        <div class=" mt-5 d-flex justify-content-center">
+                            <button id="btnModificarUsuario" onclick="" type="button"
+                                class="btn btn-primary">Modificar</button>
+                        </div> -->
