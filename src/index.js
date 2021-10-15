@@ -40,8 +40,8 @@ app.use('/item', itemRoute);
 app.use('/storage', storageRoute);
 
 //starting the server
-app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
 	console.log(`Server on port ${app.get('port')}`);
 });
 
-module.exports=app;
+module.exports={app,server};
