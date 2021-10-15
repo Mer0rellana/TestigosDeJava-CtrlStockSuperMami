@@ -20,7 +20,7 @@ const LoginUser = async (req, res) => {
         if (!user.length) return new ErrorModel().newNotFound("El legajo ingresado no existe").send(res);
 
         const hashed_password = await Verify(req.body.password, user[0].password);
-        if (!hashed_password) return ErrorModel().newBadRequest("La contraseña no coincide").send(res);
+        if (!hashed_password) return new ErrorModel().newBadRequest("La contraseña no coincide").send(res);
 
         const token = createUserToken(user[0].id, user[0].name, user[0].role, user[0].state);
         return res.status(200).send({ token: token });
