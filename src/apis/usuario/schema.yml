@@ -1,0 +1,203 @@
+openapi: 3.0.1
+info:
+  title: Api User
+  version: 1.0.0
+servers:
+  - url: "http://localhost:3000/"
+    description: Local Server
+
+tags:
+  - name: User
+    description: User handler
+
+paths:
+  /user/login:
+    post:
+      tags:
+        - User
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyLoginPost"
+        required: true
+      responses:
+        200:
+          description: (OK) El usuario se ha logeado exitósamente 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: User token
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI1eGdFdEFFUlBCNzkyb1JkQmFxRiIsIm5hbWUiOiJBZ3VzdGluYSIsIm1haWwiOiJhZ3VzLmdhcmNpYXJleUBnbWFpbC5jb20iLCJleHAiOjE2Mjk2MDk3OTF9.fpM55flnN-KNXodoa9x-MryQxPIYo82Rh4ZGuWIXKMQ
+        400:
+          $ref: "#/components/responses/BadRequest"
+          
+        402:
+          description: Contraseña incorrecta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum: [La contraseña no coincide]
+
+        404:
+          $ref: "#/components/responses/NotFound"
+        
+        500:
+          $ref: "#/components/responses/ServerError"
+
+
+  /user/recoverPassword:
+    post:
+      tags:
+        - User
+      summary: Recover password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyRecoverPasswordPost"
+        required: true
+      responses:
+        200:
+          description: (OK) La nueva contraseña se envió a su mail
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+          $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+        535:
+          $ref: "#/components/responses/EmailError"
+          
+  /user/myProfile:
+    get:
+      tags:
+      - User
+      summary: Get My Profile
+      security:
+        - userToken: []
+      responses:
+        200:
+          description: (OK) El usuario se obtuvo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /user/:
+    get:
+      tags:
+      - User
+      summary: Get Users
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: query
+        required: false
+        description: Legajo del usuario
+        example: 1000
+        schema:
+          type: string
+      - name: role
+        in: query
+        required: false
+        description: Rol del usuario
+        example: Encargado stock
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Los usuarios se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetUsers'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
+   
+components:
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      description: Example eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzg5NDU2LCJuYW1lIjoiQWd1c3RpbmEgR2FyY8OtYSBSZXkiLCJyb2xlIjoiQWRtaW4iLCJzdGF0ZSI6dHJ1ZSwiZXhwIjoxNjMzOTk1OTMxfQ.ZQh3DtulWkIGQHJqrFP5Ouqk8Qvn3LTb28_sVsy-NCY
+      
+  responses:
+    Unauthorized:
+      description: (Unauthorized) Usuario no autorizado
+
+    NotFound:
+      description: (Not Found) Datos no encontrados
+
+    BadRequest:
+      description: (Bad Request) Error en el tipo de dato o campos incompletos
+
+    ServerError:
+      description: (Internal Server Error) Error interno del servidor
+
+    EmailError:
+      description: (Incorrect authentication data) Error en el envío de mail
+      
+  schemas:
+    BodyLoginPost:
+      type: object
+      required:
+        - id
+        - password
+      properties:
+        id:
+          type: number
+          example: 789456
+        password:
+          type: string
+          example: HBoP56kw
+
+    BodyRecoverPasswordPost:
+      type: object
+      required:
+        - mail
+      properties:
+        mail:
+          type: string
+          example: agus.garciarey@gmail.com
+    
+    ResponseUser:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dni:
+          type: number
+        tel:
+          type: string
+        mail:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
+    
+    ResponseGetUsers:
+      type: array
+      items:
+          $ref: '#/components/schemas/ResponseUser'
+        
+
