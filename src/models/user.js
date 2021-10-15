@@ -6,7 +6,6 @@ const UserSchema = Schema({
         type: Number,
         required: true,
         unique: true,
-        trim: true,
     },
     name: {
         type: String,
@@ -18,7 +17,6 @@ const UserSchema = Schema({
         required: true,
         minlength: 8,
         maxlength: 8,
-        trim: true,
     },
     mail: {
         type: String,
@@ -33,7 +31,8 @@ const UserSchema = Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     role: {
         type: String,
