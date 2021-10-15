@@ -2,18 +2,32 @@
   "name": "tdj-super-mami",
   "version": "1.0.0",
   "description": "",
-  "main": "src/apis/index.js",
+  "main": "src/index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "node apis/index.js",
     "dev": "nodemon apis/index.js"
+=======
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+>>>>>>> bbf75e2d07407af2f370993c5b7246defa17668e
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.29.1",
     "mongoose": "^6.0.9",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.6.5",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "secure-random-password": "^0.2.3",
+    "validator": "^13.6.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
