@@ -11,21 +11,16 @@ const getStorage = async (req, res) => {
       token.role === "Encargado stock" ||
       token.role === "Gerencia"
     ) {
-      const {id} = req.query;
+      const { id } = req.query;
       if (id) {
-        const storage = await StorageSchema.findOne({id});
-        if(storage.matchedCount === 0){
-            return new ErrorModel().newNotFound("El almacén no existe").send(res);
-        }
-        else{
-            return res.status(200).send(storage);
-        }
-        
-      } else if(!id) {
+        const storage = await StorageSchema.findOne({ id }).orFail(
+          new ErrorModel().newNotFound("El almacén no existe")
+        );
+        return res.status(200).send(storage);
+      } else if (!id) {
         const storages = await StorageSchema.find();
         return res.status(200).send(storages);
       }
-      
     }
     return new ErrorModel().newUnauthorized("Usuario no autorizado").send(res);
   } catch (err) {
