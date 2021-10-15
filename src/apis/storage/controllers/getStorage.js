@@ -13,11 +13,11 @@ const getStorage = async (req, res) => {
     ) {
       const { id } = req.query;
       if (id) {
-        const storage = await StorageSchema.findOne({ id }).orFail(
-          new ErrorModel().newNotFound("El almacén no existe")
-        );
+        const storage = await StorageSchema.findOne({ id });
+        if(!storage) return new ErrorModel().newNotFound("El almacén no existe").send(res);
+        console.log(storage);
         return res.status(200).send(storage);
-      } else if (!id) {
+      } else {
         const storages = await StorageSchema.find();
         return res.status(200).send(storages);
       }
