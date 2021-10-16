@@ -3,23 +3,20 @@ const Schema = mongoose.Schema;
 const validator = require('validator');
 
 const AreaSchema = new Schema({
-    number: {
-        type: Number,
-        required: true,
-        unique: true,
-        trim: true,
+    id:{
+      type:String,
+      required:true,
+      unique:true
     },
-    block: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-    },
+    available:{
+      type:Boolean,
+      required:true
+    }
 },
     { versionKey: false },
 )
 
-StorageSchema.set('collection', 'area');
+AreaSchema.set('collection', 'area');
 
 const StorageSchema = new Schema({
     id: {
