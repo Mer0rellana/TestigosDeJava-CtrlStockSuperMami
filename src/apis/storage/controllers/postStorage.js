@@ -30,20 +30,3 @@ const postStorage = async (req, res) => {
 };
 
 module.exports = postStorage;
-
-/* ============================================================================================== */
-
-/* const yup = require("yup");
-
-const schema = yup.object().shape({
-    id: yup.number().required(),
-    mts: yup.number().min(0).positive().required(),
-    state: yup
-      .string()
-      .oneOf(["Bloqueado", "Activo", "Inactivo"])
-      .dedfault("Activo")
-      .required(),
-    area: yup.string().max(10).min(1).required(),
-  });
-  
-  module.exports = postStorage;  */
