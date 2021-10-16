@@ -9,8 +9,8 @@ const StorageUpdateState = async (req,res) => {
             const fecha = Moment.now();
             const { id } = req.params;
             const storage = await StorageSchema.updateOne({id : id}, { state:"Inactivo", updatedAt: fecha});
-            if (storage.matchedCount === 0) return new ErrorModel().newNotFound("El deposito no existe").send(res);
-            return res.status(200).send({message: "El deposito fue dado de baja de forma exitosa"});
+            if (storage.matchedCount === 0) return new ErrorModel().newNotFound("El depósito no existe").send(res);
+            return res.status(200).send({message: "El depósito fue dado de baja de forma exitosa"});
         }
         else{
             return new ErrorModel().newUnauthorized("Usuario no autorizado").send(res);
