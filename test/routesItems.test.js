@@ -10,6 +10,7 @@ const { usuario, loginUsuario, items, newItem } = require('./helper');
 
 const api = supertest(app);
 let token = null;
+let someId=null;
 
 
 
@@ -38,7 +39,7 @@ before(async () => {
     });
     await itemObjet.save();
   }
-
+  
   const data = await api
     .post('/user/login')
     .send(loginUsuario)
@@ -130,7 +131,36 @@ describe('postItem.js', () => {
         })
     });
 
+    it('Error 404', async () => {
+      await api
+        .get('/item/add')
+        .set('Authorization', 'Bearer ' + token)
+        .expect(404)
+    });
+
     //VERIFICAR EL ERROR DE CUANDO SE CARGA CON DATOS DE MAS
+    it('Agregar datos de mas', async () => {
+      await api
+        .post('/item/add')
+        .set('Authorization', 'Bearer ' + token)
+        .send({
+          ...newItem,
+          code:"1234",
+        otrodato:"otrodato"})
+        .expect(200)
+        //.expect({message: "El artículo se creó exitosamente"})
+    });
+
+    it('Error al agregar un item con el mismo codigo de uno existente, error 400 y un mensaje', async () => {
+      await api
+        .post('/item/add')
+        .set('Authorization', 'Bearer ' + token)
+        .send(items[0])
+        .expect(400)
+        .expect({
+          cause: "Bad Request",
+          message: "El código de artículo ya existe en el sistema"})
+    });
   });
 
   describe('POST', () => {
@@ -140,6 +170,125 @@ describe('postItem.js', () => {
         .set('Authorization', 'Bearer ' + token)
         .send(newItem)
         .expect(200)
+        .expect({message: "El artículo se creó exitosamente"})
+    });
+  });
+});
+
+describe('putItemState.js', () => {
+
+  describe('Errores de putItem', () => {
+    it('Responde con un objeto con un mensaje de "No token in header" y la causa "Unauthorized"', async () => {
+      await api
+        .put(`/item/update/${items[0].code}`)
+        .expect(401)
+        .expect({ message: "No token in header", cause: "Unauthorized" })
+    });
+
+    it('Token equivocado', async () => {
+      await api
+        .put(`/item/update/${items[0].code}`)
+        .set('Authorization', 'Bearer asd')
+        .expect({ message: {}, cause: "Unauthorized" })
+    });
+
+    it('Error 400, bad Request por datos erroneos', async () => {
+      await api
+        .put(`/item/update/${items[0].code}`)
+        .set('Authorization', 'Bearer ' + token)
+        .send({
+          ...newItem,
+          price: "otrodato"
+        })
+        .expect(400)
+        .expect({
+          cause: "Bad Request",
+          message: ["price must be a `number` type, but the final value was: `NaN` (cast from the value `\"otrodato\"`)."]
+        })
+    });
+
+    it('Error 404 por peticion incorrecta', async () => {
+      await api
+        .post(`/item/update/${items[0].code}`)
+        .set('Authorization', 'Bearer ' + token)
+        .expect(404)
+    });
+
+    it('Error 404', async () => {
+      await api
+        .put(`/item/update/999999999999a@[]`)
+        .set('Authorization', 'Bearer ' + token)
+        .expect(404)
+        .expect({ message: 'El artículo no existe', cause: 'Not Found' })
+    });
+
+    //REVISAR
+    it.skip('Error al pasar datos erroneos', async () => {
+      await api
+        .put(`/item/update/${items[0].code}`)
+        .set('Authorization', 'Bearer ' + token)
+        .send({
+          code:"2727"
+        })
+        .expect(500)
+    });
+  });
+
+  describe('PUT', () => {
+    it('Responde con el codigo 200', async () => {
+      await api
+        .put(`/item/update/${items[0].code}`)
+        .set('Authorization', 'Bearer ' + token)
+        .send({
+          description:"Una nueva descripcion"
+        })
+        .expect(200)
+        .expect({message: "Artículo actualizado con éxito"})
+    });
+  });
+});
+
+describe('putItem.js', () => {
+
+  describe('Errores de putItem', () => {
+    it('Responde con un objeto con un mensaje de "No token in header" y la causa "Unauthorized"', async () => {
+      await api
+        .put(`/item/update-state/${items[0].code}`)
+        .expect(401)
+        .expect({ message: "No token in header", cause: "Unauthorized" })
+    });
+
+    it('Token equivocado', async () => {
+      await api
+        .put(`/item/update-state/${items[0].code}`)
+        .set('Authorization', 'Bearer asd')
+        .expect({ message: {}, cause: "Unauthorized" })
+    });
+
+    it('Error 404 por peticion incorrecta', async () => {
+      await api
+        .post(`/item/update-state/${items[0].code}`)
+        .set('Authorization', 'Bearer ' + token)
+        .expect(404)
+    });
+
+    it('Error 404', async () => {
+      await api
+        .put(`/item/update-state/999999999999a@[]`)
+        .set('Authorization', 'Bearer ' + token)
+        .expect(404)
+        .expect({ message: 'El artículo no existe', cause: 'Not Found' })
+    });
+
+  });
+
+  describe('PUT', () => {
+    it('Responde con el codigo 200', async () => {
+      await api
+        .put(`/item/update-state/${items[0].code}`)
+        .set('Authorization', 'Bearer ' + token)
+        .expect(200)
+        .expect({message: "Artículo eliminado con éxito"})
     });
   });
 });
