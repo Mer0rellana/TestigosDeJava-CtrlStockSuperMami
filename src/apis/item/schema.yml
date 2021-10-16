@@ -1,0 +1,257 @@
+openapi: 3.0.1
+info:
+  title: Api Item
+  version: 1.0.0
+servers:
+  - url: "http://localhost:3000/"
+    description: Local Server
+
+tags:
+  - name: Item
+    description: Item handler
+
+paths:
+  /item/add:
+    post:
+      tags:
+        - Item
+      summary: Create item
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyAddPost"
+        required: true
+      responses:
+        200:
+          description: (OK) El artículo se creó exitósamente 
+        400:
+          $ref: "#/components/responses/BadRequest"
+          
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        
+        500:
+          $ref: "#/components/responses/ServerError"
+
+
+  /item/update/{id}:
+    put:
+      tags:
+        - Item
+      summary: Update item
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: path
+        description: Item code
+        required: true
+        example: 5386
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyUpdatePost"
+        required: true
+      responses:
+        200:
+          description: (OK) Artículo actualizado con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /item/update-state/{id}:
+    put:
+      tags:
+        - Item
+      summary: Delete item
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: path
+        description: Item code
+        required: true
+        example: 5386
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Artículo eliminado con éxito
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /item/:
+    get:
+      tags:
+      - Item
+      summary: Get Items
+      security:
+        - userToken: []
+      parameters:
+      - name: code
+        in: query
+        required: false
+        description: Código del artículo
+        example: 5386
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        description: Estado del artículo
+        example: Eliminado
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Los artículos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetItems'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+
+
+  
+components:
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      description: Example eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzg5NDU2LCJuYW1lIjoiQWd1c3RpbmEgR2FyY8OtYSBSZXkiLCJyb2xlIjoiQWRtaW4iLCJzdGF0ZSI6dHJ1ZSwiZXhwIjoxNjMzOTk1OTMxfQ.ZQh3DtulWkIGQHJqrFP5Ouqk8Qvn3LTb28_sVsy-NCY
+      
+  responses:
+    Unauthorized:
+      description: (Unauthorized) Usuario no autorizado
+
+    NotFound:
+      description: (Not Found) Datos no encontrados
+
+    BadRequest:
+      description: (Bad Request) Campos incompletos o erróneos
+
+    ServerError:
+      description: (Internal Server Error) Error interno del servidor
+
+    EmailError:
+      description: (Incorrect authentication data) Error en el envío de mail
+      
+  schemas:
+    BodyAddPost:
+      type: object
+      required:
+        - code
+        - description
+        - family
+        - group
+        - price
+        - unit
+        - amount
+      properties:
+        code:
+          type: string
+          example: 0005386
+        description:
+          type: string
+          example: Colgate plax ice 500ml
+        family:
+          type: string
+          example: Higiene
+        group:
+          type: string
+          example: Dental
+        price: 
+          type: number
+          example: 500
+        unit:
+          type: string
+          example: ml
+        amount:
+          type: number
+          example: 500
+
+    BodyUpdatePost:
+      type: object
+      required:
+        - description
+        - family
+        - group
+        - price
+        - unit
+        - amount
+        - state
+      properties:
+        description:
+          type: string
+          example: Colgate plax ice 500ml
+        family:
+          type: string
+          example: Higiene
+        group:
+          type: string
+          example: Dental
+        price: 
+          type: number
+          example: 500
+        unit:
+          type: string
+          example: ml
+        amount:
+          type: number
+          example: 500
+        state:
+          type: string
+          enum: [Activo]
+          example: Activo
+          
+    ResponseItem:
+      type: object
+      properties:
+        _id:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+        family:
+          type: number
+        group:
+          type: string
+        price:
+          type: number
+        unit:
+          type: string
+        amount:
+          type: string
+        state:
+          type: string
+        createdAt:
+          type: number
+        updatedAt:
+          type: number
+    
+    ResponseGetItems:
+      type: array
+      items:
+          $ref: '#/components/schemas/ResponseItem'
+        
+

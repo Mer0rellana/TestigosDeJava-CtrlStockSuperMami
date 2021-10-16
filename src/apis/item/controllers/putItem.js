@@ -9,30 +9,30 @@ const schema = yup.object().shape({
   family: yup.string().min(3).max(30),
   group: yup.string().min(3).max(30),
   price: yup.number().positive(),
-  unit: yup.string().min(3).max(30),
-  amount: yup.number().max(30),
+  unit: yup.string().min(1).max(30),
+  amount: yup.number().max(1000),
   //discutir en que endpoint va a ir cada estado
-  state: yup.string().oneOf(["Activo", "Bloqueado"]).default("Activo"),
+  state: yup.string().oneOf(["Activo"]).default("Activo"),
 });
 
 const ItemUpdate = async (req, res) => {
   try {
     const token = res.locals.payload;
+
     if (token.role === "Admin") {
       const request = await Validator(req.body, schema);
-      if (request.err)
-        return new ErrorModel().newBadRequest(request.data).send(res);
+      if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
+
       const { id } = req.params;
-      await Item.updateOne(
+      const doc = await Item.updateOne(
         { code: id },
         { ...req.body, updatedAt: Moment.now() }
       );
+      if(doc.matchedCount === 0) return new ErrorModel().newNotFound("El artículo no existe").send(res);
       
       return res.status(200).send({ message: "Artículo actualizado con éxito" });
     } else {
-      return new ErrorModel()
-        .newUnauthorized("Usuario no autorizado")
-        .send(res);
+      return new ErrorModel().newUnauthorized("Usuario no autorizado").send(res);
     }
   } catch (err) {
     return new ErrorModel().newInternalServerError(err.message).send(res);

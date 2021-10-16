@@ -31,11 +31,11 @@ before(async () => {
   await user.save();
 
   for (const item of items) {
-    const itemObjet = new Item( {
+    const itemObjet = new Item({
       ...item,
-      createdAt:moment.now(),
-      state:'Activo'
-    } );
+      createdAt: moment.now(),
+      state: 'Activo'
+    });
     await itemObjet.save();
   }
 
@@ -72,17 +72,17 @@ describe('getItem.js', () => {
         .get('/item')
         .set('Authorization', 'Bearer ' + token)
         .expect(200)
-        expect(response.body).length(3)
+      expect(response.body).length(3)
     });
   });
 
   describe('GET?code=', () => {
     it('Devuelve un codigo 200 y un array de 1', async () => {
       const response = await api
-        .get('/item?code='+`${items[0].code}`)
+        .get('/item?code=' + `${items[0].code}`)
         .set('Authorization', 'Bearer ' + token)
         .expect(200)
-        expect(response.body).length(1)
+      expect(response.body).length(1)
     });
   });
 
@@ -92,7 +92,7 @@ describe('getItem.js', () => {
         .get('/item?state=Activo')
         .set('Authorization', 'Bearer ' + token)
         .expect(200)
-        expect(response.body).length(3)
+      expect(response.body).length(3)
     });
   });
 });
@@ -115,15 +115,31 @@ describe('postItem.js', () => {
         .expect({ message: {}, cause: "Unauthorized" })
     });
 
+    it('Error 400, bad Request por datos erroneos', async () => {
+      await api
+        .post('/item/add')
+        .set('Authorization', 'Bearer ' + token)
+        .send({
+          ...newItem,
+          price: "otrodato"
+        })
+        .expect(400)
+        .expect({
+          cause: "Bad Request",
+          message: "item validation failed: price: Cast to Number failed for value \"otrodato\" (type string) at path \"price\""
+        })
+    });
+
+    //VERIFICAR EL ERROR DE CUANDO SE CARGA CON DATOS DE MAS
   });
 
-  /* describe('POST', () => {
-    it('Responde con un objeto con un mensaje de "No token in header" y la causa "Unauthorized"', async () => {
+  describe('POST', () => {
+    it('Responde con el codigo 200', async () => {
       await api
         .post('/item/add')
         .set('Authorization', 'Bearer ' + token)
         .send(newItem)
-        .expect(201)
+        .expect(200)
     });
-  }); */
+  });
 });
