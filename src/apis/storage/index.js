@@ -4,6 +4,6 @@ const getStorage = require('./controllers/getStorage');
 
 const router = express.Router();
 
-router.get('/',ensureUserAuthenticated ,getStorage);
+router.get('/',getStorage);
 
 module.exports = router;
