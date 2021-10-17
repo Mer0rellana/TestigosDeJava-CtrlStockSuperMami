@@ -34,7 +34,7 @@ const GetUsers = async (req, res) => {
                     tel: u.tel,
                     role: u.role,
                     state: u.state,
-                    createdAt: moment(u.createdAt).format('L')
+                    createdAt: moment(u.createdAt).format('DD/MM/YYYY')
                 }
                 return u
             })

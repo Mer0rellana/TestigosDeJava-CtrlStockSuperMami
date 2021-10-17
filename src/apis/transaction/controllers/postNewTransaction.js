@@ -34,9 +34,10 @@ const CreateTransaction = async (req, res) => {
                 const item = await Item.find({ code: b.codeItem });
                 if (!item.length) return new ErrorModel().newNotFound(`El código ${b.codeItem} no pertenece a ningún artículo del sistema`).send(res);
 
+                const query = await Batch.find({ id: b.id });
+
                 if (request.data.type === "Entrada") {
 
-                    const query = await Batch.find({ id: b.id });
                     if (query.length) return new ErrorModel().newBadRequest(`El lote número ${b.id} ya existe en el sistema`).send(res);
 
                     const batch = new Batch({
@@ -55,6 +56,8 @@ const CreateTransaction = async (req, res) => {
 
                 } else {
 
+                    if(query[0].state ==="Egresado") return new ErrorModel().newBadRequest(`El lote ${b.id} ya ha egresado del sistema`).send(res);
+                    
                     const doc = await Batch.updateOne({
                         id: b.id
                     }, {
