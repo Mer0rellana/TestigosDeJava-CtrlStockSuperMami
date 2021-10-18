@@ -3,48 +3,39 @@ const Schema = mongoose.Schema;
 const validator = require('validator');
 
 const AreaSchema = new Schema({
-    number: {
-        type: Number,
-        required: true,
-        unique: true,
-        trim: true,
-    },
-    block: {
+    id: {
         type: String,
         required: true,
-        unique: true,
-        trim: true,
+        unique: true
     },
+    available: {
+        type: Boolean,
+        required: true
+    }
 },
     { versionKey: false },
 )
 
-//StorageSchema.set('collection', 'area');
+AreaSchema.set('collection', 'areas');
 
 const StorageSchema = new Schema({
     id: {
         type: Number,
         required: true,
-        unique: true,
-        trim: true,
     },
     mts: {
         type: Number,
         required: true,
-        unique: true,
-        trim: true,
     },
     state: {
         type: String,
         enum: ['Bloqueado', 'Activo', 'Inactivo'],
         required: true,
-        trim: true,
     },
     area: {
         type: [AreaSchema],
         required: true,
         unique: true,
-        trim: true,
     },
     createdAt: Number,
     updatedAt: Number,
@@ -53,6 +44,6 @@ const StorageSchema = new Schema({
 )
 
 
-StorageSchema.set('collection', 'storage');
+StorageSchema.set('collection', 'storages');
 
 module.exports = mongoose.model('storage', StorageSchema);
