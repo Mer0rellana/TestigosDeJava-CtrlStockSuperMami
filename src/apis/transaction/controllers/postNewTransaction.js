@@ -47,7 +47,6 @@ const CreateTransaction = async (req, res) => {
                         descriptionItem: item[0].description,
                         state: 'Ingresado',
                         amount: b.amount,
-                        //expiredAt: b.expiredAt ? moment(b.expiredAt).valueOf() : 0,
                         expiredAt: b.expiredAt ? moment(b.expiredAt, "DD-MM-YYYY") : 0,
                     })
 
