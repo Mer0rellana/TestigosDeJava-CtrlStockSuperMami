@@ -23,14 +23,15 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
-    <link rel="stylesheet" href="./consultarUsuario.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
-        <!--   Datatables-->
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
-      
-        <!-- extension responsive -->
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-        
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="../../usuarios/usuarios.js"></script>
+    <!--   Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+    <!-- extension responsive -->
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
 
 </head>
 
@@ -92,42 +93,43 @@
                         </div>
                         <hr>
                         <div class="d-flex justify-content-center">
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="">Legajo</label>
-                                <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
-                                    name="inputLegajo">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="">Legajo</label>
+                                    <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
+                                        name="inputLegajo">
 
-                            </div>
+                                </div>
 
-                            <div class="form-group col-md-3">
-                                <label for="">Rol</label>
-                                <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
-                                    <option selected disabled value="">Seleccione Rol</option>
-                                    <option value="1">Administrador </option>
-                                    <option value="2">Gerencia</option>
-                                    <option value="3">Encargado Stock</option>
-                                    <option value="4">Operario de Stock</option>
-                                    <option value="5 ">Operario de almacenamiento</option>
-                                </select>
+                                <div class="form-group col-md-3">
+                                    <label for="">Rol</label>
+                                    <select id="inputRol" class="form-control" name="Rol"
+                                        placeholder="Seleccione un rol">
+                                        <option selected disabled value="">Seleccione Rol</option>
+                                        <option value="1">Administrador </option>
+                                        <option value="2">Gerencia</option>
+                                        <option value="3">Encargado Stock</option>
+                                        <option value="4">Operario de Stock</option>
+                                        <option value="5 ">Operario de almacenamiento</option>
+                                    </select>
 
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="">Estado</label>
-                                <select id="inputEstado" class="form-control" name="Estado"
-                                    placeholder="Seleccione un estado">
-                                    <option selected disabled value="">Seleccione Estado</option>
-                                    <option value="1">Activo </option>
-                                    <option value="2">Inactivo</option>
-                                </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="">Estado</label>
+                                    <select id="inputEstado" class="form-control" name="Estado"
+                                        placeholder="Seleccione un estado">
+                                        <option selected disabled value="">Seleccione Estado</option>
+                                        <option value="1">Activo </option>
+                                        <option value="2">Inactivo</option>
+                                    </select>
 
-                            </div>
-                            <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                <button id="btnFiltrarUsario" onclick="" type="button"
-                                    class="btn btn-primary">Filtrar</button>
+                                </div>
+                                <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
+                                    <button id="btnFiltrarUsario" onclick="" type="button"
+                                        class="btn btn-primary">Filtrar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <div>
                             <table class="table table-striped table-hover table-bordered  display nowrap"
                                 cellspacing="0" width="100%">
@@ -166,7 +168,7 @@
                                             <a href="" class="edit" data-bs-toggle="modal"
                                                 data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
                                                     title="Editar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
                                     </tr>
@@ -186,7 +188,7 @@
                                         <td class="text-center">
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
                                                     class="fas fa-edit" title="Editar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
                                     </tr>
@@ -206,7 +208,7 @@
                                         <td class="text-center">
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
                                                     class="fas fa-edit" title="Editar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
                                     </tr>
@@ -226,7 +228,7 @@
                                         <td class="text-center">
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
                                                     class="fas fa-edit" title="Editar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
                                     </tr>
@@ -246,7 +248,7 @@
                                         <td class="text-center">
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
                                                     class="fas fa-edit" title="Editar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
                                     </tr>
@@ -273,8 +275,7 @@
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Modificar Usuario</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal"
-                        aria-label="Close">&times;</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
