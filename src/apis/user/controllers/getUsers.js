@@ -2,6 +2,7 @@ const User = require('../../../models/user');
 const ErrorModel = require('../../../models/api-error');
 const yup = require("yup");
 const Validator = require('../../../utils/validator');
+const moment = require('moment');
 
 const schema = yup.object().shape({
     id: yup.number(),
@@ -17,10 +18,10 @@ const GetUsers = async (req, res) => {
         let users = [];
 
         if (token.role === "Admin") {
-            if (request.data.role) {
-                users = await User.find({ role: request.data.role })
-            } else if(request.data.id){
+            if(request.data.id){
                 users = await User.find({ id: Number(request.data.id) })
+            } else if (request.data.role) {
+                users = await User.find({ role: request.data.role })
             } else {
                 users = await User.find();
             }
@@ -32,7 +33,8 @@ const GetUsers = async (req, res) => {
                     mail: u.mail,
                     tel: u.tel,
                     role: u.role,
-                    state: u.state
+                    state: u.state,
+                    createdAt: moment(u.createdAt).format('L')
                 }
                 return u
             })

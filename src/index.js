@@ -2,8 +2,11 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const userRoute = require('./apis/usuario/index');
+const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index'); 
+const storageRoute = require('./apis/storage/index');
+const transactionRoute = require('./apis/transaction/index');
+
 
 const cors = require('cors');
 const { ENV, DB_LOCAL, PORT } = require('./config/config');
@@ -33,7 +36,9 @@ app.use(cors({
 
 //routes
 app.use('/user', userRoute);
-//app.use('/item', itemRoute);
+app.use('/item', itemRoute);
+app.use('/storage', storageRoute);
+app.use('/transaction', transactionRoute)
 
 //starting the server
 app.listen(app.get('port'), () => {
