@@ -5,6 +5,7 @@ const yup = require("yup");
 const Validator = require('../../../utils/validator');
 const { ItemSchema: Item } = require("../../../models/item");
 const moment = require('moment');
+const { DateReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
     type: yup.string().required().oneOf(['Entrada', 'Salida']),
@@ -12,7 +13,7 @@ const schema = yup.object().shape({
         yup.object({
             id: yup.string().required(),
             codeItem: yup.string().required(),
-            expiredAt: yup.string().optional(),
+            expiredAt: yup.string().optional().matches(DateReg),
             amount: yup.number().required()
         }).required()
     ).required(),
@@ -46,7 +47,8 @@ const CreateTransaction = async (req, res) => {
                         descriptionItem: item[0].description,
                         state: 'Ingresado',
                         amount: b.amount,
-                        expiredAt: b.expiredAt ? moment(b.expiredAt).valueOf() : 0,
+                        //expiredAt: b.expiredAt ? moment(b.expiredAt).valueOf() : 0,
+                        expiredAt: b.expiredAt ? moment(b.expiredAt, "DD-MM-YYYY") : 0,
                     })
 
                     const err = batch.validateSync();
@@ -55,8 +57,6 @@ const CreateTransaction = async (req, res) => {
                     await batch.save();
 
                 } else {
-
-                    if(query[0].state ==="Egresado") return new ErrorModel().newBadRequest(`El lote ${b.id} ya ha egresado del sistema`).send(res);
                     
                     const doc = await Batch.updateOne({
                         id: b.id
@@ -65,16 +65,18 @@ const CreateTransaction = async (req, res) => {
                         updatedAt: moment.now()
                     });
                     if (doc.matchedCount === 0) return new ErrorModel().newNotFound(`El lote ${b.id} no existe en el sistema`).send(res);
+                    if(query[0].state ==="Egresado") return new ErrorModel().newBadRequest(`El lote ${b.id} ya ha egresado del sistema`).send(res);
                 }
 
                 arrayBatches.push(b.id);
             }
 
+            const date = moment(moment().toDate()).format('DD/MM/YYYY')
             const transaction = new Transaction({
                 type: request.data.type,
                 idUser: token.id,
                 batches: arrayBatches,
-                createdAt: moment.now(),
+                createdAt: moment(date, "DD-MM-YYYY"),
             });
 
             const err = transaction.validateSync();
@@ -82,7 +84,7 @@ const CreateTransaction = async (req, res) => {
 
             await transaction.save();
 
-            return res.status(200).send({ message: "Movimiento cargado con exito" });
+            return res.status(200).send({ message: "Movimiento cargado con éxito" });
         } else {
             return new ErrorModel().newUnauthorized().send(res);
         }

@@ -13,26 +13,18 @@ const GetTransaction = async (req, res) => {
 
         let arrayBatches = []
 
-        console.log(transaction[0].batches)
-        if (transaction[0].batches.length){
+        for (const b of transaction[0].batches) {
 
-            for (const b of transaction[0].batches){
-                console.log(b)
-                //const query = await Batch.find({ id: b });
-                const query = await Batch.find();
-                console.log(query);
-                result = query.find(batch => batch.id = b)
-                console.log("result" + result)
-                if(result){
-                    const batch = {
-                        id: query[0].id,
-                        codeItem: query[0].codeItem,
-                        descriptionItem: query[0].descriptionItem,
-                        amount: query[0].amount,
-                        expiredAt: query[0].expiredAt != 0 ? moment(query[0].expiredAt).format('DD/MM/YYYY') : "",
-                    }
-                    arrayBatches.push(batch);
+            const query = await Batch.find({id: b});
+            if (query[0]) {
+                const batch = {
+                    id: query[0].id,
+                    codeItem: query[0].codeItem,
+                    descriptionItem: query[0].descriptionItem,
+                    amount: query[0].amount,
+                    expiredAt: query[0].expiredAt != 0 ? moment(query[0].expiredAt).format('DD/MM/YYYY') : "",
                 }
+                arrayBatches.push(batch);
             }
         }
 
