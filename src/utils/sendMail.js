@@ -31,7 +31,7 @@ function SendTemplate(to, subject, template, context) {
                 subject,
                 template,
                 context,
-                attachments: [{   
+                attachments: [{
                     filename: 'logo-super-mami.png',
                     path: path.join(__dirname, '../views/emailTemplates/img/logo-super-mami.png'),
                     cid: 'logo'

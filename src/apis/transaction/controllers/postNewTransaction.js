@@ -5,17 +5,18 @@ const yup = require("yup");
 const Validator = require('../../../utils/validator');
 const { ItemSchema: Item } = require("../../../models/item");
 const moment = require('moment');
+const { DateReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
-    type: yup.string().required().oneOf(['Entrada', 'Salida']),
+    type: yup.string().required("Debe ingresar el tipo de movimiento").oneOf(['Entrada', 'Salida'], 'Los tipos de movimiento son entrada y salida'),
     batches: yup.array(
         yup.object({
-            id: yup.string().required(),
-            codeItem: yup.string().required(),
-            expiredAt: yup.string().optional(),
-            amount: yup.number().required()
-        }).required()
-    ).required(),
+            id: yup.string().required("Debe ingresar el id del lote"),
+            codeItem: yup.string().required("Debe ingresar el código del artículo"),
+            expiredAt: yup.string().optional().matches(DateReg, 'El formato de fecha debe ser dd/mmm/yyyy'),
+            amount: yup.number().required("Debe ingresar la cantidad del artículo")
+        }).required("Debe ingresar lotes")
+    ).required("Debe ingresar lotes"),
 });
 
 const CreateTransaction = async (req, res) => {
@@ -34,9 +35,10 @@ const CreateTransaction = async (req, res) => {
                 const item = await Item.find({ code: b.codeItem });
                 if (!item.length) return new ErrorModel().newNotFound(`El código ${b.codeItem} no pertenece a ningún artículo del sistema`).send(res);
 
+                const query = await Batch.find({ id: b.id });
+
                 if (request.data.type === "Entrada") {
 
-                    const query = await Batch.find({ id: b.id });
                     if (query.length) return new ErrorModel().newBadRequest(`El lote número ${b.id} ya existe en el sistema`).send(res);
 
                     const batch = new Batch({
@@ -45,7 +47,7 @@ const CreateTransaction = async (req, res) => {
                         descriptionItem: item[0].description,
                         state: 'Ingresado',
                         amount: b.amount,
-                        expiredAt: b.expiredAt ? moment(b.expiredAt).valueOf() : 0,
+                        expiredAt: b.expiredAt ? moment(b.expiredAt, "DD-MM-YYYY") : 0,
                     })
 
                     const err = batch.validateSync();
@@ -54,7 +56,7 @@ const CreateTransaction = async (req, res) => {
                     await batch.save();
 
                 } else {
-
+                    
                     const doc = await Batch.updateOne({
                         id: b.id
                     }, {
@@ -62,16 +64,18 @@ const CreateTransaction = async (req, res) => {
                         updatedAt: moment.now()
                     });
                     if (doc.matchedCount === 0) return new ErrorModel().newNotFound(`El lote ${b.id} no existe en el sistema`).send(res);
+                    if(query[0].state ==="Egresado") return new ErrorModel().newBadRequest(`El lote ${b.id} ya ha egresado del sistema`).send(res);
                 }
 
                 arrayBatches.push(b.id);
             }
 
+            const date = moment(moment().toDate()).format('DD/MM/YYYY')
             const transaction = new Transaction({
                 type: request.data.type,
                 idUser: token.id,
                 batches: arrayBatches,
-                createdAt: moment.now(),
+                createdAt: moment(date, "DD-MM-YYYY"),
             });
 
             const err = transaction.validateSync();
@@ -79,7 +83,7 @@ const CreateTransaction = async (req, res) => {
 
             await transaction.save();
 
-            return res.status(200).send({ message: "Movimiento cargado con exito" });
+            return res.status(200).send({ message: "Movimiento cargado con éxito" });
         } else {
             return new ErrorModel().newUnauthorized().send(res);
         }
