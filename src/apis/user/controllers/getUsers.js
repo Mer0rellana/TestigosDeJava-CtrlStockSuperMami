@@ -11,7 +11,6 @@ const schema = yup.object().shape({
 
 const GetUsers = async (req, res) => {
     try {
-        console.log(req.query);
         const request = await Validator(req.query, schema);
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
         const token = res.locals.payload;
@@ -34,7 +33,7 @@ const GetUsers = async (req, res) => {
                     tel: u.tel,
                     role: u.role,
                     state: u.state,
-                    createdAt: moment(u.createdAt).format('L')
+                    createdAt: moment(u.createdAt).format('DD/MM/YYYY')
                 }
                 return u
             })

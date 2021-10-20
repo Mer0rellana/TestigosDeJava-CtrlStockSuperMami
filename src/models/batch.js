@@ -35,7 +35,7 @@ const BatchSchema = new Schema({
     },
     createdAt: Number,
     updatedAt: Number,
-    expiredAt: String,
+    expiredAt: Number,
 },
     { versionKey: false }, 
 );
