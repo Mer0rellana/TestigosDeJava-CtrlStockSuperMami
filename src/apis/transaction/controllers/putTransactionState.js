@@ -12,40 +12,40 @@ const schema = yup.object().shape({
 const TSstate = async (req, res) => {
     try {
 
-        //agregar un iduser del que dio la baja
-        //si es de entrada ponemos anulado y se eliminan los lotes
-        //si es de salida modificamos el state, razon de anulado y a los lotes asociados ponemos el state almacenado.
         const token = res.locals.payload;
         if (token.role === "Admin" || token.role === "Encargado stock" || token.role === "Operario stock" || token.role === "Gerencia") {
 
+            const { _id } = req.params;
             const request = await Validator(req.body, schema);
             if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
             let arrayBatches = [];
 
-            if (request.type === "Entrada") {
+            const query = await Transaction.findById({ _id: _id });
 
-                for (const b of request.data.batches) {
+            if (query.type === "Entrada") {
 
-                    arrayBatches.push(b.id);
+                for (const b of query.batches) {
 
-                    await Batch.deleteOne({ id: b.id });
+                    arrayBatches.push(b);
+
+                    await Batch.deleteOne({ id: b });
                 }
 
                 const doc = await Transaction.updateOne({
-                    id: request.data._id
+                    _id: _id
                 }, {
                     state: 'Anulado',
                     updatedAt: moment.now(),
-                    anulatedReason: request.data.anulatedReason + "\n" + arrayBatches,
+                    anulatedReason: request.data.anulatedReason + " " + arrayBatches,
                     userId: token.id
                 });
 
             } else {
-                for (const b of request.data.batches) {
-                    
+                for (const b of query.batches) {
+
                     const doc = await Batch.updateOne({
-                        id: b.id
+                        id: b
                     }, {
                         state: 'Almacenado',
                         updatedAt: moment.now()
@@ -55,7 +55,7 @@ const TSstate = async (req, res) => {
                 }
 
                 await Transaction.updateOne({
-                    id: request.data._id
+                    _id: _id
                 }, {
                     state: 'Anulado',
                     updatedAt: moment.now(),
