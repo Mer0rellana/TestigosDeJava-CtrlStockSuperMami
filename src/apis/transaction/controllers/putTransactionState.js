@@ -6,7 +6,7 @@ const Transaction = require('../../../models/transaction');
 const Batch = require('../../../models/batch');
 
 const schema = yup.object().shape({
-    anulatedReason: yup.string().required()
+    anulatedReason: yup.string().required('La razón de anulado es un campo obligatorio').max(1500)
 })
 
 const TSstate = async (req, res) => {
@@ -22,6 +22,7 @@ const TSstate = async (req, res) => {
             let arrayBatches = [];
 
             const query = await Transaction.findById({ _id: _id });
+            if (!query.length) return new ErrorModel().newNotFound('El movimiento no existe').send(res);
 
             if (query.type === "Entrada") {
 
@@ -37,7 +38,7 @@ const TSstate = async (req, res) => {
                 }, {
                     state: 'Anulado',
                     updatedAt: moment.now(),
-                    anulatedReason: request.data.anulatedReason + " " + arrayBatches,
+                    anulatedReason: `${request.data.anulatedReason}. Los lotes anulados son ${arrayBatches}`,
                     userId: token.id
                 });
 
@@ -64,7 +65,7 @@ const TSstate = async (req, res) => {
                 });
             }
 
-            return res.status(200).send({ message: "Movimiento actualizado con éxito" });
+            return res.status(200).send({ message: "Movimiento anulado con éxito" });
 
         } else {
             return new ErrorModel().newUnauthorized().send(res);
