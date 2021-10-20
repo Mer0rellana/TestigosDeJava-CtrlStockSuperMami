@@ -8,8 +8,8 @@ const Validator = require('../../../utils/validator');
 const { DateReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
-    createdAt: yup.string().matches(DateReg),
-    type: yup.string().oneOf(["Entrada", "Salida"])
+    createdAt: yup.string().matches(DateReg, 'El formato de fecha debe ser dd/mmm/yyyy'),
+    type: yup.string().oneOf(["Entrada", "Salida"], 'Los tipos de movimiento son entrada y salida')
 });
 
 const GetTransactions = async (req, res) => {
@@ -30,7 +30,7 @@ const GetTransactions = async (req, res) => {
 
         const response = transactions.map(t => {
             t = {
-                _id: t._id,
+                id: t._id,
                 type: t.type,
                 idUser: t.idUser,
                 createdAt: moment(t.createdAt).format('DD/MM/YYYY')

@@ -8,15 +8,15 @@ const moment = require('moment');
 const { DateReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
-    type: yup.string().required().oneOf(['Entrada', 'Salida']),
+    type: yup.string().required("Debe ingresar el tipo de movimiento").oneOf(['Entrada', 'Salida'], 'Los tipos de movimiento son entrada y salida'),
     batches: yup.array(
         yup.object({
-            id: yup.string().required(),
-            codeItem: yup.string().required(),
-            expiredAt: yup.string().optional().matches(DateReg),
-            amount: yup.number().required()
-        }).required()
-    ).required(),
+            id: yup.string().required("Debe ingresar el id del lote"),
+            codeItem: yup.string().required("Debe ingresar el código del artículo"),
+            expiredAt: yup.string().optional().matches(DateReg, 'El formato de fecha debe ser dd/mmm/yyyy'),
+            amount: yup.number().required("Debe ingresar la cantidad del artículo")
+        }).required("Debe ingresar lotes")
+    ).required("Debe ingresar lotes"),
 });
 
 const CreateTransaction = async (req, res) => {

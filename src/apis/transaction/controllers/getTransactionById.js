@@ -3,9 +3,18 @@ const User = require('../../../models/user');
 const Batch = require('../../../models/batch');
 const ErrorModel = require('../../../models/api-error');
 const moment = require('moment');
+const yup = require("yup");
+const Validator = require('../../../utils/validator');
+
+const schema = yup.object().shape({
+    id: yup.string().max(24, 'El id del movimiento debe tener 24 caracteres').min(24)
+});
 
 const GetTransaction = async (req, res) => {
     try {
+        const request = await Validator(req.params, schema);
+        if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
+
         const transaction = await Transaction.find({ _id: req.params.id });
         if (!transaction.length) return new ErrorModel().newNotFound('El movimiento no existe').send(res);
 
@@ -29,7 +38,7 @@ const GetTransaction = async (req, res) => {
         }
 
         const response = {
-            id: transaction[0].id,
+            id: transaction[0]._id,
             type: transaction[0].type,
             createdAt: moment(transaction[0].createdAt).format('DD/MM/YYYY'),
             responsable: `${transaction[0].idUser}, ${user[0].name}`,
