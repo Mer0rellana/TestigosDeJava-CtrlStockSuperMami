@@ -30,6 +30,7 @@ const TransactionSchema = new Schema({
         type: [ String ],
         required: true,
     },
+    userId: Number, 
 },
     { versionKey: false }, 
 );
