@@ -7,10 +7,9 @@ const LoginUser = require('./controllers/postLogin');
 const CreateUser = require('./controllers/postNewUser');
 const RecoverPassword = require('./controllers/postRecoverPassword');
 const DeleteUser = require('./controllers/deleteUser');
-const UpdateRole = require('./controllers/updateRole');
+const UpdateAdmin = require('./controllers/putUserAdmin');
 const PutPassword = require('./controllers/putPassword');
 const UpdateProfile = require('./controllers/putUser');
-const PutPassword = require('./controllers/putPassword');
 
 const router = express.Router();
 
@@ -20,7 +19,7 @@ router.post('/recoverPassword', RecoverPassword);
 router.get('/myProfile', ensureUserAuthenticated, MyProfile);
 router.get('/', ensureUserAuthenticated, GetUsers);
 router.put('/deleteUser/:id', ensureUserAuthenticated, DeleteUser);
-router.put('/changeRole/:id', ensureUserAuthenticated, UpdateRole);
+router.put('/put/:id', ensureUserAuthenticated, UpdateAdmin);
 router.put('/updateUser', ensureUserAuthenticated ,UpdateProfile);
 router.put('/updatePassword', ensureUserAuthenticated, PutPassword);
 
