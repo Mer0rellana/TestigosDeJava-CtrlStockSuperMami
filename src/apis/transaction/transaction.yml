@@ -1,0 +1,227 @@
+openapi: 3.0.1
+info:
+  title: Api Transaction
+  version: 1.0.0
+servers:
+  - url: "http://localhost:3000/"
+    description: Local Server
+
+tags:
+  - name: Transaction
+    description: Transaction handler
+
+paths:
+  /transaction/add:
+    post:
+      tags:
+        - Transaction
+      summary: Create transaction
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyAddPost"
+        required: true
+      responses:
+        200:
+          description: (OK) Movimiento cargado con exito
+        400:
+          $ref: "#/components/responses/BadRequest"
+          
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+          
+        404:
+          $ref: '#/components/responses/NotFound' 
+        
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /transaction/{id}:
+    get:
+      tags:
+        - Transaction
+      summary: Get transaction
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: path
+        description: Transaction id
+        required: true
+        example: 616cf18c70947923b013c14e
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Los movimientos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetTransactionById'
+        400:
+          $ref: "#/components/responses/BadRequest"
+          
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+          
+        404:
+          $ref: '#/components/responses/NotFound' 
+        
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /transaction/:
+    get:
+      tags:
+        - Transaction
+      summary: Get transactions
+      security:
+        - userToken: []
+      parameters:
+      - name: createdAt
+        in: query
+        required: false
+        description: Fecha creación del movimiento
+        example: 18/10/2021
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        description: Tipo de movimiento
+        example: Salida
+        schema:
+          type: string
+          enum: ["Entrada","Salida"]
+      responses:
+        200:
+          description: (OK) Los movimientos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetTransactions'
+        400:
+          $ref: "#/components/responses/BadRequest"
+          
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+          
+        404:
+          $ref: '#/components/responses/NotFound' 
+        
+        500:
+          $ref: "#/components/responses/ServerError"
+
+
+  
+components:
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      description: Example eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzg5NDU2LCJuYW1lIjoiQWd1c3RpbmEgR2FyY8OtYSBSZXkiLCJyb2xlIjoiQWRtaW4iLCJzdGF0ZSI6dHJ1ZSwiZXhwIjoxNjMzOTk1OTMxfQ.ZQh3DtulWkIGQHJqrFP5Ouqk8Qvn3LTb28_sVsy-NCY
+      
+  responses:
+    Unauthorized:
+      description: (Unauthorized) Usuario no autorizado
+
+    NotFound:
+      description: (Not Found) Datos no encontrados
+
+    BadRequest:
+      description: (Bad Request) Campos incompletos o erróneos
+
+    ServerError:
+      description: (Internal Server Error) Error interno del servidor
+
+    EmailError:
+      description: (Incorrect authentication data) Error en el envío de mail
+      
+  schemas:
+    BodyAddPost:
+      type: object
+      required:
+        - type
+        - batches
+      properties:
+        type:
+          type: string
+          example: Entrada
+          enum: [Entrada,Salida]
+        batches:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              codeItem:
+                type: string
+              expiredAt:
+                type: string
+              amount:
+                type: number
+          example:
+            - id: 202109300830P03ST4
+              codeItem: 8878
+              amount: 25
+            - id: 202109301030P03S48
+              codeItem: 122222
+              expiredAt: 21/05/2022
+              amount: 150
+              
+    ResponseGetTransactionById:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        createdAt:
+          type: string
+        responsable:
+          type: string
+        state:
+          type: string
+        updatedAt:
+          type: string
+        aunlatedReason:
+          type: string
+        batches:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              codeItem:
+                type: string
+              descriptionItem:
+                type: string
+              amount:
+                type: number
+              expiredAt:
+                type: string
+        
+          
+    ResponseTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        idUser:
+          type: number
+        createdAt:
+          type: string
+        
+    ResponseGetTransactions:
+      type: array
+      items:
+          $ref: '#/components/schemas/ResponseTransaction'
+        
+

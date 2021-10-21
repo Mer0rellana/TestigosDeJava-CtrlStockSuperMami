@@ -11,6 +11,7 @@ const UpdateAdmin = require('./controllers/putUserAdmin');
 const PutPassword = require('./controllers/putPassword');
 const UpdateProfile = require('./controllers/putUser');
 
+
 const router = express.Router();
 
 router.post('/login', LoginUser);

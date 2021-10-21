@@ -19,13 +19,13 @@ const PutPassword = async (req, res) => {
         const request = await Validator(req.body, schema);
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
-        if (request.data.newPassword !== request.data.confirmNewPassword) return new ErrorModel(403, "Bad Request", "Las nuevas contraseñas no coinciden entre sí").send(res);
-        if (request.data.newPassword === request.data.currentPassword) return new ErrorModel(405, "Bad Request", "La nueva contraseña no puede ser igual a la anterior").send(res);
+        if (request.data.newPassword !== request.data.confirmNewPassword) return new ErrorModel().newBadRequest("Las nuevas contraseñas no coinciden entre sí").send(res);
+        if (request.data.newPassword === request.data.currentPassword) return new ErrorModel().newBadRequest("La nueva contraseña no puede ser igual a la anterior").send(res);
 
         const user = await User.find({ id: token.id });
 
         const verify = await Verify(request.data.currentPassword, user[0].password);
-        if (!verify) return new ErrorModel(402, "Bad Request", "La contraseña actual no coincide con la ingresada").send(res);
+        if (!verify) return new ErrorModel().newBadRequest("La contraseña actual no coincide con la ingresada").send(res);
 
         const hashedPassword = await Hash(request.data.newPassword);
 

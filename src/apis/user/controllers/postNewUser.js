@@ -14,7 +14,7 @@ const schema = yup.object().shape({
     mail: yup.string().email().required().transform((dato) => dato.toLowerCase()),
     tel: yup.string().matches(PhoneReg).required(),
     password: yup.string().matches(PasswordReg).required(),
-    role: yup.string().required()
+    role: yup.string().required(),
 })
 
 const CreateUser = async (req, res) => {
@@ -28,7 +28,7 @@ const CreateUser = async (req, res) => {
 
             const query = await User.find({ id: request.data.id, mail: request.data.mail });
 
-            if (query.length) return new ErrorModel(402, "Bad request", "El usuario ya existe").send(res);
+            if (query.length) return new ErrorModel().newBadRequest("El usuario ya existe").send(res);
 
             const hashed_password = await Hash(req.body.password);
 
@@ -43,7 +43,7 @@ const CreateUser = async (req, res) => {
 
             await user.save();
 
-            const sending = await SendTemplate(user.mail, "Control Stock Super Mami - Bienvenida", "sendEmail", { principalInfo: "Bienvenido al equipo de Super Mami!", secondaryInfo: `Su legajo es ${user.id}. Su contraseña es ${request.data.password}` });
+            const sending = await SendTemplate(user.mail, "Control Stock Super Mami - Bienvenida", "sendEmail", { principalInfo: "¡Bienvenido al equipo de Super Mami!", secondaryInfo: `Su legajo es ${user.id}. Su contraseña es ${request.data.password}` });
             if (sending.error) return new ErrorModel(535, sending.error, "Error en el envío de email").send(res);
             
             return res.status(200).send({message: "Usuario cargado con exito"});

@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const validator = require('validator')
 
 const UserSchema = Schema({
     id: {
         type: Number,
         required: true,
         unique: true,
-        trim: true,
     },
     name: {
         type: String,
@@ -19,24 +17,22 @@ const UserSchema = Schema({
         required: true,
         minlength: 8,
         maxlength: 8,
-        trim: true,
     },
     mail: {
         type: String,
         required: true,
         trim: true,
         unique: true,
-        validate: [ validator.isEmail, 'Email inválido' ]
-
     },
     tel : {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     role: {
         type: String,
@@ -54,6 +50,6 @@ const UserSchema = Schema({
     { versionKey: false }, 
 );
 
-UserSchema.set('collection', 'user');
+UserSchema.set('collection', 'users');
 
 module.exports = mongoose.model('user', UserSchema);
