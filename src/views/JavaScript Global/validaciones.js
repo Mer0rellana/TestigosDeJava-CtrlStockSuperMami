@@ -27,8 +27,10 @@ function loginValid() {
     let msjContraseña = document.getElementById("mensajeContraseña");
     let legajo = /^\d+$/;
     let contraseña = /^\d+$/;
-
-
+    //inputs alta depositos
+    let inputId = document.getElementById("inputId");
+    let inputMetros = document.getElementById("inputMetros");
+    let inputFilas = document.getElementById("inputFilas");
+    let inputColumnas = document.getElementById("inputColumnas")
 
 }
-
