@@ -3,12 +3,18 @@ const yup = require("yup");
 const ErrorModel = require('../../../models/api-error');
 const User = require('../../../models/user');
 const moment = require('moment');
+const { PhoneReg } = require('../../../utils/reg-exp');
 
 const schema = yup.object().shape({
+    id: yup.number(),
+    name: yup.string(),
+    dni: yup.number(),
+    mail: yup.string().email().transform((dato) => dato.toLowerCase()),
+    tel: yup.string().matches(PhoneReg),
     role: yup.string().oneOf(["Admin", "Gerencia", "Encargado stock", "Operario stock", "Operario almacén"])
 })
 
-const UpdateRole = async (req, res) => {
+const UpdateAdmin = async (req, res) => {
     try {
 
         const token = res.locals.payload;
@@ -18,10 +24,11 @@ const UpdateRole = async (req, res) => {
             if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
             const { id } = req.params;
+
             await User.updateOne({
                 id: id
             }, {
-                role: request.data.role,
+                ...request.data.body,
                 updatedAt: moment.now()
             });
 
@@ -36,4 +43,4 @@ const UpdateRole = async (req, res) => {
     }
 }
 
-module.exports = UpdateRole;
+module.exports = UpdateAdmin;
