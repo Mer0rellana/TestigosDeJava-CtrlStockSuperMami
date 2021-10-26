@@ -1,0 +1,54 @@
+body{
+    background-color: #1E450C;
+     background-repeat: no-repeat;
+     background-size: cover;
+     font-family: 'Lato', sans-serif;;
+ }
+ .loginContainer{
+     width: 45rem;
+     background-color: #ffad1a;
+     border-radius: 2%;
+     box-shadow: 0px 0px 20px 4px  rgb(36, 35, 35);
+     border: 3px solid;
+    
+ 
+ }
+     
+ label{
+     font-size: 1.5rem;
+     font-weight: bold;
+ }
+ .logo{
+     width: 20rem;
+ }
+ .btn-mami{
+     background-color: #1E450C;
+     font-size: 1.3rem;
+     width: 15rem;
+     color:white;
+     font-weight: bold;
+     border-color: #1E450C;
+     border-width: 2px;
+     
+ }
+ .btn-mami:hover{
+     background-color: #2f6615;
+     color:rgb(184, 184, 184);
+     border-color: #4ba522;
+     border-width: 2px;
+ }
+ .underline{
+     margin-top: -10px;
+     border:1px solid black;
+     
+     
+ }
+ .container a{
+     color: black;
+     text-decoration: none;
+     font-size: 1.2rem;
+     font-weight: bold;
+ }
+ .container a:hover{
+     color: rgb(46, 45, 45);
+ }

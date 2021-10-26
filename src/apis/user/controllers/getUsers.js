@@ -2,6 +2,7 @@ const User = require('../../../models/user');
 const ErrorModel = require('../../../models/api-error');
 const yup = require("yup");
 const Validator = require('../../../utils/validator');
+const moment = require('moment');
 
 const schema = yup.object().shape({
     id: yup.number(),
@@ -32,7 +33,8 @@ const GetUsers = async (req, res) => {
                     mail: u.mail,
                     tel: u.tel,
                     role: u.role,
-                    state: u.state
+                    state: u.state,
+                    createdAt: moment(u.createdAt).format('L')
                 }
                 return u
             })

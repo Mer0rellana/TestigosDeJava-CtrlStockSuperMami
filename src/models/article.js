@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
-const { ENV } = require('../config/config');
 const Schema = mongoose.Schema;
+const validator = require('validator')
 
-if (ENV === "dev") {
-  mongoose.set('debug', true);
-}
-
-const collection = 'items'
-const ItemSchema = mongoose.model('item', new Schema({
+const ArticleSchema = Schema({
   code: {
-    type: String,
-    required: true,
+    type: Number,
+    requied: true,
     unique: true,
     trim: true,
   },
@@ -48,20 +43,18 @@ const ItemSchema = mongoose.model('item', new Schema({
   },
   createdAt: {
     type: String,
+    required: true,
     trim: true,
   },
+
   updatedAt: {
     type: String,
     trim: true,
   },
   state: {
     type: String,
-    enum: ['Activo', 'Eliminado '],
+    enum: ['Activo', 'Eliminado ', 'Bloqueado'],
     trim: true,
   },
-},
-  { versionKey: false }
-), collection)
 
-
-module.exports = { ItemSchema };
+});
