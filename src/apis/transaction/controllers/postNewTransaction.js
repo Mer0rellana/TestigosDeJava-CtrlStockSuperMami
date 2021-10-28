@@ -38,13 +38,13 @@ const CreateTransaction = async (req, res) => {
             for (const b of request.data.batches) {
 
                 const item = await Item.find({ code: b.codeItem });
-                if (!item.length) return new ErrorModel().newNotFound(`El código ${b.codeItem} no pertenece a ningún artículo del sistema. Cargue el artículo antes de continuar con la transacción`).send(res);
+                if (!item.length) return new ErrorModel().newNotFound(`El código ${b.codeItem} no pertenece a ningún artículo del sistema. Registre el artículo antes de continuar con la transacción`).send(res);
 
-                const storage = await Storage.findOne({ id: b.storage });
-                if (!storage || storage.state === "Inactivo" ) return new ErrorModel().newNotFound(`El depósito número ${storage.id} no existe en el sistema`).send(res);
-                if (storage.state === "Bloqueado" || storage.state === "Inactivo") return new ErrorModel().newBadRequest(`Actualmente no puede almacenar ni extraer lotes del depósito número ${storage.id} ya que se encuentra bloqueado por inventario. Intente más tarde`).send(res);
+                const storage = await Storage.find({ id: b.storage });
+                if (!storage.length || storage[0].state === "Inactivo" ) return new ErrorModel().newNotFound(`El depósito número ${b.storage} no existe en el sistema`).send(res);
+                if (storage[0].state === "Bloqueado") return new ErrorModel().newBadRequest(`Actualmente no puede almacenar ni extraer lotes del depósito número ${b.storage} ya que se encuentra bloqueado por inventario. Intente más tarde`).send(res);
 
-                const area = storage.area.filter(area => area.id === b.area);
+                const area = storage[0].area.filter(area => area.id === b.area);
                 if (!area.length) return new ErrorModel().newNotFound(`El área ${b.area} del depósito ${b.storage} no existe`).send(res);
 
                 const batche = await Batch.find({ id: b.id });
@@ -69,12 +69,12 @@ const CreateTransaction = async (req, res) => {
 
                     batches.push(batch);
                     area[0].available = "false";
-                    storages.push(storage);
+                    storages.push(storage[0]);
 
                 } else {
                     if(!batche[0]) return new ErrorModel().newNotFound(`El lote ${b.id} no existe en el sistema`).send(res);
                     if (batche[0].idStorage !== b.storage || batche[0].idArea !== b.area) return new ErrorModel().newBadRequest(`El lote ${b.id} no se encuentra en el depósito y área ingresados`).send(res);
-                    if (batche[0].state === "Egresado") return new ErrorModel().newBadRequest(`El lote ${b.id} ya ha egresado del sistema`).send(res);
+                    if (batche[0].state === "Egresado") return new ErrorModel().newBadRequest(`El lote ${b.id} ya ha egresado en un movimiento de salida`).send(res);
                     if (area[0].available) return new ErrorModel().newBadRequest(`El área ${b.area} del depósito ${b.storage} está vacía`).send(res);
                 
                     await Batch.updateOne({
@@ -85,7 +85,7 @@ const CreateTransaction = async (req, res) => {
                     });
 
                     area[0].available = "true";
-                    storages.push(storage);
+                    storages.push(storage[0]);
                 }
 
                 arrayBatches.push(b.id);
