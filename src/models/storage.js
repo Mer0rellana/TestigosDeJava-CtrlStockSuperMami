@@ -18,7 +18,8 @@ const AreaSchema = new Schema({
 
 AreaSchema.set('collection', 'areas');
 
-const StorageSchema = new Schema({
+const collection = 'storages'
+const StorageSchema = mongoose.model('storage', new Schema({
     id: {
         type: Number,
         required: true,
@@ -41,9 +42,7 @@ const StorageSchema = new Schema({
     updatedAt: Number,
 },
     { versionKey: false },
-)
+))
 
 
-StorageSchema.set('collection', 'storages');
-
-module.exports = mongoose.model('storage', StorageSchema);
+module.exports = { StorageSchema };
