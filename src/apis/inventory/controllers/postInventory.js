@@ -33,8 +33,6 @@ const postInventory = async (req, res) => {
 
         const item = await ItemSchema.find({ id: request.data.idItem });
 
-        console.log("b", item)
-
         if (!item.length) return new ErrorModel().newNotFound(`El código ${request.data.idItem} no pertenece a ningún artículo del sistema`).send(res);
 
         const inventory = new InventorySchema({
@@ -53,8 +51,6 @@ const postInventory = async (req, res) => {
         if (err) return new ErrorModel().newBadRequest(err.message).send(res);
 
         await inventory.save();
-
-        console.log(inventory)
 
         return res.status(200).send({ message: "Inventario cargado con éxito" });
 
