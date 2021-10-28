@@ -12,9 +12,9 @@ const schema = yup.object().shape({
     name: yup.string().required(),
     dni: yup.number().required(),
     mail: yup.string().email().required().transform((dato) => dato.toLowerCase()),
+    tel: yup.string().matches(PhoneReg).required(),
     password: yup.string().matches(PasswordReg).required(),
     role: yup.string().required(),
-    tel: yup.string().matches(PhoneReg)
 })
 
 const CreateUser = async (req, res) => {
