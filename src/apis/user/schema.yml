@@ -43,7 +43,31 @@ paths:
         500:
           $ref: "#/components/responses/ServerError"
 
-
+  /user/add:
+    post:
+      tags:
+        - User
+      summary: Create user
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyAddPost"
+        required: true
+      responses:
+        200:
+          description: (OK) Usuario creado con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: "#/components/responses/ServerError"
+        535:
+          $ref: "#/components/responses/EmailError"
+      
   /user/recoverPassword:
     post:
       tags:
@@ -141,8 +165,83 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         500:
           $ref: "#/components/responses/ServerError"
-
+          
+  /user/updateUser:
+    put:
+      tags:
+        - User
+      summary: Update user
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyUserPut"
+      responses:
+        200:
+          description: (OK) Usuario actualizado con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/Unauthorized"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /user/put/{id}:
+    put:
+      tags:
+        - User
+      summary: Update user by Admin
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: path
+        description: User id
+        required: true
+        example: 1234
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyUserPutByAdmin"
+      responses:
+        200:
+          description: (OK) Usuario actualizado con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/Unauthorized"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /user/deleteUser/{id}:
+    put:
+      tags:
+        - User
+      summary: Deactivate user
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: path
+        description: User id
+        required: true
+        example: 1234
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Usuario dado de baja con éxito
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: "#/components/responses/ServerError"
   
+
 components:
   securitySchemes:
     userToken:
@@ -179,6 +278,40 @@ components:
         password:
           type: string
           example: Testigos123
+          
+    BodyAddPost:
+      type: object
+      required:
+        - id
+        - name
+        - dni
+        - mail
+        - tel
+        - password
+        - role
+      properties:
+        id:
+          type: number
+          example: 1234
+        name:
+          type: string
+          example: Facundo Gomez
+        dni:
+          type: number
+          example: 41568754
+        mail:
+          type: string
+          example: facuegomez@hotmail.com
+        tel:
+          type: number
+          example: 3516978812
+        password:
+          type: string
+          example: Testigos123
+        role:
+          type: string
+          enum: [Admin, Gerencia, Encargado stock, Operario stock, Operario almacén]
+          example: Gerencia
 
     BodyRecoverPasswordPost:
       type: object
@@ -205,6 +338,53 @@ components:
         confirmNewPassword:
           type: string
           example: Testigos1234
+          
+    BodyUserPut:
+      type: object
+      required:
+        - name
+        - mail
+        - tel
+      properties:
+        name:
+          type: string
+          example: Facundo Gomez
+        mail:
+          type: string
+          example: facuegomez@hotmail.com
+        tel:
+          type: number
+          example: 3516978812
+          
+    BodyUserPutByAdmin:
+      type: object
+      required:
+        - id
+        - name
+        - dni
+        - mail
+        - tel
+        - role
+      properties:
+        id:
+          type: number
+          example: 1234
+        name:
+          type: string
+          example: Facundo Gomez
+        dni:
+          type: number
+          example: 41568754
+        mail:
+          type: string
+          example: facuegomez@hotmail.com
+        tel:
+          type: number
+          example: 3516978812
+        role:
+          type: string
+          enum: [Admin, Gerencia, Encargado stock, Operario stock, Operario almacén]
+          example: Gerencia
     
     ResponseUser:
       type: object
@@ -228,5 +408,3 @@ components:
       type: array
       items:
           $ref: '#/components/schemas/ResponseUser'
-        
-
