@@ -18,10 +18,8 @@ const getBatch = async (req, res) => {
   try {
     const request = await Validator(req.body, schema);
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
-    const token = res.locals.payload;
-    if (['Operario almacén', 'Operario stock', 'Admin', 'Encargado stock', 'Gerencia'].includes(token.role)) {
+
       const { idStorage, idArea, codeItem, state, failed, expiredAt, } = request.data;
-      console.log(request)
       let data = {};
       idStorage ? data.idStorage = idStorage : null;
       state ? data.state = state : null;
@@ -29,14 +27,10 @@ const getBatch = async (req, res) => {
       typeof failed==='boolean' ? data.failed = failed : null;
       if (idStorage) idArea ? data.idArea = idArea : null;
       expiredAt ? data.expiredAt = moment(expiredAt,'DD/MM/YYYY') : null;
-      
-      console.log(req.body)
+
       const batch = await batchSchema.find(data);
       return res.status(200).send(batch);
 
-    };
-
-    return new ErrorModel().newUnauthorized("Usuario no autorizado").send(res);
   } catch (err) {
     return new ErrorModel().newInternalServerError(err.message).send(res);
 
