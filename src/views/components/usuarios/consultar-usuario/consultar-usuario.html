@@ -31,7 +31,9 @@
 
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="ConsultarUsuario.js"></script>
 
 </head>
 
@@ -134,15 +136,9 @@
                         </div>
                         <div>
                             <table class="table table-striped table-hover table-bordered  display nowrap"
-                                cellspacing="0" width="100%">
+                                cellspacing="0" width="100%" id="tabla-usuario">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="selectAll">
-                                                <label for="selectAll"></label>
-                                            </span>
-                                        </th>
                                         <th class="text-center">Legajo</th>
                                         <th class="text-center">Nombre</th>
                                         <th class="text-center">DNI</th>
@@ -154,14 +150,8 @@
                                         <th class="text-center">Modificaciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tabla-usuario-body">
                                     <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                <label for="checkbox1"></label>
-                                            </span>
-                                        </td>
                                         <td class="text-center">111549</td>
                                         <td class="text-center">Facu Gomez</td>
                                         <td class="text-center">135795464</td>
@@ -171,97 +161,8 @@
                                         <td class="text-center">135795464</td>
                                         <td class="text-center">135795464</td>
                                         <td class="text-center">
-                                            <a href="" class="edit" data-bs-toggle="modal"
-                                                data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
-                                                    title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox2" name="options[]" value="1">
-                                                <label for="checkbox2"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111950</td>
-                                        <td class="text-center">Joita Gual</td>
-                                        <td class="text-center">41152645</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">joa@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox3" name="options[]" value="1">
-                                                <label for="checkbox3"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Alan Monteiro</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">alan@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox4" name="options[]" value="1">
-                                                <label for="checkbox4"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Augusto Albarracin</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">augusto@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox5" name="options[]" value="1">
-                                                <label for="checkbox5"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Emanuel Gutierrez</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">ema@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
+                                            <button class="edit" data-toggle="modal" data-target="#editEmployeeModal"
+                                                type="button"><i class="fas fa-edit"></i></button>
                                             <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
@@ -289,10 +190,15 @@
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Modificar Usuario</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="">Legajo</label>
+                                <input type="number" disabled class="verde form-control" id="inputDni"
+                                    placeholder="Ingrese Documento" name="dni">
+                            </div>
                             <div class="form-group col-md-12">
                                 <label for="">DNI</label>
                                 <input type="number" class="verde form-control" id="inputDni"
@@ -361,17 +267,10 @@
             </div>
         </div>
     </div>
-    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
-    <script src="lib/popper/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
-    <script src="lib/waypoints/jquery.waypoints.min.js"></script>
-    <script src="JavaScript/App.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="popper/popper.min.js"></script>
-    <script src="bootstrap4/js/bootstrap.min.js"></script>
 </body>
 
 </html>

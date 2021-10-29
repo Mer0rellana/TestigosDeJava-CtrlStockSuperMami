@@ -24,8 +24,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="AltaUsuario.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -78,8 +80,8 @@
 
             <div id="content" class="contenedor">
                 <div class="container">
-                    <form id="formRegistrarU" name="formulario" action="procesar.php" method="post"
-                        class="form-container needs-validation" name="formulario" novalidate>
+                    <form id="formRegistrarU" name="formulario" class="form-container needs-validation"
+                        name="formulario" novalidate>
                         <div class="mb-5 mt-3 text-center">
                             <div class="container-fluid header-content">
                                 <div class="row">
@@ -96,14 +98,14 @@
                         <div class="form-row">
                             <div class="col-md-6 mt-2">
                                 <label for="">DNI</label>
-                                <input type="number" class="form-control" id="inputLegajo"
-                                    placeholder="Ingrese Documento" name="dni" required>
+                                <input type="number" class="form-control" id="dni" placeholder="Ingrese Documento"
+                                    name="dni" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">Legajo</label>
-                                <input type="number" class="form-control" id="inputLegajo" placeholder="Ingrese Legajo"
+                                <input type="number" class="form-control" id="Legajo" placeholder="Ingrese Legajo"
                                     name="legajo" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
@@ -112,21 +114,21 @@
                         <div class="form-row">
                             <div class="col-md-6 mt-2">
                                 <label for="">Nombre Completo</label>
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese Nombre"
+                                <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingrese Nombre"
                                     name="nombre" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">Rol</label>
-                                <select id="inputRol" required class="form-control" name="Rol"
+                                <select id="rol" required class="form-control" name="rol"
                                     placeholder="Seleccione un rol">
                                     <option selected disabled value="">Seleccione Rol</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Gestión</option>
-                                    <option value="3">Encargado stock</option>
-                                    <option value="4">Operario stock</option>
-                                    <option value="5 ">Operario almacén</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Gerencia">Gerencia</option>
+                                    <option value="Encargado stock">Encargado stock</option>
+                                    <option value="Operario stock">Operario stock</option>
+                                    <option value="Operario almacén">Operario almacén</option>
                                 </select>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Por favor, seleccione un rol</div>
@@ -135,14 +137,14 @@
                         <div class="form-row">
                             <div class="col-md-6 mt-2">
                                 <label for="">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono"
-                                    placeholder="Ingrese Telefono" name="telefono" required>
+                                <input type="text" class="form-control" id="telefono" placeholder="Ingrese Telefono"
+                                    name="telefono" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">E-mail</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese E-mail"
+                                <input type="email" class="form-control" id="email" placeholder="Ingrese E-mail"
                                     name="email" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
@@ -151,21 +153,14 @@
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 mt-2">
                                 <label for="">Contraseña</label>
-                                <input type="password" class="form-control" id="inputTelefono"
+                                <input type="password" class="form-control" id="contraseña"
                                     placeholder="Ingrese su contraseña" name="telefono" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
-                            <!-- <div class="col-md-6 mt-2">
-                                <label for="">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" id="inputEmail"
-                                    placeholder="Confirme su contraseña" name="email" required>
-                                <div class="valid-feedback">¡Ok válido!</div>
-                                <div class="invalid-feedback">Complete el campo.</div>
-                            </div> -->
                         </div>
                         <div class="mt-5 d-flex justify-content-center">
-                            <button id="btnRegistrarUsuario" onclick="" type="submit"
+                            <button id="btnRegistrarUsuario" onclick="AltaUsuario()" type="button"
                                 class="btn btn-primary btnform">Registrar</button>
                         </div>
                     </form>
@@ -173,17 +168,10 @@
             </div>
         </div>
     </div>
-    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
-    <script src="lib/popper/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
-    <script src="lib/waypoints/jquery.waypoints.min.js"></script>
-    <script src="JavaScript/App.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="popper/popper.min.js"></script>
-    <script src="bootstrap4/js/bootstrap.min.js"></script>
 </body>
 
 </html>
