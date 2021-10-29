@@ -15,7 +15,7 @@ const char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 const postStorage = async (req, res) => {
   try {
-    const token = res.locals.payload;
+    const token = res.locals.payload
 
     const request = await Validator(req.body, schema);
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);

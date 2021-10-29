@@ -1,0 +1,172 @@
+openapi: 3.0.1
+info:
+  title: Storage User
+  version: 1.0.0
+servers:
+  - url: "http://localhost:3000/"
+    description: Local Server
+
+tags:
+  - name: Storage
+    description: Storage handler
+
+paths:
+  /storage/add:
+    post:
+      tags:
+        - Storage
+      summary: Create storage
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyAddPost"
+        required: true
+      responses:
+        200:
+          description: (OK) Depósito creado con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: "#/components/responses/ServerError"
+
+          
+  /storage/:
+    get:
+      tags:
+      - Storage
+      summary: Get Storages
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: query
+        required: false
+        description: Storage id
+        example: 1234
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        description: Estado del storage
+        example: Activo
+        schema:
+          type: string
+          enum: ["Activo", "Bloqueado", "Inactivo"]
+      responses:
+        200:
+          description: (OK) Los depósitos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetStorages'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+          
+  /storage/delete/{id}:
+    put:
+      tags:
+        - Storage
+      summary: Deactivate storage
+      security:
+        - userToken: []
+      parameters:
+      - name: id
+        in: path
+        description: Storage id
+        required: true
+        example: 1234
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) Depósito dado de baja con éxito
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound' 
+        500:
+          $ref: "#/components/responses/ServerError"
+  
+
+  
+components:
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      description: Example eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzg5NDU2LCJuYW1lIjoiQWd1c3RpbmEgR2FyY8OtYSBSZXkiLCJyb2xlIjoiQWRtaW4iLCJzdGF0ZSI6dHJ1ZSwiZXhwIjoxNjMzOTk1OTMxfQ.ZQh3DtulWkIGQHJqrFP5Ouqk8Qvn3LTb28_sVsy-NCY
+      
+  responses:
+    Unauthorized:
+      description: (Unauthorized) Usuario no autorizado
+
+    NotFound:
+      description: (Not Found) Datos no encontrados
+
+    BadRequest:
+      description: (Bad Request) Campos incompletos o erróneos
+
+    ServerError:
+      description: (Internal Server Error) Error interno del servidor
+
+  schemas:
+    
+    BodyAddPost:
+      type: object
+      required:
+        - id
+        - mts
+        - rows
+        - columns
+      properties:
+        id:
+          type: number
+          example: 1234
+        mts:
+          type: number
+          example: 200
+        rows:
+          type: number
+          example: 10
+        columns:
+          type: number
+          example: 7
+      
+    ResponseStorage:
+      type: object
+      properties:
+        id:
+          type: string
+        mts:
+          type: number
+        state:
+          type: string
+        area:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              available:
+                type: boolean
+        availablePercentage:
+          type: string
+        createdAt:
+          type: number
+        updatedAt:
+          type: number
+    
+    ResponseGetStorages:
+      type: array
+      items:
+          $ref: '#/components/schemas/ResponseStorage'
