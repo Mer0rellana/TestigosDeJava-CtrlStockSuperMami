@@ -23,6 +23,7 @@
   <script defer src="../../../JavaScript Global/app.js"></script>
   <script src="./AltaArticulo.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -75,8 +76,8 @@
 
       <div id="content" class="contenedor">
         <div class="container">
-          <form id="formRegistrarU" name="formulario" class="form-container needs-validation" name="formulario"
-            novalidate>
+          <form id="formRegistrarU" action="procesar.php" method="post" name="formulario"
+            class="form-container needs-validation" name="formulario" novalidate>
             <div class="mb-5 mt-3 text-center">
               <div class="container-fluid header-content">
                 <div class="row">
@@ -93,22 +94,22 @@
             <div class="form-row">
               <div class="col-md-6 mt-2">
                 <label for="">Código</label>
-                <input type="number" class="form-control" id="codigoArt" placeholder="Ingrese un código" name="codigo"
-                  required>
+                <input type="number" class="form-control" id="codigoArt" placeholder="Por favor, ingrese un código"
+                  name="codigo" required>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
               </div>
               <div class="col-md-6 mt-2">
                 <label for="">Precio</label>
-                <input type="number" class="form-control" id="precioArt" placeholder="Ingrese Telefono" name="telefono"
-                  required>
+                <input type="number" class="form-control" id="precioArt" placeholder="Por favor,ingrese un precio"
+                  name="telefono" required>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
               </div>
               <div class="col-md-12 mt-2">
                 <label for="">Descripción</label>
-                <textarea name="Descripcion" placeholder="Ingrese una breve descripcion" id="descripcionArt" cols="30"
-                  rows="10"></textarea>
+                <textarea name="Descripcion" placeholder="Por favor, ingrese una breve descripcion" id="descripcionArt"
+                  cols="30" rows="10"></textarea>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
               </div>
@@ -117,8 +118,8 @@
             <div class="form-row">
               <div class="col-md-6 mt-2">
                 <label for="">Familia</label>
-                <input type="text" class="form-control" id="familiaArt" placeholder="Ingrese Nombre" name="nombre"
-                  required>
+                <input type="text" class="form-control" id="familiaArt" placeholder="Por favor, ingrese una familia"
+                  name="nombre" required>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
               </div>
@@ -133,14 +134,14 @@
             <div class="form-row">
               <div class="col-md-6 mt-2">
                 <label for="">Unidad</label>
-                <input type="text" class="form-control" id="unidadArt" placeholder="Ingrese E-mail" name="email"
-                  required>
+                <input type="text" class="form-control" id="unidadArt" placeholder="Por favor, ingrese la unidad"
+                  name="email" required>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
               </div>
               <div class="col-md-6 mt-2">
                 <label for="">Cantidad</label>
-                <input type="number" class="form-control" id="cantidadArt" placeholder="Ingrese su contraseña"
+                <input type="number" class="form-control" id="cantidadArt" placeholder="Por favor, ingrese la cantidad"
                   name="telefono" required>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
