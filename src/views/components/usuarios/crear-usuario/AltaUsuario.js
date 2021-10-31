@@ -18,7 +18,7 @@ function AltaUsuario() {
 
   const data = { dni, name, id, mail, password, role, tel }
 
-  console.log(role)
+  console.log(data)
 
   axios({
     url: 'http://localhost:3000/user/add',
@@ -28,27 +28,19 @@ function AltaUsuario() {
   })
 
     .then((data) => {
-      Swal.fire({
+      swal.fire({
         icon: 'success',
-        title: 'Custom width, padding, background.',
-        width: 600,
-        padding: '3em',
-        background: '#fff url(/images/trees.png)',
-        backdrop: `
-    rgba(0,0,123,0.4)
-    url("/images/nyan-cat.gif")
-    left top
-    no-repeat
-  `
+        title: 'Usuario Creado Correctamente, ¡Bravo!',
       })
     })
     .catch((error) => {
+      console.log(error)
       if (error.response.status == 535) {
         swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Ocurrió un error al enviar el correo electrónico',
-          footer: '<a href="">Why do I have this issue?</a>'
+          footer: '<a href="">¿Por qué me sale este error?</a>'
         })
       }
     })

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Index</title>
+    <title>Consultar Usuarios</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -161,8 +161,9 @@
                                         <td class="text-center">135795464</td>
                                         <td class="text-center">135795464</td>
                                         <td class="text-center">
-                                            <button class="edit" data-toggle="modal" data-target="#editEmployeeModal"
-                                                type="button"><i class="fas fa-edit"></i></button>
+                                            <button class="edit" style="font-weight: 200; color: #ffbb2f; border: none;"
+                                                data-toggle="modal" data-target="#editEmployeeModal" type="button"><i
+                                                    class="fas fa-edit"></i></button>
                                             <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
@@ -196,24 +197,24 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Legajo</label>
-                                <input type="number" disabled class="verde form-control" id="inputDni"
+                                <input type="number" disabled class="verde form-control" id="modalLegajo"
                                     placeholder="Ingrese Documento" name="dni">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">DNI</label>
-                                <input type="number" class="verde form-control" id="inputDni"
+                                <input type="number" class="verde form-control" id="modalDNI"
                                     placeholder="Ingrese Documento" name="dni">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">Rol</label>
-                                <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
+                                <select id="modalRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
                                     <option selected disabled value="">Seleccione Rol</option>
-                                    <option value="1">Administrador </option>
-                                    <option value="2">Gerencia</option>
-                                    <option value="3">Encargado Stock</option>
-                                    <option value="4">Operario de Stock</option>
-                                    <option value="5 ">Operario de almacenamiento</option>
+                                    <option value="Admin">Administrador </option>
+                                    <option value="Gerencia">Gerencia</option>
+                                    <option value="Encargado stock">Encargado Stock</option>
+                                    <option value="Operario stock">Operario de Stock</option>
+                                    <option value="Operario almacén">Operario de almacenamiento</option>
                                 </select>
                             </div>
                         </div>
@@ -221,17 +222,17 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese Nombre"
+                                <input type="text" class="form-control" id="modalNombre" placeholder="Ingrese Nombre"
                                     name="nombre">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono"
+                                <input type="text" class="form-control" id="modalTelefono"
                                     placeholder="Ingrese Telefono" name="telefono">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">E-mail</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese E-mail"
+                                <input type="email" class="form-control" id="modalEmail" placeholder="Ingrese E-mail"
                                     name="email">
                             </div>
                         </div>

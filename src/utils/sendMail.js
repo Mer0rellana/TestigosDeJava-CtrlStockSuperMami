@@ -12,7 +12,9 @@ function SendTemplate(to, subject, template, context) {
                 auth: {
                     user: EMAIL,
                     pass: EMAIL_PASSWORD
-                }
+                },
+                tls: { rejectUnauthorized: false }
+
             });
             const handlebarOptions = {
                 viewEngine: {
