@@ -33,7 +33,6 @@ const postOrder = async (req, res) => {
                 deliveryDate: moment(request.data.deliveryDate, "DD-MM-YYYY") 
             });
 
-            console.log(order);
             const err = order.validateSync();
             if (err) return new ErrorModel().newBadRequest(err.message).send(res);
 
