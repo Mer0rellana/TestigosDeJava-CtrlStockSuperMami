@@ -7,7 +7,7 @@ const { DateReg } = require("../../../utils/reg-exp");
 
 const schema = yup.object().shape({
     createdAt: yup.string().required(DateReg, 'El formato de fecha debe ser dd/mmm/yyyy'),
-    deliveryDate: yup.string().required(),
+    deliveryDate: yup.string().required(DateReg, 'El formato de fecha debe ser dd/mmm/yyyy'),
     state: yup.string().oneOf(["Pendiente", "Remitido", "Anulado"]),
     items: yup.array(
         yup.object({
