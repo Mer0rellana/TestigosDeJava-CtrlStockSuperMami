@@ -7,6 +7,7 @@ const itemRoute = require('./apis/item/index');
 const storageRoute = require('./apis/storage/index');
 const transactionRoute = require('./apis/transaction/index');
 const batchRoute = require('./apis/batch/index');
+const orderRoute = require('./apis/order/index');
 
 
 const cors = require('cors');
@@ -43,6 +44,7 @@ app.use('/item', itemRoute);
 app.use('/storage', storageRoute);
 app.use('/transaction', transactionRoute);
 app.use('/batch', batchRoute);
+app.use('/order', orderRoute);
 
 //starting the server
 const server = app.listen(app.get('port'), () => {

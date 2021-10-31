@@ -1,21 +1,21 @@
 openapi: 3.0.1
 info:
-  title: Api Storage 
+  title: Api Order
   version: 1.0.0
 servers:
   - url: "http://localhost:3000/"
     description: Local Server
 
 tags:
-  - name: Storage
-    description: Storage handler
+  - name: Order
+    description: Order handler
 
 paths:
-  /storage/add:
+  /order/add:
     post:
       tags:
-        - Storage
-      summary: Create storage
+        - Order
+      summary: Create order
       security:
         - userToken: []
       requestBody:
@@ -26,7 +26,7 @@ paths:
         required: true
       responses:
         200:
-          description: (OK) Depósito creado con éxito
+          description: (OK) Pedido creado con éxito
         400:
           $ref: "#/components/responses/BadRequest"
         401:
@@ -35,69 +35,35 @@ paths:
           $ref: "#/components/responses/ServerError"
 
           
-  /storage/:
+  /order/:
     get:
       tags:
-      - Storage
-      summary: Get Storages
+      - Order
+      summary: Get Orders
       security:
         - userToken: []
       parameters:
-      - name: id
-        in: query
-        required: false
-        description: Storage id
-        example: 1234
-        schema:
-          type: string
       - name: state
         in: query
         required: false
-        description: Estado del storage
-        example: Activo
+        description: Estado del pedido
+        example: Pendiente
         schema:
           type: string
-          enum: ["Activo", "Bloqueado", "Inactivo"]
+          enum: ["Anulado", "Pendiente", "Remitido"]
       responses:
         200:
-          description: (OK) Los depósitos se obtuvieron correctamente
+          description: (OK) Los pedidos se obtuvieron correctamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseGetStorages'
+                $ref: '#/components/schemas/ResponseGetOrders'
         401:
           $ref: '#/components/responses/Unauthorized' 
         500:
           $ref: '#/components/responses/ServerError'
           
           
-  /storage/delete/{id}:
-    put:
-      tags:
-        - Storage
-      summary: Deactivate storage
-      security:
-        - userToken: []
-      parameters:
-      - name: id
-        in: path
-        description: Storage id
-        required: true
-        example: 1234
-        schema:
-          type: string
-      responses:
-        200:
-          description: (OK) Depósito dado de baja con éxito
-        401:
-          $ref: '#/components/responses/Unauthorized' 
-        404:
-          $ref: '#/components/responses/NotFound' 
-        500:
-          $ref: "#/components/responses/ServerError"
-  
-
-  
 components:
   securitySchemes:
     userToken:
@@ -123,50 +89,58 @@ components:
     BodyAddPost:
       type: object
       required:
-        - id
-        - mts
-        - rows
-        - columns
+        - createdAt
+        - deliveryDate
+        - state
+        - items
       properties:
-        id:
-          type: number
-          example: 1234
-        mts:
-          type: number
-          example: 200
-        rows:
-          type: number
-          example: 10
-        columns:
-          type: number
-          example: 7
-      
-    ResponseStorage:
-      type: object
-      properties:
-        id:
+        createdAt:
           type: string
-        mts:
-          type: number
+          example: 10/11/2021
+        deliveryDate:
+          type: string
+          example: 20/10/2021
         state:
           type: string
-        area:
+          example: Pendiente
+          enum: ['Anulado', 'Pendiente', 'Remitido']
+        items:
           type: array
           items:
             type: object
             properties:
-              id:
+              code:
                 type: string
-              available:
-                type: boolean
-        availablePercentage:
-          type: string
+                example: 4445651S84W2
+              description:
+                type: string
+                example: Cepillo de dientes colgate
+              amount:
+                type: number
+                example: 50
+      
+    ResponseOrder:
+      type: object
+      properties:
         createdAt:
-          type: number
-        updatedAt:
-          type: number
+          type: string
+        deliveryDate:
+          type: string
+        state:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
     
-    ResponseGetStorages:
+    ResponseGetOrders:
       type: array
       items:
-          $ref: '#/components/schemas/ResponseStorage'
+          $ref: '#/components/schemas/ResponseOrder'
