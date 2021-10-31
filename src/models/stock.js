@@ -6,12 +6,12 @@ if (ENV === "dev") {
     mongoose.set('debug', true);
 }
 
-const collection = 'inventories'
-const StockSchema = mongoose.model('inventory', new Schema({
+const collection = 'stocks'
+const StockSchema = mongoose.model('stock', new Schema({
     createdAt: Number,
     updatedAt: Number,
     idItem: {
-        type: Number,
+        type: String,
         required: true,
         unique:true
     },
