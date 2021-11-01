@@ -44,9 +44,9 @@ app.use('/user', userRoute);
 app.use('/item', itemRoute);
 app.use('/storage', storageRoute);
 app.use('/transaction', transactionRoute);
+app.use('/stock', stockRoute);
 app.use('/batch', batchRoute);
 app.use('/order', orderRoute);
-app.use('/stock',stockRoute);
 
 //starting the server
 const server = app.listen(app.get('port'), () => {
