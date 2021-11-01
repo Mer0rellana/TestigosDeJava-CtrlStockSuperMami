@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const validator = require('validator');
 
-const AreaSchema = new Schema({
+const AreaSchema =  new Schema({
     id: {
         type: String,
         required: true,
@@ -42,7 +41,6 @@ const StorageSchema = new Schema({
 },
     { versionKey: false },
 )
-
 
 StorageSchema.set('collection', 'storages');
 
