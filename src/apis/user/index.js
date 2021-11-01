@@ -15,7 +15,7 @@ const UpdateProfile = require('./controllers/putUser');
 const router = express.Router();
 
 router.post('/login', LoginUser);
-router.post('/add', ensureUserAuthenticated ,CreateUser);
+router.post('/add', /*ensureUserAuthenticated ,*/CreateUser);
 router.post('/recoverPassword', RecoverPassword);
 router.get('/myProfile', ensureUserAuthenticated, MyProfile);
 router.get('/', ensureUserAuthenticated, GetUsers);

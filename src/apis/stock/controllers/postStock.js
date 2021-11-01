@@ -23,7 +23,7 @@ const PostStock = async (req, res) => {
 
         const query = await StockSchema.find({ idItem: request.data.idItem }); 
 
-        if(query[0].idItem === request.data.idItem) return new ErrorModel().newNotFound(`Stock del articulo ${request.data.idItem} ya se encuentra en existencia en el sistema.`).send(res);
+        if(query.lenght) return new ErrorModel().newNotFound(`Stock del articulo ${request.data.idItem} ya se encuentra en existencia en el sistema.`).send(res);
 
         const item = await ItemSchema.find({ id: request.data.idItem });
 

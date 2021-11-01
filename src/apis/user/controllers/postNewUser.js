@@ -21,8 +21,8 @@ const CreateUser = async (req, res) => {
     try {
 
         const token = res.locals.payload;
-        if (token.role === "Admin") {  
-
+/*         if (token.role === "Admin") {  
+ */
             const request = await Validator(req.body, schema);
             if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
@@ -48,9 +48,9 @@ const CreateUser = async (req, res) => {
             
             return res.status(200).send({message: "Usuario cargado con éxito"});
 
-        } else{
+/*         } else{
             return new ErrorModel().newUnauthorized().send(res); 
-        }
+        } */
 
     } catch (err) {
         return new ErrorModel().newInternalServerError(err.message).send(res);
