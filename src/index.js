@@ -6,11 +6,8 @@ const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index');
 const storageRoute = require('./apis/storage/index');
 const transactionRoute = require('./apis/transaction/index');
-<<<<<<< HEAD
-=======
 const batchRoute = require('./apis/batch/index');
 const orderRoute = require('./apis/order/index');
->>>>>>> f7a80cbc9f707639f2cbb54497502bf3319bb56b
 const stockRoute = require('./apis/stock/index');
 
 
