@@ -42,7 +42,6 @@ const StorageSchema = new Schema({
     { versionKey: false },
 )
 
-
 StorageSchema.set('collection', 'storages');
 
 module.exports = mongoose.model('storage', StorageSchema);

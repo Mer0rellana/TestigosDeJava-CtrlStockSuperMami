@@ -6,6 +6,7 @@ const userRoute = require('./apis/user/index');
 const itemRoute = require('./apis/item/index');
 const storageRoute = require('./apis/storage/index');
 const transactionRoute = require('./apis/transaction/index');
+const inventoryRoute = require('./apis/inventory/index');
 const batchRoute = require('./apis/batch/index');
 const orderRoute = require('./apis/order/index');
 const stockRoute = require('./apis/stock/index');
@@ -43,6 +44,7 @@ app.use(cors({
 app.use('/user', userRoute);
 app.use('/item', itemRoute);
 app.use('/storage', storageRoute);
+app.use('/inventory', inventoryRoute)
 app.use('/transaction', transactionRoute);
 app.use('/stock', stockRoute);
 app.use('/batch', batchRoute);
