@@ -32,14 +32,3 @@ const LoginUser = async (req, res) => {
 
 module.exports = LoginUser;
 
-/*
-{
-    "id": 789456,
-    "name": "Agustina García Rey",
-    "dni": 39326857,
-    "mail": "agus.garciarey@gmail.com",
-    "tel": 3516319913,
-    "password": "Testigos123",
-    "role": "Admin"
-}
-*/

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Index</title>
+    <title>Mi Perfil</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,7 +18,7 @@
     <script defer src="../../../JavaScript Global/app.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -46,7 +46,8 @@
                 <div class="p-4">
                     <ul class="list-unstyled components mb-5">
                         <li class="active">
-                            <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span class="fa fa-shopping-cart mr-3"></span> Artículos</a>
+                            <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
+                                    class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
@@ -58,7 +59,8 @@
                             <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="../consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span> Usuarios</a>
+                            <a href="../consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
+                                Usuarios</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
@@ -135,7 +137,8 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <div class="mt-5 mr-2">
-                                <button id="btnModificar" onclick="" type="button" class="btn btn-primary">Modificar
+                                <button id="btnModificar" onclick="" data-bs-toggle="modal"
+                                    data-bs-target="#modal-editar" type="button" class="btn btn-primary">Modificar
                                     Datos</button>
                             </div>
                             <div class=" mt-5">
@@ -158,8 +161,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
-                    <button type="button" data-bs-dismiss="modal" class="btn-close btn-close-white"
-                        aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group col-md-12">
@@ -179,9 +181,46 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <input style="background-color: #cc0000 !important; color: white !important;" type="button"
+                        class="btn btn-default" data-bs-dismiss="modal" value="Cancelar">
+                    <input style="background-color: #00bb2d !important; color: white !important;" type="submit"
+                        class="btn btn-success" value="Añadir">
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal HTML -->
+    <div id="modal-editar" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar Datos</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>mail</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <input style="background-color: #cc0000 !important; color: white !important;" type="button"
+                            class="btn btn-default" data-bs-dismiss="modal" value="Cancelar">
+                        <input style="background-color: #00bb2d !important; color: white !important;" type="submit"
+                            class="btn btn-success" value="Añadir">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
