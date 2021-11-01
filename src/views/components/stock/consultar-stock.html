@@ -218,52 +218,57 @@
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
-                        <h4 class="modal-title">Modificar Depósito</h4>
+                        <h4 class="modal-title">Modificar Stock</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="">ID</label>
-                                <input type="number" class="verde form-control" id="inputModalID"
+                                <label for="">ID Stock</label>
+                                <input type="number" class="verde form-control" id="inputModalIDStock"
                                     placeholder="Ingrese ID" name="id">
                             </div>
 
                             <div class="form-group col-md-12">
-                                <label for="">Metros</label>
-                                <input type="number" class="verde form-control" id="inputModalMetros"
-                                    placeholder="Ingrese Metros" name="metros">
+                                <label for="">Stock Actual</label>
+                                <input type="number" class="verde form-control" id="inputModalStockActual"
+                                    placeholder="Ingrese Stock Actual" name="StockA">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="">Estado</label>
-                                <select id="inputModalEstado" class="form-control" name="estado"
-                                    placeholder="Seleccione un Estado">
-                                    <option selected disabled value="">Seleccione Estado</option>
-                                    <option value="1">Activo </option>
-                                    <option value="2">Inactivo</option>
-
-                                </select>
+                                <label for="">Stock Fallado</label>
+                                <input type="number" class="verde form-control" id="inputStockFallado"
+                                    placeholder="Ingrese Stock Fallado" name="StockF">
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="">Ocupado</label>
-                                <input type="text" class="form-control" id="inputModalOcupado"
-                                    placeholder="Ingrese Ocupación" name="ocupado">
-                            </div>
-
                         </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="">Stock Máximo</label>
+                                <input type="text" class="form-control" id="inputStockMaximo"
+                                    placeholder="Ingrese Stock Máximo" name="StockMax">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="">Stock Mínimo</label>
+                                <input type="text" class="form-control" id="inputStockMinimo"
+                                    placeholder="Ingrese Stock Mínimo" name="StockMin">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <button id="btnModificarUsuario" onclick="" type="button"
-                            class="btn btn-primary">Modificar</button>
-                    </div>
-                </form>
             </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal" aria-label="Close">
+                <button id="btnModificarUsuario" onclick="" type="button" class="btn btn-primary">Modificar</button>
+            </div>
+            </form>
         </div>
+    </div>
     </div>
     <!-- Delete Modal HTML -->
     <div id="deleteEmployeeModal" class="modal fade">
