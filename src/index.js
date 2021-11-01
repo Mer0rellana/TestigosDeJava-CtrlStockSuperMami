@@ -46,7 +46,10 @@ app.use('/storage', storageRoute);
 app.use('/transaction', transactionRoute);
 app.use('/stock', stockRoute);
 app.use('/batch', batchRoute);
+<<<<<<< HEAD
 app.use('/order', orderRoute);
+=======
+>>>>>>> 2f5435bbd7c73204dbf74d42d8fe8d4419038707
 
 //starting the server
 const server = app.listen(app.get('port'), () => {
