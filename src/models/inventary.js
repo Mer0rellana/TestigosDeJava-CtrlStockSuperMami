@@ -39,7 +39,7 @@ const InventorySchema = mongoose.model('inventory', new Schema({
     },
     state: {
         type: String,
-        enum: ['Bloqueado', 'Activo', 'Inactivo'],
+        enum: ['Activo', 'Inactivo'],
         required: true,
     },
     realStock:{

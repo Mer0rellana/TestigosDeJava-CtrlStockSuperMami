@@ -31,7 +31,7 @@ const putInventaryState = async (req, res) => {
           ;
       } else {
         return new ErrorModel()
-          .newNotFound(
+          .newBadRequest(
             "No se puede eliminar un Inventario que ha sido ajustado"
           )
           .send(res);
