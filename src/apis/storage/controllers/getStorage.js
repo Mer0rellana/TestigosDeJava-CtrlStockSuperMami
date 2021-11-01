@@ -1,4 +1,4 @@
-const { StorageSchema } = require("../../../models/storage");
+const StorageSchema = require("../../../models/storage");
 const ErrorModel = require("../../../models/api-error");
 
 const getStorage = async (req, res) => {

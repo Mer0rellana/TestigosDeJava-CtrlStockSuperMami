@@ -24,19 +24,17 @@ const InventorySchema = mongoose.model('inventory', new Schema({
         max: 1500  
     },
     createdAt: {
-        type: String,
-        trim: true,
+        type: Number,
     },
     updatedAt: {
-        type: String,
-        trim: true,
+        type: Number,
     },
     adjusted: {
         type: Boolean,
         default: false
     },
     idItem: {
-        type: Number,
+        type: String,
         required: true
     },
     description: {
