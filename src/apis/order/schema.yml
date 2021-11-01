@@ -1,0 +1,146 @@
+openapi: 3.0.1
+info:
+  title: Api Order
+  version: 1.0.0
+servers:
+  - url: "http://localhost:3000/"
+    description: Local Server
+
+tags:
+  - name: Order
+    description: Order handler
+
+paths:
+  /order/add:
+    post:
+      tags:
+        - Order
+      summary: Create order
+      security:
+        - userToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyAddPost"
+        required: true
+      responses:
+        200:
+          description: (OK) Pedido creado con éxito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: "#/components/responses/ServerError"
+
+          
+  /order/:
+    get:
+      tags:
+      - Order
+      summary: Get Orders
+      security:
+        - userToken: []
+      parameters:
+      - name: state
+        in: query
+        required: false
+        description: Estado del pedido
+        example: Pendiente
+        schema:
+          type: string
+          enum: ["Anulado", "Pendiente", "Remitido"]
+      responses:
+        200:
+          description: (OK) Los pedidos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetOrders'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+          
+components:
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      description: Example eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzg5NDU2LCJuYW1lIjoiQWd1c3RpbmEgR2FyY8OtYSBSZXkiLCJyb2xlIjoiQWRtaW4iLCJzdGF0ZSI6dHJ1ZSwiZXhwIjoxNjMzOTk1OTMxfQ.ZQh3DtulWkIGQHJqrFP5Ouqk8Qvn3LTb28_sVsy-NCY
+      
+  responses:
+    Unauthorized:
+      description: (Unauthorized) Usuario no autorizado
+
+    NotFound:
+      description: (Not Found) Datos no encontrados
+
+    BadRequest:
+      description: (Bad Request) Campos incompletos o erróneos
+
+    ServerError:
+      description: (Internal Server Error) Error interno del servidor
+
+  schemas:
+    
+    BodyAddPost:
+      type: object
+      required:
+        - createdAt
+        - deliveryDate
+        - state
+        - items
+      properties:
+        createdAt:
+          type: string
+          example: 10/11/2021
+        deliveryDate:
+          type: string
+          example: 20/10/2021
+        state:
+          type: string
+          example: Pendiente
+          enum: ['Anulado', 'Pendiente', 'Remitido']
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                example: 4445651S84W2
+              description:
+                type: string
+                example: Cepillo de dientes colgate
+              amount:
+                type: number
+                example: 50
+      
+    ResponseOrder:
+      type: object
+      properties:
+        createdAt:
+          type: string
+        deliveryDate:
+          type: string
+        state:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+    
+    ResponseGetOrders:
+      type: array
+      items:
+          $ref: '#/components/schemas/ResponseOrder'

@@ -8,15 +8,12 @@ if (ENV === "dev") {
 
 const collection = 'stocks'
 const StockSchema = mongoose.model('stock', new Schema({
-    createdAt: {
-        type: Number,
-    },
-    updatedAt: {
-        type: Number,
-    },
+    createdAt: Number,
+    updatedAt: Number,
     idItem: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     description: {
         type: String,

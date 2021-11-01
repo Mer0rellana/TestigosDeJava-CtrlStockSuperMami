@@ -35,7 +35,7 @@ const GetUsers = async (req, res) => {
                     state: u.state,
                     createdAt: moment(u.createdAt).format('DD/MM/YYYY')
                 }
-                return u
+                return u;
             })
 
             return res.status(200).send(response);

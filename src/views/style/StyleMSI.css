@@ -8373,6 +8373,9 @@
     table.table td a.delete {
       color: #F44336;
     }
+    table.table td a.seeMore {
+      color: #075f0c;
+    }
 
     table.table td i {
       font-size: 19px;
