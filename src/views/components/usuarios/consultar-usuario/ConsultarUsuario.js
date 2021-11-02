@@ -19,8 +19,9 @@ function ConsultarUser() {
     })
 }
 function crearTabla(datos) {
+  $("#tabla-usuario-body tr").remove();
   for (var i = 0; i < datos.length; i++) {
-    var html = "<tr>"
+    var html = "<tr style='background-color: #35990750;'>"
     html += "<td>" + datos[i].id + "</td>";
     html += "<td>" + datos[i].name + "</td>";
     html += "<td>" + datos[i].dni + "</td>";
@@ -28,28 +29,24 @@ function crearTabla(datos) {
     html += "<td>" + datos[i].mail + "</td>";
     html += "<td>" + datos[i].createdAt + "</td>";
     html += "<td>" + datos[i].role + "</td>";
-    html += "<td>" + datos[i].state + "</td>";
+    datos[i].state ? html += "<td> <button style='background-color: #00bb2d; color: white; border-radius: 10px;'>Activo</button></td>" : html += "<td> <button style='background-color :#9c0202e8; color: white; border-radius: 10px';>Inactivo</button></td>";
 
-    html += `<td class="text-center">
-      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #ffbb2f; border: none;"
+
+    html += `<td class="text-center"> 
+      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #ffbb2f; border: none; outline: none !important; -webkit-appearance: none !important;"
       data-toggle="modal" data-target="#editEmployeeModal"  type="button"><i class="fas fa-edit"></i></button>
-      <a class="delete btnEliminar" data-toggle="modal"><i class="fas fa-trash-alt" title="Eliminar"></i></a>
+      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #9c0202e8; border: none; outline: none !important; -webkit-appearance: none !important;"
+      data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"></i></button>
     </td>`
     html += "</tr>"
     // let tabla = document.getElementById('tabla-usuario');
     // tabla.appendChild(html)B
     $("#tabla-usuario-body").append(html);
   }
-  {/* <a href="" class="edit" data-bs-toggle="modal"
-        data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
-          title="Editar"></i></a>
-      <a class="delete btnEliminar" data-toggle="modal"><i
-        class="fas fa-trash-alt" title="Eliminar"></i></a> */}
 }
 ConsultarUser()
 
 function rellenarCampos(id) {
-  console.log(id)
   axios({
     url: 'http://localhost:3000/user?id=' + id,
     method: 'get',
@@ -67,3 +64,83 @@ function rellenarCampos(id) {
       console.log(data.data)
     })
 }
+function ModUsuario() {
+  const id = document.getElementById('modalLegajo').value;
+  const dni = document.getElementById('modalDNI').value;
+  const role = document.getElementById('modalRol').value;
+  const name = document.getElementById('modalNombre').value;
+  const tel = document.getElementById('modalTelefono').value;
+  const mail = document.getElementById('modalEmail').value;
+
+
+  const data = { id, dni, role, name, tel, mail }
+
+  console.log(data)
+
+  axios({
+    url: 'http://localhost:3000/user/put/' + id,
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${obj.token}` },
+    data
+  })
+
+    .then((data) => {
+      swal.fire({
+        icon: 'success',
+        title: 'Usuario actualizado con éxito, ¡Bravo!',
+      }).then(
+        $('#cancelarEdit').click()
+      )
+
+      ConsultarUser()
+    })
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.status == 400) {
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error interno el servidor',
+          })
+        }
+        if (error.response.status == 401) {
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario no autorizado',
+          })
+        }
+      }
+      console.log(error)
+    })
+}
+
+function DeleteUsuario() {
+  const id = document.getElementById('modalLegajo').value;
+  axios({
+    url: 'http://localhost:3000/user/deleteUser/' + id,
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${obj.token}` },
+  })
+
+    .then((data) => {
+      swal.fire({
+        icon: 'success',
+        title: 'Usuario borrado Correctamente, Ahora se encuentra inactivo',
+      })
+        .then(
+          $('#cancelarDelete').click()
+        )
+      ConsultarUser()
+    })
+    .catch((error) => {
+      if (error.response.status == 400) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ocurrió un error interno el servidor',
+        })
+      }
+    })
+}
+

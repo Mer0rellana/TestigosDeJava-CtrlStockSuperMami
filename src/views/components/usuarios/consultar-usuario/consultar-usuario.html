@@ -31,7 +31,7 @@
 
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="ConsultarUsuario.js"></script>
 
@@ -84,100 +84,70 @@
                     </ul>
                 </div>
             </nav>
-
-
             <!-- Page Content  -->
-
-
             <div id="content" class="contenedor">
                 <div class="container">
-                    <form id="formRegistrarU" name="formulario">
-                        <div class="mb-5 mt-3 text-center">
-                            <h1>Usuarios</h1>
+                    <div class="mb-5 mt-3 text-center">
+                        <h1>Usuarios</h1>
+                    </div>
+                    <hr>
+                    <div class="form-row justify-content-center align-items-center">
+                        <div class="form-group col-md-3">
+                            <label for="">Legajo</label>
+                            <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
+                                name="inputLegajo">
                         </div>
-                        <hr>
-                        <div class="d-flex justify-content-center">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="">Legajo</label>
-                                    <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
-                                        name="inputLegajo">
-
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="">Rol</label>
-                                    <select id="inputRol" class="form-control" name="Rol"
-                                        placeholder="Seleccione un rol">
-                                        <option selected disabled value="">Seleccione Rol</option>
-                                        <option value="1">Administrador </option>
-                                        <option value="2">Gerencia</option>
-                                        <option value="3">Encargado Stock</option>
-                                        <option value="4">Operario de Stock</option>
-                                        <option value="5 ">Operario de almacenamiento</option>
-                                    </select>
-
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Estado</label>
-                                    <select id="inputEstado" class="form-control" name="Estado"
-                                        placeholder="Seleccione un estado">
-                                        <option selected disabled value="">Seleccione Estado</option>
-                                        <option value="1">Activo </option>
-                                        <option value="2">Inactivo</option>
-                                    </select>
-
-                                </div>
-                                <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                    <button id="btnFiltrarUsario" onclick="" type="button"
-                                        class="btn btn-primary">Filtrar</button>
-                                </div>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label for="">Rol</label>
+                            <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
+                                <option selected disabled value="">Seleccione Rol</option>
+                                <option value="1">Administrador </option>
+                                <option value="2">Gerencia</option>
+                                <option value="3">Encargado Stock</option>
+                                <option value="4">Operario de Stock</option>
+                                <option value="5 ">Operario de almacenamiento</option>
+                            </select>
                         </div>
-                        <div>
-                            <table class="table table-striped table-hover table-bordered  display nowrap"
-                                cellspacing="0" width="100%" id="tabla-usuario">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Legajo</th>
-                                        <th class="text-center">Nombre</th>
-                                        <th class="text-center">DNI</th>
-                                        <th class="text-center">Telefono</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Fecha-Ingreso</th>
-                                        <th class="text-center">Rol</th>
-                                        <th class="text-center">Estado</th>
-                                        <th class="text-center">Modificaciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tabla-usuario-body">
-                                    <tr>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Facu Gomez</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">facu@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <button class="edit" style="font-weight: 200; color: #ffbb2f; border: none;"
-                                                data-toggle="modal" data-target="#editEmployeeModal" type="button"><i
-                                                    class="fas fa-edit"></i></button>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="form-group col-md-3">
+                            <label for="">Estado</label>
+                            <select id="inputEstado" class="form-control" name="Estado"
+                                placeholder="Seleccione un estado">
+                                <option selected disabled value="">Seleccione Estado</option>
+                                <option value="1">Activo </option>
+                                <option value="2">Inactivo</option>
+                            </select>
                         </div>
-                        <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
-                            <button onclick="window.location='../crear-usuario/usuariosA.html'" type="button"
-                                class="btn btn-primary">Registrar nuevo
-                                usuario</button>
-                        </div>
+                        <button id="btnFiltrarUsario" onclick="" type="button"
+                            class="btn btn-primary ml-4 mt-3">Filtrar</button>
+                    </div>
+
+                    <div>
+                        <table class="table table-striped table-hover table-bordered  display nowrap" cellspacing="0"
+                            width="100%" id="tabla-usuario">
+                            <thead style="background-color: #1E450C; color: white;">
+                                <tr>
+                                    <th class="text-center">Legajo</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">DNI</th>
+                                    <th class="text-center">Telefono</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Fecha-Ingreso</th>
+                                    <th class="text-center">Rol</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Modificaciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-usuario-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
+                        <button onclick="window.location='../crear-usuario/usuariosA.html'" type="button"
+                            class="btn btn-primary">Registrar nuevo
+                            usuario</button>
+                    </div>
                 </div>
-                </form>
             </div>
         </div>
 
@@ -238,14 +208,15 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <button id="btnModificarUsuario" onclick="" type="button"
-                            class="btn btn-primary">Modificar</button>
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
+                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
+                            onclick="ModUsuario()" class="btn btn-danger" value="Modificar">
                     </div>
                 </form>
             </div>
         </div>
+
     </div>
     <!-- Delete Modal HTML -->
     <div id="deleteEmployeeModal" class="modal fade">
@@ -253,16 +224,19 @@
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
-                        <h4 class="modal-title">Delete Employee</h4>
+                        <h4 class="modal-title">Eliminar Usuario</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete these Records?</p>
-                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        <p>¿Está seguro que desea eliminar este usuario?</p>
+                        <p class="text-warning"><small style="color: #9c0202e8  !important;">Esta acción no podrá
+                                ser revertida.</small></p>
                     </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-danger" value="Delete">
+                    <div class=" modal-footer">
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarDelete">
+                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
+                            onclick="DeleteUsuario()" class="btn btn-danger" value="Eliminar">
                     </div>
                 </form>
             </div>

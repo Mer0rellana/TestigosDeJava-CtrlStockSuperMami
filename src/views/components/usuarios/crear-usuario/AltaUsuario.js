@@ -31,10 +31,10 @@ function AltaUsuario() {
       swal.fire({
         icon: 'success',
         title: 'Usuario Creado Correctamente, ¡Bravo!',
-      })
+      });
+      limpiarCampos()
     })
     .catch((error) => {
-      console.log(error)
       if (error.response.status == 535) {
         swal.fire({
           icon: 'error',
@@ -43,6 +43,31 @@ function AltaUsuario() {
           footer: '<a href="">¿Por qué me sale este error?</a>'
         })
       }
+      if (error.response.status == 400) {
+        swal.fire({
+          icon: 'error',
+          title: 'Ocurrió un error',
+          text: 'El usuario ya existe'
+        })
+      }
+      if (error.response.status == 401) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Usuario no autorizado',
+        })
+      }
     })
 
+
+}
+function limpiarCampos() {
+
+  document.getElementById('dni').value = '';
+  document.getElementById('nombreCompleto').value = '';
+  document.getElementById('Legajo').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('contraseña').value = '';
+  document.getElementById('rol').selectedIndex = 0;
+  document.getElementById('telefono').value = '';
 }
