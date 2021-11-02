@@ -4,6 +4,6 @@ const postAdjustment = require('./controllers/postAdjustment');
 
 const router = express.Router();
 
-router.post('/add',ensureUserAuthenticated, postAdjustment);
+router.post('/add/:_id',ensureUserAuthenticated, postAdjustment);
 
 module.exports = router;

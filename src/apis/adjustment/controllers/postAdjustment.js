@@ -3,35 +3,25 @@ const { InventorySchema } = require("../../../models/inventory");
 const { StockSchema } = require("../../../models/stock");
 const ErrorModel = require("../../../models/api-error");
 const moment = require("moment");
-const yup = require("yup");
-const Validator = require('../../../utils/validator');
 
-const schema = yup.object().shape({
-    idInventory: yup.string().required(),
-    idStock: yup.string().required()
-});
 
 const postAdjustment = async (req, res) => {
     try {
         const token = res.locals.payload
 
-        const request = await Validator(req.body, schema);
-        if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
+        const { _id } = req.params;
 
         if (token.role === 'Encargado stock' || token.role === 'Admin') {
 
-            const stock = await StockSchema.findById(request.data.idStock);
+            const inventory = await InventorySchema.findById(_id);
 
-            if (!stock) return new ErrorModel().newNotFound(`El código ${request.data.idStock} no pertenece a ningún stock del sistema`).send(res);
+            if (!inventory) return new ErrorModel().newNotFound(`El código ${_id} no pertenece a ningún inventario del sistema`).send(res);
 
-            const inventory = await InventorySchema.findById(request.data.idInventory);
+            const stock = await StockSchema.findOne({ idItem: inventory.idItem });
 
-            console.log(inventory)
+            if (!stock) return new ErrorModel().newNotFound(`El código ${inventory.idStock} no pertenece a ningún stock del sistema`).send(res);
 
-            if (!inventory) return new ErrorModel().newNotFound(`El código ${request.data.idInventory} no pertenece a ningún inventario del sistema`).send(res);
-
-
-            await StockSchema.findByIdAndUpdate(request.data.idStock, 
+            await StockSchema.findByIdAndUpdate(stock._id, 
                 {
                     $set: {
                         adjusted: true,
@@ -40,7 +30,7 @@ const postAdjustment = async (req, res) => {
                 }
             );
 
-            await InventorySchema.findByIdAndUpdate(request.data.idInventory, 
+            await InventorySchema.findByIdAndUpdate(_id, 
                 {
                     $set: {
                         adjusted: true,
@@ -50,7 +40,8 @@ const postAdjustment = async (req, res) => {
             );
 
             const adjustment = new AdjustmentSchema({
-                ...req.body,
+                idStock: stock._id,
+                idInventory: _id,
                 idUser: token.id,
                 description: stock.description,
                 systemStock: stock.currentStock,

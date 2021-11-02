@@ -21,8 +21,8 @@ const CreateUser = async (req, res) => {
     try {
 
         const token = res.locals.payload;
-/*         if (token.role === "Admin") {  
- */
+        if (token.role === "Admin") {
+
             const request = await Validator(req.body, schema);
             if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
@@ -45,12 +45,12 @@ const CreateUser = async (req, res) => {
 
             const sending = await SendTemplate(user.mail, "Control Stock Super Mami - Bienvenida", "sendEmail", { principalInfo: "¡Bienvenido al equipo de Super Mami!", secondaryInfo: `Su legajo es ${user.id}. Su contraseña es ${request.data.password}` });
             if (sending.error) return new ErrorModel(535, sending.error, "Error en el envío de email").send(res);
-            
-            return res.status(200).send({message: "Usuario cargado con éxito"});
 
-/*         } else{
-            return new ErrorModel().newUnauthorized().send(res); 
-        } */
+            return res.status(200).send({ message: "Usuario cargado con éxito" });
+
+        } else {
+            return new ErrorModel().newUnauthorized().send(res);
+        }
 
     } catch (err) {
         return new ErrorModel().newInternalServerError(err.message).send(res);
