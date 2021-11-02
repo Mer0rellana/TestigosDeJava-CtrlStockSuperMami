@@ -22,9 +22,12 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
   <script defer src="../../../JavaScript Global/app.js"></script>
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../crear-articulo/AltaArticulo.css">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="ConsultarArticulo.js"></script>
 </head>
 
 <body>
@@ -105,12 +108,6 @@
                   cellspacing="0" width="100%">
                   <thead>
                     <tr>
-                      <th>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="selectAll">
-                          <label for="selectAll"></label>
-                        </span>
-                      </th>
                       <th class="text-center">Código</th>
                       <th class="text-center">Descripción</th>
                       <th class="text-center">Precio</th>
@@ -122,102 +119,8 @@
                       <th class="text-center">Modificaciones</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tabla-articulos-body">
                     <tr>
-                      <td>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                          <label for="checkbox1"></label>
-                        </span>
-                      </td>
-                      <td class="text-center">Dany Lo</td>
-                      <td class="text-center">soengsouy@mail.com</td>
-                      <td class="text-center">89 Chiaroscuro Rd, Portland, Phnom Penh</td>
-                      <td class="text-center">0966686371</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">
-                        <a href="#modal-editar" class="edit" data-toggle="modal"><i class="fas fa-edit"
-                            title="Editar"></i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"
-                            title="Eliminar"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="checkbox2" name="options[]" value="1">
-                          <label for="checkbox2"></label>
-                        </span>
-                      </td>
-                      <td class="text-center">Vivy Pay</td>
-                      <td class="text-center">soengsouy@mail.com</td>
-                      <td class="text-center">Obere Str. 57, Berlin, Battombang</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">
-                        <a href="#modal-editar" class="edit" data-toggle="modal"><i class="fas fa-edit"
-                            title="Editar"></i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"
-                            title="Eliminar"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="checkbox3" name="options[]" value="1">
-                          <label for="checkbox3"></label>
-                        </span>
-                      </td>
-                      <td class="text-center">Design Web</td>
-                      <td class="text-center">camobida@mail.com</td>
-                      <td class="text-center">25, Joly, Paris, Takev</td>
-                      <td class="text-center">0966686373</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">
-                        <a href="#modal-editar" class="edit" data-toggle="modal"><i class="fas fa-edit"
-                            title="Editar"></i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"
-                            title="Eliminar"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="checkbox4" name="options[]" value="1">
-                          <label for="checkbox4"></label>
-                        </span>
-                      </td>
-                      <td class="text-center">Chan Toly</td>
-                      <td class="text-center">khmer09@mail.com</td>
-                      <td class="text-center">PP San Sok, 67, Madrid, Pursat</td>
-                      <td class="text-center">0966686374</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">0966686372</td>
-                      <td class="text-center">
-                        <a href="#modal-editar" class="edit" data-toggle="modal"><i class="fas fa-edit"
-                            title="Editar"></i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"
-                            title="Eliminar"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="checkbox5" name="options[]" value="1">
-                          <label for="checkbox5"></label>
-                        </span>
-                      </td>
                       <td class="text-center">Soeng Souy</td>
                       <td class="text-center">soengsouy@mail.com</td>
                       <td class="text-center">Via Monte Bianco 34, Turin, Pursat</td>
@@ -235,18 +138,6 @@
                     </tr>
                   </tbody>
                 </table>
-                <div class="clearfix">
-                  <div class="hint-text">Mostrando <b>5</b> de <b>100</b> Resultados</div>
-                  <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Anterior</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
-                  </ul>
-                </div>
               </div>
             </div>
             <!-- Edit Modal HTML -->
@@ -260,39 +151,39 @@
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
+                        <label>Codigo</label>
+                        <input type="text" class="form-control" id="modalCode" disabled required>
+                      </div>
+                      <div class="form-group">
                         <label>Descripción</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="modalDescripcion" required>
                       </div>
                       <div class="form-group">
                         <label>Familia</label>
-                        <input type="email" class="form-control" required>
+                        <input type="text" class="form-control" id="modalFamilia" required>
                       </div>
                       <div class="form-group">
                         <label>Grupo</label>
-                        <textarea class="form-control" required></textarea>
+                        <textarea class="form-control" id="modalGrupo" required></textarea>
                       </div>
                       <div class="form-group">
                         <label>Precio</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="modalPrecio" required>
                       </div>
                       <div class="form-group">
                         <label>Unidad</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="modalUnidad" required>
                       </div>
                       <div class="form-group">
                         <label>Cantidad</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                      <div class="form-group">
-                        <label>Estado</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="modalCantidad" required>
                       </div>
                     </div>
                     <div class="modal-footer">
                       <input style="background-color: #9c0202e8  !important; color: white !important;" type="button"
-                        class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                      <input style="background-color: #00bb2d  !important; color: white !important;" type="submit"
-                        class="btn btn-success" value="Añadir">
+                        class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
+                      <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
+                        class="btn btn-success" value="Añadir" onclick="ModArticulo()">
                     </div>
                   </form>
                 </div>
@@ -314,8 +205,8 @@
                     </div>
                     <div class=" modal-footer">
                       <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                        class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                      <input style="background-color: #00bb2d  !important; color: white !important;" type="submit"
+                        class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarDelete">
+                      <input style="background-color: #00bb2d  !important; color: white !important;" onclick="DeleteModificar()" type="button"
                         class="btn btn-danger" value="Eliminar">
                     </div>
                   </form>

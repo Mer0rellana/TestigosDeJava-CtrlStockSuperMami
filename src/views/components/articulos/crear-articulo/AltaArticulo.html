@@ -22,6 +22,7 @@
   <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
   <script defer src="../../../JavaScript Global/app.js"></script>
   <script src="./AltaArticulo.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -94,7 +95,7 @@
             <div class="form-row">
               <div class="col-md-6 mt-2">
                 <label for="">Código</label>
-                <input type="number" class="form-control" id="codigoArt" placeholder="Por favor, ingrese un código"
+                <input type="text" class="form-control" id="codigoArt" placeholder="Por favor, ingrese un código"
                   name="codigo" required>
                 <div class="valid-feedback">¡Ok válido!</div>
                 <div class="invalid-feedback">Complete el campo.</div>
