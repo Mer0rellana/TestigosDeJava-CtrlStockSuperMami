@@ -31,14 +31,25 @@ function crearTabla(datos) {
     html += "<td>" + datos[i].unit + "</td>";
     html += "<td>" + datos[i].amount + "</td>";
 
-    console.log(datos[i].code)
-    html += `<td class="text-center">
+    if (!(datos[i].state==='Eliminado')) {
+      html += `<td class="text-center">
       <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; border: none;"
       data-toggle="modal" data-target="#modal-editar"  type="button"><i class="fas fa-edit"></i></button>
       <button class="delete btnEliminar" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #9c0202e8; border: none;"
       data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`
+    }else{
+      html += `<td class="text-center">
+        <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; border: none;"
+        data-toggle="modal" data-target="#modal-editar"  type="button"><i class="fas fa-edit"></i></button>
+        <button disabled class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; border: none;"
+          type="button"><i class="fas fa-trash-alt"
+        title="Eliminar"></i></button>
+      </td>`
+
+    }
+    
     html += "</tr>"
     // let tabla = document.getElementById('tabla-usuario');
     // tabla.appendChild(html)B
@@ -96,9 +107,10 @@ function ModArticulo() {
       swal.fire({
         icon: 'success',
         title: 'Item actualizado Correctamente, ¡Bravo!',
-      }).then(
-        $("#cancelarEdit").click()
-      )
+      })
+        .then(
+          $("#cancelarEdit").click()
+        )
       ConsultarArticulos()
     })
     .catch((error) => {
@@ -107,7 +119,7 @@ function ModArticulo() {
           swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Ocurrió un error interno el servidor',
+            text: `Error en la carga de datos`,
           })
         }
         else if (error.response.status == 401) {
@@ -125,11 +137,14 @@ function ModArticulo() {
           })
         }
       }
-      swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Hubo un pequeño problema',
-      })
+      else {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un pequeño problema',
+        })
+      }
+
     })
 
 }
@@ -145,7 +160,7 @@ function DeleteModificar() {
     .then((data) => {
       swal.fire({
         icon: 'success',
-        title: 'Item borrado Correctamente, ¡Bravo!',
+        title: 'Artìculo borrado correctamente, ¡Bravo!',
       }).then(
         $("#cancelarDelete").click()
       )
@@ -153,11 +168,18 @@ function DeleteModificar() {
     })
     .catch((error) => {
       if (error.response) {
-        if (error.response.status == 400) {
+        if (error.response.status == 500) {
           swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Ocurrió un error interno el servidor',
+          })
+        }
+        if (error.response.status == 400) {
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error en la carga de datos',
           })
         }
         else if (error.response.status == 401) {
