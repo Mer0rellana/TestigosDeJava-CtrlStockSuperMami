@@ -104,31 +104,23 @@
                     <div class="form-row justify-content-center align-items-center">
                         <div class="form-group col-md-3">
                             <label for="">Legajo</label>
-                            <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
-                                name="inputLegajo">
+                            <input type="text" class="form-control" onkeyup="FiltroBusqueda()" id="inputLegajo"
+                                placeholder="Ingrese Legajo" name="inputLegajo">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-3 ml-2">
                             <label for="">Rol</label>
-                            <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
-                                <option selected disabled value="">Seleccione Rol</option>
-                                <option value="1">Administrador </option>
-                                <option value="2">Gerencia</option>
-                                <option value="3">Encargado Stock</option>
-                                <option value="4">Operario de Stock</option>
-                                <option value="5 ">Operario de almacenamiento</option>
+                            <select id="comboRol" onchange="FiltroBusqueda('Rol')" class="form-control" name="Rol"
+                                placeholder="Seleccione un rol">
+                                <option selected disabled value="Rol">Seleccione Rol</option>
+                                <option value="Admin">Administrador </option>
+                                <option value="Gerencia">Gerencia</option>
+                                <option value="Encargado stock">Encargado Stock</option>
+                                <option value="Operario stock">Operario de Stock</option>
+                                <option value="Operario almacenamiento">Operario de almacenamiento</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="">Estado</label>
-                            <select id="inputEstado" class="form-control" name="Estado"
-                                placeholder="Seleccione un estado">
-                                <option selected disabled value="">Seleccione Estado</option>
-                                <option value="1">Activo </option>
-                                <option value="2">Inactivo</option>
-                            </select>
-                        </div>
-                        <button id="btnFiltrarUsario" onclick="" type="button"
-                            class="btn btn-primary ml-4 mt-3">Filtrar</button>
+                        <button id="btnFiltrarUsario" onclick="limpiarFiltros()" type="button"
+                            class="btn btn-primary ml-4 mt-3">Limpiar Filtros</button>
                     </div>
 
                     <div>

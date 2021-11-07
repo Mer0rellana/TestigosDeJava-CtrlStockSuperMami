@@ -35,7 +35,6 @@ const StorageSchema = mongoose.model('storage', new Schema({
     area: {
         type: [AreaSchema],
         required: true,
-        unique: true,
     },
     createdAt: Number,
     updatedAt: Number,
