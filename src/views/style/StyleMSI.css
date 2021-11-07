@@ -38,6 +38,11 @@
     margin-top:auto;
     margin-bottom:auto;
   }
+  @media (min-width: 1200px){
+    .modal-xl {
+    max-width: 1140px!important; 
+    }
+  } 
   
   .vh-91{
     height:91vh;
@@ -8272,6 +8277,7 @@
       padding: 20px 25px;
       margin: 30px 0;
     }
+    
 
     .table-title {
       padding-bottom: 15px;
