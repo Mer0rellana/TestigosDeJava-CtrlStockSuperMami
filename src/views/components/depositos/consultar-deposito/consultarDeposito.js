@@ -4,14 +4,13 @@ document.cookie.split(';').forEach(e => {
     const val = e.split('=')[1].trim();
     obj[key] = val;
 });
-function ConsultarArticulos() {
+function ConsultarDepositos() {
     axios({
         url: 'http://localhost:3000/storage/',
         method: 'get',
         headers: { Authorization: `Bearer ${obj.token}` },
     })
         .then((data) => {
-            console.log(data.data)
             crearTabla(data.data)
         })
         .catch((error) => {
@@ -46,55 +45,22 @@ function crearTabla(datos) {
       </td>`
 
         }
-
         html += "</tr>"
-        // let tabla = document.getElementById('tabla-usuario');
-        // tabla.appendChild(html)B
         $("#tabla-deposito-body").append(html);
     }
-    {/* <a href="" class="edit" data-bs-toggle="modal"
-        data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
-          title="Editar"></i></a>
-      <a class="delete btnEliminar" data-toggle="modal"><i
-        class="fas fa-trash-alt" title="Eliminar"></i></a> */}
 }
-ConsultarArticulos()
+ConsultarDepositos()
 
-function rellenarCampos(id) {
-
-    axios({
-        url: 'http://localhost:3000/item?code=' + id,
-        method: 'get',
-        headers: { Authorization: `Bearer ${obj.token}` },
-    })
-        .then((data) => {
-            document.getElementById('modalCode').value = data.data[0].code;
-            document.getElementById('modalDescripcion').value = data.data[0].description;
-            document.getElementById('modalFamilia').value = data.data[0].family;
-            document.getElementById('modalGrupo').value = data.data[0].group;
-            document.getElementById('modalPrecio').value = data.data[0].price;
-            document.getElementById('modalUnidad').value = data.data[0].unit;
-            document.getElementById('modalCantidad').value = data.data[0].amount;
-        })
-}
-
-function ModArticulo() {
-
-
-    const code = document.getElementById('modalCode').value;
-    const description = document.getElementById('modalDescripcion').value;
-    const family = document.getElementById('modalFamilia').value;
-    const group = document.getElementById('modalGrupo').value;
-    const price = document.getElementById('modalPrecio').value;
-    const unit = document.getElementById('modalUnidad').value;
-    const amount = document.getElementById('modalCantidad').value;
-
-    const data = { description, family, group, price, unit, amount }
+function ModificarDeposito() {
+    const mts = document.getElementById('inputModalMetros').value;
+    const estado = document.getElementById('inputModalEstado"').value;
+   
+    const data = { mts, estado}
 
     console.log(data)
 
     axios({
-        url: 'http://localhost:3000/item/update/' + code,
+        url: 'http://localhost:3000/storage/update/' + code,
         method: 'PUT',
         headers: { Authorization: `Bearer ${obj.token}` },
         data
