@@ -4,7 +4,7 @@ const ErrorModel = require('../../../models/api-error');
 const moment = require('moment');
 const Transaction = require('../../../models/transaction');
 const Batch = require('../../../models/batch');
-const Storage = require('../../../models/storage');
+const { StorageSchema: Storage }= require('../../../models/storage');
 
 const schema = yup.object().shape({
     anulatedReason: yup.string().required('La razón de anulado es un campo obligatorio').max(1500)
