@@ -1,6 +1,4 @@
 const Transaction = require('../../../models/transaction');
-const User = require('../../../models/user');
-const Batch = require('../../../models/batch');
 const ErrorModel = require('../../../models/api-error');
 const moment = require('moment');
 const yup = require("yup");

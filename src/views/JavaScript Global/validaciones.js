@@ -27,8 +27,6 @@ function loginValid() {
     let msjContraseña = document.getElementById("mensajeContraseña");
     let legajo = /^\d+$/;
     let contraseña = /^\d+$/;
-
-
+    let ID = document.getElementById("inputID");
 
 }
-
