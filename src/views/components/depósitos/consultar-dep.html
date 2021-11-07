@@ -53,30 +53,30 @@
                 <div class="p-4">
                     <ul class="list-unstyled components mb-5">
                         <li class="active">
-                            <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
+                            <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../depósitos/consultar-dep.html"><span class="fa fa-archive mr-3"></span> Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href=""><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="../consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
+                            <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
                                 Usuarios</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href=""><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
-                            <a href="../mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
+                            <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
@@ -123,6 +123,7 @@
                                         <option selected disabled value="">Seleccione Estado</option>
                                         <option value="1">Activo </option>
                                         <option value="2">Inactivo</option>
+                                        <option value="3">Bloqueado</option>
 
                                     </select>
                                     <div class="valid-feedback">¡Ok válido!</div>
@@ -146,7 +147,7 @@
                                         <th class="text-center">Metros</th>
                                         <th class="text-center">Estado</th>
                                         <th class="text-center">Ocupado</th>
-                                        <th class="text-center">Modificaciones</th>
+                                        <th class="text-center">Operaciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -248,12 +249,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="">ID</label>
-                                <input type="number" class="verde form-control" id="inputModalID"
-                                    placeholder="Ingrese ID" name="id">
-                            </div>
-
+                          
                             <div class="form-group col-md-12">
                                 <label for="">Metros</label>
                                 <input type="number" class="verde form-control" id="inputModalMetros"
@@ -269,15 +265,9 @@
                                     <option selected disabled value="">Seleccione Estado</option>
                                     <option value="1">Activo </option>
                                     <option value="2">Inactivo</option>
-
+                                    <option value="3">Bloqueado</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="">Ocupado</label>
-                                <input type="text" class="form-control" id="inputModalOcupado"
-                                    placeholder="Ingrese Ocupación" name="ocupado">
-                            </div>
-
                         </div>
                     </div>
                     <div class="modal-footer">
