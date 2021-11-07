@@ -25,6 +25,9 @@
     <link defer rel="stylesheet" href="../../style/StyleMSI.css">
     <script defer src="../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 
@@ -35,7 +38,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -52,30 +55,38 @@
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
                             <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
-                                    class="fa fa-users mr-3"></span> Usuarios</a>
+                                    class="fa fa-users mr-3"></span>
+                                Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
+                        </li>
+                        <li>
+                            <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
+                        </li>
+                        <li>
+                            <a href="../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
                         </li>
                     </ul>
                 </div>
@@ -83,7 +94,7 @@
 
 
             <div id="content" class="contenedor">
-                <div class="container">
+                <div class="container animate__animated animate__fadeIn">
                     <form id="formRegistrarU" name="formulario">
                         <div class="mb-5 mt-3 text-center">
                             <h1>Consultar Inventario</h1>
@@ -107,7 +118,7 @@
                             <table
                                 class="table table-striped table-hover table-bordered table-responsive display nowrap"
                                 cellspacing="0" width="100%">
-                                <thead>
+                                <thead style="background-color: #1E450C; color: white;">
                                     <tr>
 
                                         <th class="text-center">Fecha</th>
