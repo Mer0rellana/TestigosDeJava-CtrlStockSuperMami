@@ -29,15 +29,15 @@ function crearTabla(datos) {
 
         if (!(datos[i].state === 'Inactivo')) {
             html += `<td class="text-center">
-      <button class="edit" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
+      <button class="edit" onclick="rellenarCampos('${datos[i].id}')" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
       data-toggle="modal" data-target="#editStorageModal"  type="button"><i class="fas fa-edit"></i></button>
-      <button class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
+      <button class="delete btnEliminar" onclick="rellenarCampos('${datos[i].id}')"  style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
       data-toggle="modal" data-target="#deleteStorageModal"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`
         } else {
             html += `<td class="text-center">
-        <button class="edit" style="font-weight: 200; color: #ffbb2f; background-color: white;  border: none;"
+        <button class="edit" onclick="rellenarCampos('${datos[i].id}')" style="font-weight: 200; color: #ffbb2f; background-color: white;  border: none;"
         data-toggle="modal" data-target="#editStorageModal"  type="button"><i class="fas fa-edit"></i></button>
         <button disabled class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
           type="button"><i class="fas fa-trash-alt"
@@ -51,16 +51,28 @@ function crearTabla(datos) {
 }
 ConsultarDepositos()
 
-function ModificarDeposito() {
-    const mts = document.getElementById('inputModalMetros').value;
-    const estado = document.getElementById('inputModalEstado"').value;
-   
-    const data = { mts, estado}
-
-    console.log(data)
-
+function rellenarCampos(id) {
     axios({
-        url: 'http://localhost:3000/storage/update/' + code,
+        url: 'http://localhost:3000/storage/?id=' + id,
+        method: 'get',
+        headers: { Authorization: `Bearer ${obj.token}` },
+    })
+        .then((data) => {
+            document.getElementById('inputModalId').value = data.data[0].id;
+            document.getElementById('inputModalMetros').value = data.data[0].mts;
+            document.getElementById('inputModalEstado').value = data.data[0].state;
+        })
+}
+function ModificarDeposito() {
+
+    const id = document.getElementById('inputModalId').value;
+    const mts = document.getElementById('inputModalMetros').value;
+    const estado = document.getElementById('inputModalEstado').value;
+
+    const data = { id, mts, estado }
+    console.log(data)
+    axios({
+        url: 'http://localhost:3000/storage/update/' + id,
         method: 'PUT',
         headers: { Authorization: `Bearer ${obj.token}` },
         data
@@ -69,12 +81,12 @@ function ModificarDeposito() {
         .then((data) => {
             swal.fire({
                 icon: 'success',
-                title: 'Item actualizado Correctamente, ¡Bravo!',
+                title: 'Depósito actualizado correctamente, ¡Bravo!',
             })
                 .then(
                     $("#cancelarEdit").click()
                 )
-            ConsultarArticulos()
+            ConsultarDepositos()
         })
         .catch((error) => {
             if (error.response) {
@@ -109,13 +121,12 @@ function ModificarDeposito() {
             }
 
         })
-
 }
 
-function DeleteModificar() {
-    const code = document.getElementById('modalCode').value;
+function Delete() {
+    const id = document.getElementById('inputModalId').value;
     axios({
-        url: 'http://localhost:3000/item/update-state/' + code,
+        url: 'http://localhost:3000/storage/delete/' + id,
         method: 'PUT',
         headers: { Authorization: `Bearer ${obj.token}` },
     })
@@ -123,11 +134,11 @@ function DeleteModificar() {
         .then((data) => {
             swal.fire({
                 icon: 'success',
-                title: 'Artìculo borrado correctamente, ¡Bravo!',
+                title: 'Depósito dado de baja correctamente, ¡Bravo!',
             }).then(
                 $("#cancelarDelete").click()
             )
-            ConsultarArticulos()
+            ConsultarDepositos()
         })
         .catch((error) => {
             if (error.response) {
@@ -135,14 +146,7 @@ function DeleteModificar() {
                     swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Ocurrió un error interno el servidor',
-                    })
-                }
-                if (error.response.status == 400) {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error en la carga de datos',
+                        text: 'Ocurrió un error interno en el servidor',
                     })
                 }
                 else if (error.response.status == 401) {
@@ -166,6 +170,5 @@ function DeleteModificar() {
                 text: 'Hubo un pequeño problema',
             })
         })
-
 }
 
