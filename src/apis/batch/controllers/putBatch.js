@@ -30,25 +30,34 @@ const BatchUpdate = async (req, res) => {
       const { id } = req.params;
       const idStorage = req.body.idStorage;
       const area = req.body.idArea;
-      console.log(idStorage);
-      console.log(area);
-
+      const batch2 = await BatchSchema.findOne({ id: id });
+      console.log(batch2.idArea);
       const batch = await BatchSchema.updateOne(
         { id: id },
         { ...req.body, updatedAt: Moment.now() }
       );
-
-      const storage = await StorageSchema.findOneAndUpdate(
+      const storage2 = await StorageSchema.updateOne(
+        { id: batch2.idStorage, "area.id": batch2.idArea },
+        {
+          "area.$.available": true,
+        
+        }
+      );
+      if (storage2.matchedCount === 0)
+        return new ErrorModel().newNotFound("El depósito no existe").send(res);
+      const storage = await StorageSchema.updateOne(
         {
           id: idStorage,
           "area.id": area,
         },
         {
+          "area.$.id": area,
           "area.$.available": false,
         }
       );
-      //if (storage.matchedCount === 0)
-      //  return new ErrorModel().newNotFound("El depósito no existe").send(res);
+
+      if (storage.matchedCount === 0)
+        return new ErrorModel().newNotFound("El depósito no existe").send(res);
       if (batch.matchedCount === 0)
         return new ErrorModel().newNotFound("El lote no existe").send(res);
 
