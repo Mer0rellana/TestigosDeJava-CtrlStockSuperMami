@@ -19,7 +19,7 @@ const BatchSchema = new Schema({
     state: {
         type: String,
         trim: true,
-        enum: ['Ingresado', 'Almacenado','Egresado'],
+        enum: ['Ingresado', 'Egresado'],
         required: true,
     },
     idStorage: Number,
