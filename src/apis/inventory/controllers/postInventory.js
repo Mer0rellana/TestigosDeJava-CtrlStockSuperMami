@@ -22,6 +22,8 @@ const postInventory = async (req, res) => {
         const request = await Validator(req.body, schema);
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
+        console.log(request.data.idStorage)
+
         const storage = await StorageSchema.updateOne({ id: request.data.idStorage },
             {
                 $set: {
@@ -39,7 +41,7 @@ const postInventory = async (req, res) => {
             idUser: token.id,
             idStorage: request.data.idStorage,
             idItem: request.data.idItem,
-            description: item[0].description,
+            description: item.description,
             realStock: request.data.realStock,
             failedRealStock: request.data.failedRealStock,
             observation: request.data.observation,
