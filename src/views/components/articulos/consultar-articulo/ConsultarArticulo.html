@@ -28,6 +28,8 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="ConsultarArticulo.js"></script>
+  <!-- Animaciones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
@@ -50,38 +52,46 @@
                 Artículos</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+              <a href="../../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                Depósitos</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+              <a href="../../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                Pedidos</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+              <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
             </li>
             <li>
               <a href="../../usuarios/consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
                 Usuarios</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+              <a href="../../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+              <a href="../../inventario/consultar-inventario.html"><span
+                  class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
             </li>
             <li>
-              <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
+              <a href="../../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
+              <a href="../../movimientos/consultar-movimientos.html"><span class="fa fa-paper-plane mr-3"></span>
+                Movimientos</a>
+            </li>
+            <li>
+              <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
+                Perfil</a>
             </li>
           </ul>
         </div>
       </nav>
 
       <!-- Table Body  -->
-      <div id="content" class="contenedor">
+      <div id="content" class="contenedor ">
         <div class="container">
-          <div class="container">
+          <div class="container animate__animated animate__fadeIn">
             <div class="mb-5 mt-3 text-center">
               <div class="container-fluid header-content">
                 <div class="row">
@@ -111,7 +121,7 @@
                       <th class="text-center" style="min-width: 150px;">Operaciones</th>
                     </tr>
                   </thead>
-                  <tbody id="tabla-articulos-body">                   
+                  <tbody id="tabla-articulos-body">
                   </tbody>
                 </table>
               </div>
