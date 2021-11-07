@@ -22,7 +22,7 @@ const TransactionSchema = new Schema({
     anulatedReason: {
         type: String,
         trim: true,
-        max: 500
+        max: 1500  
     },
     createdAt: Number,
     updatedAt: Number,
@@ -30,6 +30,7 @@ const TransactionSchema = new Schema({
         type: [ String ],
         required: true,
     },
+    userId: Number, 
 },
     { versionKey: false }, 
 );

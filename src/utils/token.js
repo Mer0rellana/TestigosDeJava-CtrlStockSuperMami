@@ -26,7 +26,7 @@ const ensureUserAuthenticated = (req, res, next) => {
         res.locals.payload = payload;
         return next();
     } catch (err) {
-        return new ErrorModel().newUnauthorized(err).send(res);
+        return new ErrorModel().newUnauthorized("Unauthorized token").send(res);
     }
 }
 
