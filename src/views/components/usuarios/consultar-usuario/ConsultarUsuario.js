@@ -21,7 +21,7 @@ function ConsultarUser() {
 function crearTabla(datos) {
   $("#tabla-usuario-body tr").remove();
   for (var i = 0; i < datos.length; i++) {
-    var html = "<tr style='background-color: #35990750;'>"
+    var html = "<tr>"
     html += "<td>" + datos[i].id + "</td>";
     html += "<td>" + datos[i].name + "</td>";
     html += "<td>" + datos[i].dni + "</td>";

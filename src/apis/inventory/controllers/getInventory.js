@@ -1,4 +1,4 @@
-const { InventorySchema }= require('../../../models/inventory');
+const { InventorySchema } = require('../../../models/inventory');
 const User = require('../../../models/user');
 const ErrorModel = require('../../../models/api-error');
 const moment = require('moment');
@@ -14,18 +14,18 @@ const GetInventory = async (req, res) => {
         const request = await Validator(req.query, schema);
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
-        const inventory = await InventorySchema.findOne({_id: request.data.id});
+        const inventory = await InventorySchema.findOne({ _id: request.data.id });
         if (!inventory) return new ErrorModel().newNotFound('El inventario no existe').send(res);
 
         const user = await User.find({ id: inventory.idUser });
 
         const response = {
-            ... inventory._doc,
+            ...inventory._doc,
             idUser: `${inventory.idUser}, ${user[0].name}`,
             createdAt: moment(inventory.createdAt).format('DD/MM/YYYY'),
             updatedAt: inventory.updatedAt ? moment(inventory.updatedAt).format('DD/MM/YYYY') : "",
         }
-
+        console.log(response)
         return res.status(200).send(response);
 
     } catch (err) {
