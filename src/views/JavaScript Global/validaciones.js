@@ -29,7 +29,4 @@ function loginValid() {
     let contraseña = /^\d+$/;
     let ID = document.getElementById("inputID");
 
-
-
 }
-
