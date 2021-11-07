@@ -39,8 +39,6 @@ function crearTabla(datos) {
       data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"></i></button>
     </td>`
     html += "</tr>"
-    // let tabla = document.getElementById('tabla-usuario');
-    // tabla.appendChild(html)B
     $("#tabla-usuario-body").append(html);
   }
 }
@@ -61,7 +59,7 @@ function rellenarCampos(id) {
       document.getElementById('modalTelefono').value = data.data[0].tel;
       document.getElementById('modalEmail').value = data.data[0].mail;
 
-      console.log(data.data)
+
     })
 }
 function ModUsuario() {
@@ -75,7 +73,6 @@ function ModUsuario() {
 
   const data = { id, dni, role, name, tel, mail }
 
-  console.log(data)
 
   axios({
     url: 'http://localhost:3000/user/put/' + id,
@@ -111,7 +108,6 @@ function ModUsuario() {
           })
         }
       }
-      console.log(error)
     })
 }
 
@@ -142,5 +138,37 @@ function DeleteUsuario() {
         })
       }
     })
+}
+
+function FiltroBusqueda(tipo) {
+
+  const id = document.getElementById('inputLegajo').value;
+  const select = document.getElementById('comboRol');
+  console.log(select === 'Rol')
+  if (id.length > 0 || select.selectedIndex > 0) {
+    let consulta = '';
+    if (tipo == 'Rol') {
+      consulta = 'role=' + select.value
+    } else {
+      consulta = 'id=' + id
+    }
+    axios({
+      url: 'http://localhost:3000/user?' + consulta,
+      method: 'get',
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+      .then((data) => {
+
+        crearTabla(data.data)
+      })
+  } else {
+    ConsultarUser()
+  }
+}
+
+function limpiarFiltros() {
+  document.getElementById('inputLegajo').value = '';
+  document.getElementById('comboRol').selectedIndex = 0;
+  ConsultarUser()
 }
 
