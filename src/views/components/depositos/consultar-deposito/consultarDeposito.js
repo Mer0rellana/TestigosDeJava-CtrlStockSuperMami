@@ -172,3 +172,34 @@ function Delete() {
         })
 }
 
+function FiltroBusqueda(tipo) {
+
+    const id = document.getElementById('inputID').value;
+    const select = document.getElementById('inputEstado');
+
+    if (id.length > 0 || select.selectedIndex > 0) {
+        let consulta = '';
+        if (tipo == 'Estado') {
+            consulta = 'state=' + select.value
+        } else {
+            consulta = 'id=' + id
+        }
+        axios({
+            url: 'http://localhost:3000/storage/?' + consulta,
+            method: 'get',
+            headers: { Authorization: `Bearer ${obj.token}` },
+        })
+            .then((data) => {
+
+                crearTabla(data.data)
+            })
+    } else {
+        ConsultarUser()
+    }
+}
+
+function limpiarFiltros() {
+    document.getElementById('inputLegajo').value = '';
+    document.getElementById('comboRol').selectedIndex = 0;
+    ConsultarUser()
+}

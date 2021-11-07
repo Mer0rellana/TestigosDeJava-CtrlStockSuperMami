@@ -102,45 +102,31 @@
                             <h1>Depósitos</h1>
                         </div>
                         <hr>
-                        <div class="d-flex justify-content-center">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="">ID</label>
-                                    <input type="text" class="form-control " id="inputID" placeholder="Ingrese ID"
-                                        name="ID" required>
-                                    <div class="valid-feedback">¡Ok válido!</div>
-                                    <div class="invalid-feedback">Complete el campo.</div>
-                                </div>
+                        <div class="align-items-center form-row justify-content-center">
 
-                                <div class="form-group col-md-3">
-                                    <label for="">Metros</label>
-
-                                    <input type="text" class="form-control" id="inputMetros"
-                                        placeholder="Ingrese Metros" name="metros">
-                                    <div class="valid-feedback">¡Ok válido!</div>
-                                    <div class="invalid-feedback">Complete el campo.</div>
-
-
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Estado</label>
-                                    <select id="inputEstado" class="form-control" name="estado"
-                                        placeholder="Seleccione un estado">
-                                        <option selected disabled value="">Seleccione Estado</option>
-                                        <option value="1">Activo </option>
-                                        <option value="2">Inactivo</option>
-                                        <option value="3">Bloqueado</option>
-
-                                    </select>
-                                    <div class="valid-feedback">¡Ok válido!</div>
-                                    <div class="invalid-feedback">Complete el campo.</div>
-
-
-                                </div>
-                                <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                    <button id="" onclick="" type="submit" class="btn btn-primary">Filtrar</button>
-                                </div>
+                            <div class="form-group col-md-3">
+                                <label for="">ID</label>
+                                <input type="text" class="form-control " onkeyup="FiltroBusqueda()" id="inputID" placeholder="Ingrese ID" name="ID"
+                                    required>
+                                <div class="valid-feedback">¡Ok válido!</div>
+                                <div class="invalid-feedback">Complete el campo.</div>
                             </div>
+                            <div class="form-group col-md-3">
+                                <label for="">Estado</label>
+                                <select id="inputEstado" onchange="FiltroBusqueda('Estado')" class="form-control" name="estado"
+                                    placeholder="Seleccione un estado">
+                                    <option selected disabled value="">Seleccione Estado</option>
+                                    <option value="Activo">Activo </option>
+                                    <option value="Inactivo">Inactivo</option>
+                                    <option value="Bloqueado">Bloqueado</option>
+
+                                </select>
+                                <div class="valid-feedback">¡Ok válido!</div>
+                                <div class="invalid-feedback">Complete el campo.</div>
+                            </div>
+
+                            <button id="" onclick="" type="submit" class="btn mt-3 ml-4 btn-primary">Limpiar Filtro</button>
+
                         </div>
                     </form>
                     <form action="">
@@ -161,7 +147,7 @@
                             </table>
                         </div>
                         <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
-                            <button onclick="window.location='../depositos/AltaDeposito.html'" type="button"
+                            <button onclick="window.location='../crear-deposito/AltaDeposito.html'"  type="button"
                                 class="btn btn-primary">Registrar nuevo
                                 Depósito</button>
                         </div>
@@ -186,8 +172,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12" style="display: none;">
                                 <label for="">Id</label>
-                                <input type="number" class="verde form-control" id="inputModalId"
-                            name="id">
+                                <input type="number" class="verde form-control" id="inputModalId" name="id">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Metros</label>
@@ -210,8 +195,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit" data-dismiss="modal"
-                            aria-label="Close">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
+                            data-dismiss="modal" aria-label="Close">
                         <button id="btnModificarDeposito" onclick="ModificarDeposito()" type="button"
                             class="btn btn-primary">Modificar</button>
                     </div>
@@ -232,10 +217,10 @@
                         <p>¿Está seguro que desea dar de baja el depósito?</p>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarDelete" data-dismiss="modal"
-                            aria-label="Close">
-                        <button id="btnDeleteDeposito" onclick="Delete()" type="button"
-                            class="btn btn-primary">Dar de baja</button>
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarDelete"
+                            data-dismiss="modal" aria-label="Close">
+                        <button id="btnDeleteDeposito" onclick="Delete()" type="button" class="btn btn-primary">Dar de
+                            baja</button>
                     </div>
                 </form>
             </div>
@@ -249,45 +234,3 @@
 </body>
 
 </html>
-
-<!--   <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="">DNI</label>
-                                <input type="number" class="verde form-control" id="inputDni"
-                                    placeholder="Ingrese Documento" name="dni">
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="">Rol</label>
-                                <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
-                                    <option selected disabled value="">Seleccione Rol</option>
-                                    <option value="1">Administrador </option>
-                                    <option value="2">Gerencia</option>
-                                    <option value="3">Encargado Stock</option>
-                                    <option value="4">Operario de Stock</option>
-                                    <option value="5 ">Operario de almacenamiento</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese Nombre"
-                                    name="nombre">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono"
-                                    placeholder="Ingrese Telefono" name="telefono">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="">E-mail</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese E-mail"
-                                    name="email">
-                            </div>
-                        </div>
-                        <div class=" mt-5 d-flex justify-content-center">
-                            <button id="btnModificarUsuario" onclick="" type="button"
-                                class="btn btn-primary">Modificar</button>
-                        </div> -->
