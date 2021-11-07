@@ -32,7 +32,9 @@
 
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./consultarDeposito.js"></script>
 
 </head>
 
@@ -150,14 +152,8 @@
                                         <th class="text-center">Operaciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Facu Gomez</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-
+                                <tbody id="tabla-deposito-body">
+<!--
                                         <td class="text-center">
                                             <a href="" class="edit" data-bs-toggle="modal"
                                                 data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
@@ -221,7 +217,7 @@
                                             <a class="delete btnEliminar" data-toggle="modal"><i
                                                     class="fas fa-trash-alt" title="Eliminar"></i></a>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -239,7 +235,7 @@
     </div>
 
     <!-- Edit Modal HTML -->
-    <div id="editEmployeeModal" class="modal fade">
+    <div id="editStorageModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form>
@@ -281,7 +277,7 @@
         </div>
     </div>
     <!-- Delete Modal HTML -->
-    <div id="deleteEmployeeModal" class="modal fade">
+    <div id="deleteStorageModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form>

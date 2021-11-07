@@ -4,10 +4,10 @@ const yup = require("yup");
 const moment = require('moment');
 const ErrorModel = require("../../../models/api-error");
 const Validator = require('../../../utils/validator');
-const  StorageSchema  = require("../../../models/storage");
+const { StorageSchema: Storage }  = require("../../../models/storage");
 
 const schema = yup.object().shape({
-    idItem: yup.number().required(),
+    idItem: yup.string().required(),
     idStorage: yup.number().required(),
     realStock: yup.number().required(),
     failedRealStock: yup.number().required(),

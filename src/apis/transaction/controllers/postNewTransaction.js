@@ -1,6 +1,6 @@
 const Transaction = require('../../../models/transaction');
 const Batch = require('../../../models/batch');
-const Storage = require('../../../models/storage');
+const { StorageSchema: Storage } = require('../../../models/storage');
 const ErrorModel = require('../../../models/api-error');
 const yup = require("yup");
 const Validator = require('../../../utils/validator');
