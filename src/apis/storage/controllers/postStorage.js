@@ -43,7 +43,7 @@ const postStorage = async (req, res) => {
       if (err) return new ErrorModel().newBadRequest(err.message).send(res);
 
       await storage.save();
-      return res.status(200).send("Depósito cargado con éxito");
+      return res.status(200).send({message: "Depósito cargado con éxito"});
 
     } else {
       return new ErrorModel().newUnauthorized("Usuario no autorizado").send(res);

@@ -6,7 +6,6 @@ function ConsultarArticulos() {
         headers: { Authorization: `Bearer ${obj.token}` },
     })
         .then((data) => {
-            console.log(data.data)
             crearTabla(data.data)
         })
         .catch((error) => {
@@ -25,15 +24,15 @@ function crearTabla(datos) {
 
         if (!(datos[i].state === 'Inactivo')) {
             html += `<td class="text-center">
-      <button class="edit" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
+      <button class="edit" onclick="rellenarCampos('${datos[i].id}')" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
       data-toggle="modal" data-target="#editStorageModal"  type="button"><i class="fas fa-edit"></i></button>
-      <button class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
+      <button class="delete btnEliminar" onclick="rellenarCampos('${datos[i].id}')"  style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
       data-toggle="modal" data-target="#deleteStorageModal"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`
         } else {
             html += `<td class="text-center">
-        <button class="edit" style="font-weight: 200; color: #ffbb2f; background-color: white;  border: none;"
+        <button class="edit" onclick="rellenarCampos('${datos[i].id}')" style="font-weight: 200; color: #ffbb2f; background-color: white;  border: none;"
         data-toggle="modal" data-target="#editStorageModal"  type="button"><i class="fas fa-edit"></i></button>
         <button disabled class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
           type="button"><i class="fas fa-trash-alt"
@@ -41,55 +40,34 @@ function crearTabla(datos) {
       </td>`
 
         }
-
         html += "</tr>"
-        // let tabla = document.getElementById('tabla-usuario');
-        // tabla.appendChild(html)B
         $("#tabla-deposito-body").append(html);
     }
-    {/* <a href="" class="edit" data-bs-toggle="modal"
-        data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
-          title="Editar"></i></a>
-      <a class="delete btnEliminar" data-toggle="modal"><i
-        class="fas fa-trash-alt" title="Eliminar"></i></a> */}
 }
-ConsultarArticulos()
+ConsultarDepositos()
 
 function rellenarCampos(id) {
-
     axios({
-        url: 'http://localhost:3000/item?code=' + id,
+        url: 'http://localhost:3000/storage/?id=' + id,
         method: 'get',
         headers: { Authorization: `Bearer ${obj.token}` },
     })
         .then((data) => {
-            document.getElementById('modalCode').value = data.data[0].code;
-            document.getElementById('modalDescripcion').value = data.data[0].description;
-            document.getElementById('modalFamilia').value = data.data[0].family;
-            document.getElementById('modalGrupo').value = data.data[0].group;
-            document.getElementById('modalPrecio').value = data.data[0].price;
-            document.getElementById('modalUnidad').value = data.data[0].unit;
-            document.getElementById('modalCantidad').value = data.data[0].amount;
+            document.getElementById('inputModalId').value = data.data[0].id;
+            document.getElementById('inputModalMetros').value = data.data[0].mts;
+            document.getElementById('inputModalEstado').value = data.data[0].state;
         })
 }
+function ModificarDeposito() {
 
-function ModArticulo() {
+    const id = document.getElementById('inputModalId').value;
+    const mts = document.getElementById('inputModalMetros').value;
+    const estado = document.getElementById('inputModalEstado').value;
 
-
-    const code = document.getElementById('modalCode').value;
-    const description = document.getElementById('modalDescripcion').value;
-    const family = document.getElementById('modalFamilia').value;
-    const group = document.getElementById('modalGrupo').value;
-    const price = document.getElementById('modalPrecio').value;
-    const unit = document.getElementById('modalUnidad').value;
-    const amount = document.getElementById('modalCantidad').value;
-
-    const data = { description, family, group, price, unit, amount }
-
+    const data = { id, mts, estado }
     console.log(data)
-
     axios({
-        url: 'http://localhost:3000/item/update/' + code,
+        url: 'http://localhost:3000/storage/update/' + id,
         method: 'PUT',
         headers: { Authorization: `Bearer ${obj.token}` },
         data
@@ -98,12 +76,12 @@ function ModArticulo() {
         .then((data) => {
             swal.fire({
                 icon: 'success',
-                title: 'Item actualizado Correctamente, ¡Bravo!',
+                title: 'Depósito actualizado correctamente, ¡Bravo!',
             })
                 .then(
                     $("#cancelarEdit").click()
                 )
-            ConsultarArticulos()
+            ConsultarDepositos()
         })
         .catch((error) => {
             if (error.response) {
@@ -138,13 +116,12 @@ function ModArticulo() {
             }
 
         })
-
 }
 
-function DeleteModificar() {
-    const code = document.getElementById('modalCode').value;
+function Delete() {
+    const id = document.getElementById('inputModalId').value;
     axios({
-        url: 'http://localhost:3000/item/update-state/' + code,
+        url: 'http://localhost:3000/storage/delete/' + id,
         method: 'PUT',
         headers: { Authorization: `Bearer ${obj.token}` },
     })
@@ -152,11 +129,11 @@ function DeleteModificar() {
         .then((data) => {
             swal.fire({
                 icon: 'success',
-                title: 'Artìculo borrado correctamente, ¡Bravo!',
+                title: 'Depósito dado de baja correctamente, ¡Bravo!',
             }).then(
                 $("#cancelarDelete").click()
             )
-            ConsultarArticulos()
+            ConsultarDepositos()
         })
         .catch((error) => {
             if (error.response) {
@@ -164,14 +141,7 @@ function DeleteModificar() {
                     swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Ocurrió un error interno el servidor',
-                    })
-                }
-                if (error.response.status == 400) {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error en la carga de datos',
+                        text: 'Ocurrió un error interno en el servidor',
                     })
                 }
                 else if (error.response.status == 401) {
@@ -195,6 +165,36 @@ function DeleteModificar() {
                 text: 'Hubo un pequeño problema',
             })
         })
-
 }
 
+function FiltroBusqueda(tipo) {
+
+    const id = document.getElementById('inputID').value;
+    const select = document.getElementById('inputEstado');
+
+    if (id.length > 0 || select.selectedIndex > 0) {
+        let consulta = '';
+        if (tipo == 'Estado') {
+            consulta = 'state=' + select.value
+        } else {
+            consulta = 'id=' + id
+        }
+        axios({
+            url: 'http://localhost:3000/storage/?' + consulta,
+            method: 'get',
+            headers: { Authorization: `Bearer ${obj.token}` },
+        })
+            .then((data) => {
+
+                crearTabla(data.data)
+            })
+    } else {
+        ConsultarUser()
+    }
+}
+
+function limpiarFiltros() {
+    document.getElementById('inputLegajo').value = '';
+    document.getElementById('comboRol').selectedIndex = 0;
+    ConsultarUser()
+}
