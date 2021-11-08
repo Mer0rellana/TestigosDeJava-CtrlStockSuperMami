@@ -7,9 +7,9 @@ const { PasswordReg } = require('../../../utils/reg-exp');
 const moment = require('moment');
 
 const schema = yup.object().shape({
-    currentPassword: yup.string().matches(PasswordReg).required(),
-    newPassword: yup.string().matches(PasswordReg).required(),
-    confirmNewPassword: yup.string().matches(PasswordReg).required(),
+    currentPassword: yup.string().matches(PasswordReg).required("Debe ingresar la contraseña actual"),
+    newPassword: yup.string().matches(PasswordReg, {message:"La contraseña debe tener 8 caracteres con al menos una mayúscula, una minúscula y un número"}).required("Debe ingresar una nueva contraseña"),
+    confirmNewPassword: yup.string().matches(PasswordReg).required("Debe confirmar la nueva contraseña"),
 });
 
 const PutPassword = async (req, res) => {

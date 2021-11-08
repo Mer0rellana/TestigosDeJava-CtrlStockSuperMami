@@ -1,5 +1,5 @@
 
-function ConsultarArticulos() {
+function ConsultarDepositos() {
     axios({
         url: 'http://localhost:3000/storage/',
         method: 'get',
@@ -85,6 +85,13 @@ function ModificarDeposito() {
         })
         .catch((error) => {
             if (error.response) {
+                if (error.response.status == 500) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ocurrió un error interno en el servidor',
+                    })
+                }
                 if (error.response.status == 400) {
                     swal.fire({
                         icon: 'error',
@@ -97,13 +104,6 @@ function ModificarDeposito() {
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Usuario no autorizado',
-                    })
-                }
-                else {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Hubo un problema',
                     })
                 }
             }
