@@ -62,9 +62,9 @@ function ModificarDeposito() {
 
     const id = document.getElementById('inputModalId').value;
     const mts = document.getElementById('inputModalMetros').value;
-    const estado = document.getElementById('inputModalEstado').value;
+    const state = document.getElementById('inputModalEstado').value;
 
-    const data = { id, mts, estado }
+    const data = { id, mts, state }
     console.log(data)
     axios({
         url: 'http://localhost:3000/storage/update/' + id,
