@@ -57,7 +57,9 @@ function rellenarCampos(id) {
       document.getElementById('modalDeposito').value = data.data.idStorage;
       document.getElementById('inputFechaCreacion').value = data.data.createdAt;
       document.getElementById('inputFechaModi').value = data.data.updatedAt;
-      document.getElementById('inputAjustes').value = data.data.adjusted;
+      let state= '';
+      data.data.adjusted ? state = "Ajustado" : state= "No ajustado";
+      document.getElementById('inputAjustes').value = state;
       document.getElementById('inputCodArticulo').value = data.data.idItem;
       document.getElementById('inputDescripcion').value = data.data.description;
       document.getElementById('modalStockReal').value = data.data.realStock;
@@ -72,7 +74,7 @@ function rellenarCampos(id) {
 function ModInventario(id) {
   Swal.fire({
     title: '¿Estas seguro de querer ajustar el inventario?',
-    text: "¡No podras revertir esta acción!",
+    text: "¡No podrás revertir esta acción!",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#00bb2d',

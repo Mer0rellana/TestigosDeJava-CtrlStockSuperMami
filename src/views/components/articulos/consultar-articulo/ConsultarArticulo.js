@@ -28,17 +28,17 @@ function crearTabla(datos) {
 
     if (!(datos[i].state === 'Eliminado')) {
       html += `<td class="text-center">
-      <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; border: none;"
+      <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
       data-toggle="modal" data-target="#modal-editar"  type="button"><i class="fas fa-edit"></i></button>
-      <button class="delete btnEliminar" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #9c0202e8; border: none;"
+      <button class="delete btnEliminar" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
       data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`
     } else {
       html += `<td class="text-center">
-        <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; border: none;"
+        <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
         data-toggle="modal" data-target="#modal-editar"  type="button"><i class="fas fa-edit"></i></button>
-        <button disabled class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; border: none;"
+        <button disabled class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
           type="button"><i class="fas fa-trash-alt"
         title="Eliminar"></i></button>
       </td>`

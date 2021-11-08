@@ -29,8 +29,6 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="../../../JavaScript Global/loginValidate.js"></script>
   <script src="ConsultarArticulo.js"></script>
-  <!-- Animaciones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
@@ -90,15 +88,15 @@
       </nav>
 
       <!-- Table Body  -->
-      <div id="content" class="contenedor ">
+      <div id="content" class="contenedor">
         <div class="container">
-          <div class="container animate__animated animate__fadeIn">
+          <div class="container">
             <div class="mb-5 mt-3 text-center">
               <div class="container-fluid header-content">
                 <div class="row">
                   <div class="col text-center">
                     <div class="content-box">
-                      <h1>Control de Artículos</h1>
+                      <h1>Artículos</h1>
                     </div>
                   </div>
                 </div>
@@ -125,10 +123,12 @@
                   <tbody id="tabla-articulos-body">
                   </tbody>
                 </table>
-                <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
-                  <button onclick="window.location='../crear-articulo/AltaArticulo.html'" type="button"
-                    class="btn btn-primary">Registrar nuevo
-                    Articulo</button>
+                <div class="row justify-content-end">
+                  <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
+                    <button onclick="window.location='../crear-articulo/AltaArticulo.html'" type="button"
+                      class="btn btn-primary">Registrar nuevo
+                      artículo</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -172,10 +172,10 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <input style="background-color: #9c0202e8  !important; color: white !important;" type="button"
-                        class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
-                      <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                        class="btn btn-success" value="Añadir" onclick="ModArticulo()">
+                      <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
+                            data-dismiss="modal" aria-label="Close">
+                        <button id="btnModificarDeposito" onclick="ModArticulo()" type="button"
+                            class="btn btn-primary">Modificar</button>
                     </div>
                   </form>
                 </div>
@@ -192,16 +192,13 @@
                     </div>
                     <div class="modal-body">
                       <p>¿Está seguro que desea eliminar este artículo?</p>
-                      <p class="text-warning"><small style="color: #9c0202e8  !important;">Esta acción no podrá
-                          ser revertida.</small></p>
                     </div>
                     <div class=" modal-footer">
-                      <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                        class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarDelete">
-                      <input style="background-color: #00bb2d  !important; color: white !important;"
-                        onclick="DeleteModificar()" type="button" class="btn btn-danger" value="Eliminar">
+                      <input type="button" class="btn btn-default" value="Cancelar" id="cancelarDelete"
+                      data-dismiss="modal" aria-label="Close">
+                  <button id="btnModificarDeposito" onclick="DeleteModificar()" type="button"
+                      class="btn btn-primary">Eliminar</button>
                     </div>
-
                   </form>
                 </div>
               </div>
