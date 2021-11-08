@@ -28,7 +28,8 @@
     <script defer src="../../usuarios/usuarios.js"></script>
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
-
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -57,36 +58,45 @@
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="../consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
+                            <a href="../../usuarios/consultar-usuario/consultar-usuario.html"><span
+                                    class="fa fa-users mr-3"></span>
                                 Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
                         </li>
                         <li>
-                            <a href="../mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
+                            <a href="../../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
+                            <a href="../../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                        </li>
+                        <li>
+                            <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
+                                Perfil</a>
                         </li>
                     </ul>
                 </div>
             </nav>
             <!-- Page Content  -->
             <div id="content" class="contenedor">
-                <div class="container">
+                <div class="container animate__animated animate__fadeIn">
                     <div class="mb-5 mt-3 text-center">
                         <h1>Usuarios</h1>
                     </div>
@@ -126,7 +136,7 @@
                                     <th class="text-center">Fecha-Ingreso</th>
                                     <th class="text-center">Rol</th>
                                     <th class="text-center">Estado</th>
-                                    <th class="text-center">Modificaciones</th>
+                                    <th class="text-center">Operaciones</th>
 
                                 </tr>
                             </thead>

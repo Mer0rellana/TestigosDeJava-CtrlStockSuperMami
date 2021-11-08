@@ -9,12 +9,14 @@ function AltaInventario() {
 
   const idItem = document.getElementById('inputCodigo').value;
   const idStorage = document.getElementById('inputDeposito').value;
+  console.log(idStorage)
   const realStock = document.getElementById('inputStockReal').value;
   const failedRealStock = document.getElementById('inputStockFallado').value;
   const observation = document.getElementById('inputObservaciones').value;
 
   const data = { idItem, idStorage, realStock, failedRealStock, observation }
 
+  console.log(data)
 
   axios({
     url: 'http://localhost:3000/inventory/add',
@@ -22,15 +24,15 @@ function AltaInventario() {
     headers: { Authorization: `Bearer ${obj.token}` },
     data
   })
-
-
     .then((data) => {
       console.log('data')
       swal.fire({
         icon: 'success',
         title: 'Inventario agregado correctamente'
-      })
-
+      }).then(
+        $('#cancelarAltaInventario').click()
+      )
+      ConsultarInventario()
     })
 
     .catch((error) => {
@@ -59,4 +61,5 @@ function AltaInventario() {
         })
       }
     })
+
 }

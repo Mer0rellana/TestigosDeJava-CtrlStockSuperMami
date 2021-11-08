@@ -20,14 +20,11 @@ const InventorySchema = mongoose.model('inventory', new Schema({
         type: String,
         required: true,
         trim: true,
-        max: 1500
+        max: 1500  
     },
-    createdAt: {
-        type: Number,
-    },
-    updatedAt: {
-        type: Number,
-    },
+    createdAt:Number,
+    updatedAt:Number,
+    
     adjusted: {
         type: Boolean,
         default: false
@@ -38,18 +35,18 @@ const InventorySchema = mongoose.model('inventory', new Schema({
     },
     description: {
         type: String,
-
+        required: true
     },
     state: {
         type: String,
         enum: ['Activo', 'Inactivo'],
         required: true,
     },
-    realStock: {
+    realStock:{
         type: Number,
         required: true
     },
-    failedRealStock: {
+    failedRealStock:{
         type: Number,
         required: true
     }

@@ -25,20 +25,23 @@
     <link defer rel="stylesheet" href="../../style/StyleMSI.css">
     <script defer src="../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="alta-inventario.js"></script>
     <script defer src='consultar-inventario.js'></script>
+    <script defer src="alta-inventario.js"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -55,30 +58,38 @@
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
                             <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
-                                    class="fa fa-users mr-3"></span> Usuarios</a>
+                                    class="fa fa-users mr-3"></span>
+                                Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
+                        </li>
+                        <li>
+                            <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
+                        </li>
+                        <li>
+                            <a href="../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
                         </li>
                     </ul>
                 </div>
@@ -86,26 +97,26 @@
 
 
             <div id="content" class="contenedor">
-                <div class="container">
+                <div class="container animate__animated animate__fadeIn">
                     <form id="formRegistrarU" name="formulario">
                         <div class="mb-5 mt-3 text-center">
                             <h1>Consultar Inventario</h1>
                         </div>
                         <hr>
-                        <div class="">
+                        <!-- <div class="">
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
                                     <label for="">ID Inventario</label>
-                                    <input type="text" class="form-control" id="idInventario" name="idInventario"
-                                        placeholder="Ingrese ID" required>
+                                    <input type="text" class="form-control" onkeyup="FiltroBusqueda()"
+                                        id="filtroInventario" name="idInventario" placeholder="Ingrese ID" required>
 
                                 </div>
                                 <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
-                                    <button id="btnFiltrarUsario" onclick="" type="button"
-                                        class="btn btn-primary mt-2">Filtrar</button>
+                                    <button id="btnFiltrarUsario" onclick="LimpiarFiltro()" type="button"
+                                        class="btn btn-primary mt-2">Limpiar Filtros</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             <table
                                 class="table table-striped table-hover table-bordered table-responsive display nowrap"
@@ -132,7 +143,7 @@
                             </div>
                         </div>
                     </form>
-                    <hr>
+                    <!-- <hr>
                     <div class="mb-5 mt-3 text-center">
                         <h1>Ajustes</h1>
                     </div>
@@ -149,8 +160,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+
+                                <td class="text-center">joita pt</td>
+                                <td class="text-center">soengsouy@mail.com</td>
+                                <td class="text-center">89 Chiaroscuro Rd, Portland, Phnom Penh</td>
+                                <td class="text-center">0966686371</td>
+                                <td class="text-center">0966686371</td>
+                                <td class="text-center">
+                                    <a href="" class="seeMore" data-bs-toggle="modal"
+                                        data-bs-target="#modalInfoAjustes"><i class="fas fa-info"
+                                            title="Ver Mas"></i></a>
+                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            class="fas fa-trash-alt" title="Eliminar"></i></a>
+
+                                </td>
+                            </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
             </div>
         </div>
@@ -174,8 +201,8 @@
 
                             <div class="form-group col-md-12">
                                 <label for="">ID Depósito</label>
-                                <input type="number" class="verde form-control" id="" placeholder="Ingrese Deposito"
-                                    name="deposito">
+                                <input type="text" class="verde form-control" id="inputDeposito"
+                                    placeholder="Ingrese Deposito" name="deposito">
 
                             </div>
                         </div>
@@ -199,7 +226,8 @@
                     </div>
                     <div class="modal-footer">
                         <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                            class="btn btn-default" value="Cancelar" data-bs-dismiss="modal" aria-label="Close">
+                            class="btn btn-default" value="Cancelar" id="cancelarAltaInventario" data-bs-dismiss="modal"
+                            aria-label="Close">
                         <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
                             onclick="AltaInventario()" class="btn btn-danger" value="Agregar">
                     </div>
@@ -209,7 +237,7 @@
     </div>
     <!-- Info Modal inventario -->
     <div class="modal fade" id="modalInfo">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog ">
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
@@ -240,7 +268,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Depósito</label>
-                                <input type="text" class="form-control" id="inputDeposito" name="stockFallado" disabled>
+                                <input type="text" class="form-control" id="modalDeposito" name="stockFallado" disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>

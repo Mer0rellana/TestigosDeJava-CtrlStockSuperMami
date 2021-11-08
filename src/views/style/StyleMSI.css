@@ -38,6 +38,11 @@
     margin-top:auto;
     margin-bottom:auto;
   }
+  @media (min-width: 1200px){
+    .modal-xl {
+    max-width: 1140px!important; 
+    }
+  } 
   
   .vh-91{
     height:91vh;
@@ -8269,12 +8274,10 @@
     
     /* Tabla */
     .table-wrapper {
-      background: #fff;
       padding: 20px 25px;
       margin: 30px 0;
-      border-radius: 1px;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.247);
     }
+    
 
     .table-title {
       padding-bottom: 15px;
