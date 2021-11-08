@@ -44,7 +44,7 @@
     <div class="wrapper">
         <div class="topBar ">
             <a href="/src/views/components/home/home.html"><img
-                    src="/TestigosDeJava-CtrlStockSuperMami/src/img/logo-super-mami.png" class="logo" alt=""></a>
+                    src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -127,6 +127,7 @@
                                 <thead style="background-color: #1E450C; color: white;">
                                     <tr>
                                         <th class="text-center">Código Artículo</th>
+                                        <th class="text-center">Descripción</th>
                                         <th class="text-center">Stock Actual</th>
                                         <th class="text-center">Stock Fallado</th>
                                         <th class="text-center">Stock Máximo</th>
@@ -191,11 +192,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                            class="btn btn-default" value="Cancelar" id="cancelarAltaInventario" data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                            onclick="AltaStock()" class="btn btn-danger" value="Agregar">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarAltaInventario"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <button id="btnModificarDeposito" onclick="AltaStock()" type="button"
+                        class="btn btn-primary">Registrar</button>
                     </div>
                 </form>
             </div>
