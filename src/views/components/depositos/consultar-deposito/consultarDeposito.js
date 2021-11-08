@@ -1,10 +1,5 @@
-const obj = {};
-document.cookie.split(';').forEach(e => {
-    const key = e.split('=')[0].trim();
-    const val = e.split('=')[1].trim();
-    obj[key] = val;
-});
-function ConsultarDepositos() {
+
+function ConsultarArticulos() {
     axios({
         url: 'http://localhost:3000/storage/',
         method: 'get',

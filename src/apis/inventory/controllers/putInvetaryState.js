@@ -1,4 +1,4 @@
-const { InventorySchema } = require("../../../models/inventary");
+const { InventorySchema } = require("../../../models/inventory");
 const ErrorModel = require("../../../models/api-error");
 const Moment = require("moment");
 
@@ -7,6 +7,7 @@ const putInventaryState = async (req, res) => {
     const token = res.locals.payload;
     const fecha = Moment.now();
     const { _id } = req.params;
+    console.log(_id)
 
     if (
       token.role === "Admin" ||
@@ -15,7 +16,7 @@ const putInventaryState = async (req, res) => {
       token.role === "Operario Stock"
     ) {
       const doc = await InventorySchema.find({ _id: _id });
-      
+
       if (!doc[0].adjusted) {
         const inventory = await InventorySchema.updateOne(
           { _id: _id },
@@ -27,7 +28,7 @@ const putInventaryState = async (req, res) => {
             .send(res);
         return res
           .status(200)
-          .send({ message:"Inventario eliminado con exito"})
+          .send({ message: "Inventario eliminado con exito" })
           ;
       } else {
         return new ErrorModel()

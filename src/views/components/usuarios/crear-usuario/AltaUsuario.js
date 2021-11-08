@@ -1,12 +1,5 @@
 function AltaUsuario() {
 
-  // const token = document.cookie.replace(/(?:(?:^|.;\s)token\s=\s([^;]).$)|^.*$/, '$1');
-  const obj = {};
-  document.cookie.split(';').forEach(e => {
-    const key = e.split('=')[0].trim();
-    const val = e.split('=')[1].trim();
-    obj[key] = val;
-  });
 
   const dni = document.getElementById('dni').value;
   const name = document.getElementById('nombreCompleto').value;

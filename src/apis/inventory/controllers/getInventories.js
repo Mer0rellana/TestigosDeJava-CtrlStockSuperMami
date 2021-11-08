@@ -33,8 +33,9 @@ const GetInventories = async (req, res) => {
             }
             return i;
         })
-
+        console.log(response)
         return res.status(200).send(response);
+
 
     } catch (err) {
         return new ErrorModel().newInternalServerError(err.message).send(res);

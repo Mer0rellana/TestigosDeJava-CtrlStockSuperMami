@@ -1,9 +1,4 @@
-const obj = {};
-document.cookie.split(';').forEach(e => {
-  const key = e.split('=')[0].trim();
-  const val = e.split('=')[1].trim();
-  obj[key] = val;
-});
+
 function ConsultarArticulos() {
   axios({
     url: 'http://localhost:3000/item/',
@@ -21,7 +16,7 @@ function ConsultarArticulos() {
 function crearTabla(datos) {
   $("#tabla-articulos-body tr").remove();
   for (var i = 0; i < datos.length; i++) {
-    var html = "<tr style='background-color: #35990750;'>"
+    var html = "<tr>"
     html += "<td>" + datos[i].code + "</td>";
     html += "<td>" + datos[i].description + "</td>";
     html += "<td>" + datos[i].price + "</td>";
@@ -31,7 +26,7 @@ function crearTabla(datos) {
     html += "<td>" + datos[i].unit + "</td>";
     html += "<td>" + datos[i].amount + "</td>";
 
-    if (!(datos[i].state==='Eliminado')) {
+    if (!(datos[i].state === 'Eliminado')) {
       html += `<td class="text-center">
       <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; border: none;"
       data-toggle="modal" data-target="#modal-editar"  type="button"><i class="fas fa-edit"></i></button>
@@ -39,7 +34,7 @@ function crearTabla(datos) {
       data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`
-    }else{
+    } else {
       html += `<td class="text-center">
         <button class="edit" onclick="rellenarCampos('${datos[i].code}')" style="font-weight: 200; color: #ffbb2f; border: none;"
         data-toggle="modal" data-target="#modal-editar"  type="button"><i class="fas fa-edit"></i></button>
@@ -49,7 +44,7 @@ function crearTabla(datos) {
       </td>`
 
     }
-    
+
     html += "</tr>"
     // let tabla = document.getElementById('tabla-usuario');
     // tabla.appendChild(html)B

@@ -30,9 +30,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
-
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../JavaScript Global/loginValidate.js"></script>
+    <script defer src='consultar-inventario.js'></script>
+    <script defer src="alta-inventario.js"></script>
 </head>
 
 <body>
@@ -100,20 +104,20 @@
                             <h1>Consultar Inventario</h1>
                         </div>
                         <hr>
-                        <div class="">
+                        <!-- <div class="">
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
                                     <label for="">ID Inventario</label>
-                                    <input type="text" class="form-control" id="idInventario" name="idInventario"
-                                        placeholder="Ingrese ID" required>
+                                    <input type="text" class="form-control" onkeyup="FiltroBusqueda()"
+                                        id="filtroInventario" name="idInventario" placeholder="Ingrese ID" required>
 
                                 </div>
                                 <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
-                                    <button id="btnFiltrarUsario" onclick="" type="button"
-                                        class="btn btn-primary mt-2">Filtrar</button>
+                                    <button id="btnFiltrarUsario" onclick="LimpiarFiltro()" type="button"
+                                        class="btn btn-primary mt-2">Limpiar Filtros</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             <table
                                 class="table table-striped table-hover table-bordered table-responsive display nowrap"
@@ -121,105 +125,16 @@
                                 <thead style="background-color: #1E450C; color: white;">
                                     <tr>
 
-                                        <th class="text-center">Fecha</th>
-                                        <th class="text-center">Responsable</th>
                                         <th class="text-center">Artículo</th>
-                                        <th class="text-center">Ajuste</th>
+                                        <th class="text-center">Descripción</th>
+                                        <th class="text-center">Responsable</th>
+                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Ajustado</th>
                                         <th class="text-center">Estado</th>
-                                        <th class="text-center">Operaciones</th>
+                                        <th class="text-center" style="width: 180px !important;">Operaciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-
-                                        <td class="text-center">joita pt</td>
-                                        <td class="text-center">soengsouy@mail.com</td>
-                                        <td class="text-center">89 Chiaroscuro Rd, Portland, Phnom Penh</td>
-                                        <td class="text-center">0966686371</td>
-                                        <td class="text-center">0966686371</td>
-                                        <td class="text-center">
-                                            <a href="" class="seeMore" data-bs-toggle="modal"
-                                                data-bs-target="#modalInfo"><i class="fas fa-info"
-                                                    title="Ver Mas"></i></a>
-                                            <a href="" class="edit" data-toggle="modal"><i class="fas fa-wrench"
-                                                    title="Ajustar"></i></a>
-                                            <a href="" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"
-                                                    title="Eliminar"></i></a>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="text-center">Vivy Pay</td>
-                                        <td class="text-center">soengsouy@mail.com</td>
-                                        <td class="text-center">Obere Str. 57, Berlin, Battombang</td>
-                                        <td class="text-center">0966686372</td>
-                                        <td class="text-center">0966686371</td>
-                                        <td class="text-center">
-                                            <a href="" class="seeMore" data-bs-toggle="modal"
-                                                data-bs-target="#modalInfo"><i class="fas fa-info"
-                                                    title="Ver Mas"></i></a>
-                                            <a href="" class="edit" data-toggle="modal"><i class="fas fa-wrench"
-                                                    title="Ajustar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="text-center">Design Web</td>
-                                        <td class="text-center">camobida@mail.com</td>
-                                        <td class="text-center">25, Joly, Paris, Takev</td>
-                                        <td class="text-center">0966686373</td>
-                                        <td class="text-center">0966686371</td>
-                                        <td class="text-center">
-                                            <a href="" class="seeMore" data-bs-toggle="modal"
-                                                data-bs-target="#modalInfo"><i class="fas fa-info"
-                                                    title="Ver Mas"></i></a>
-                                            <a href="" class="edit" data-toggle="modal"><i class="fas fa-wrench"
-                                                    title="Ajustar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="text-center">Chan Toly</td>
-                                        <td class="text-center">khmer09@mail.com</td>
-                                        <td class="text-center">PP San Sok, 67, Madrid, Pursat</td>
-                                        <td class="text-center">0966686374</td>
-                                        <td class="text-center">0966686371</td>
-                                        <td class="text-center">
-                                            <a href="" class="seeMore" data-bs-toggle="modal"
-                                                data-bs-target="#modalInfo"><i class="fas fa-info"
-                                                    title="Ver Mas"></i></a>
-                                            <a href="" class="edit" data-toggle="modal"><i class="fas fa-wrench"
-                                                    title="Ajustar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="text-center">Soeng Souy</td>
-                                        <td class="text-center">soengsouy@mail.com</td>
-                                        <td class="text-center">Via Monte Bianco 34, Turin, Pursat</td>
-                                        <td class="text-center">0966686375</td>
-                                        <td class="text-center">0966686371</td>
-                                        <td class="text-center">
-                                            <a href="" class="seeMore" data-bs-toggle="modal"
-                                                data-bs-target="#modalInfo"><i class="fas fa-info"
-                                                    title="Ver Mas"></i></a>
-                                            <a href="" class="edit" data-toggle="modal"><i class="fas fa-wrench"
-                                                    title="Ajustar"></i></a>
-                                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                        </td>
-                                    </tr>
+                                <tbody id="tabla-inventario">
                                 </tbody>
                             </table>
                             <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
@@ -229,15 +144,14 @@
                             </div>
                         </div>
                     </form>
-                    <hr>
+                    <!-- <hr>
                     <div class="mb-5 mt-3 text-center">
                         <h1>Ajustes</h1>
                     </div>
                     <table class="table table-striped table-hover table-bordered table-responsive display nowrap mb-5"
                         cellspacing="0" width="100%">
-                        <thead>
+                        <thead style="background-color: #1E450C; color: white;">
                             <tr>
-
                                 <th class="text-center">Cod. Artículo</th>
                                 <th class="text-center">Depósito</th>
                                 <th class="text-center">Stock Real</th>
@@ -263,77 +177,13 @@
 
                                 </td>
                             </tr>
-                            <tr>
-
-                                <td class="text-center">Vivy Pay</td>
-                                <td class="text-center">soengsouy@mail.com</td>
-                                <td class="text-center">Obere Str. 57, Berlin, Battombang</td>
-                                <td class="text-center">0966686372</td>
-                                <td class="text-center">0966686371</td>
-                                <td class="text-center">
-                                    <a href="" class="seeMore" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfoAjustes"><i class="fas fa-info"
-                                            title="Ver Mas"></i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                            class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td class="text-center">Design Web</td>
-                                <td class="text-center">camobida@mail.com</td>
-                                <td class="text-center">25, Joly, Paris, Takev</td>
-                                <td class="text-center">0966686373</td>
-                                <td class="text-center">0966686371</td>
-                                <td class="text-center">
-                                    <a href="" class="seeMore" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfoAjustes"><i class="fas fa-info"
-                                            title="Ver Mas"></i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                            class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td class="text-center">Chan Toly</td>
-                                <td class="text-center">khmer09@mail.com</td>
-                                <td class="text-center">PP San Sok, 67, Madrid, Pursat</td>
-                                <td class="text-center">0966686374</td>
-                                <td class="text-center">0966686371</td>
-                                <td class="text-center">
-                                    <a href="" class="seeMore" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfoAjustes"><i class="fas fa-info"
-                                            title="Ver Mas"></i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                            class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td class="text-center">Soeng Souy</td>
-                                <td class="text-center">soengsouy@mail.com</td>
-                                <td class="text-center">Via Monte Bianco 34, Turin, Pursat</td>
-                                <td class="text-center">0966686375</td>
-                                <td class="text-center">0966686371</td>
-                                <td class="text-center">
-                                    <a href="" class="seeMore" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfoAjustes"><i class="fas fa-info"
-                                            title="Ver Mas"></i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                            class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                </td>
-                            </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Edit Modal HTML -->
+    <!-- Agregar inventario -->
     <div id="modalAgregar" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -346,13 +196,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Código Artículo</label>
-                                <input type="number" class="verde form-control" id="inputCodigo"
+                                <input type="text" class="verde form-control" id="inputCodigo"
                                     placeholder="Ingrese Codigo" name="codigoItem">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">ID Depósito</label>
-                                <input type="number" class="verde form-control" id="inputDeposito"
+                                <input type="text" class="verde form-control" id="inputDeposito"
                                     placeholder="Ingrese Deposito" name="deposito">
 
                             </div>
@@ -376,35 +226,37 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" value="Cancelar" id="cancelarAltaInventario" data-bs-dismiss="modal"
                             aria-label="Close">
-                        <button id="btnAgregar" onclick="" type="button" class="btn btn-primary">Agregar</button>
+                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
+                            onclick="AltaInventario()" class="btn btn-danger" value="Agregar">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- Info Modal HTML -->
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        id="modalInfo" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+    <!-- Info Modal inventario -->
+    <div class="modal fade" id="modalInfo">
+        <div class="modal-dialog ">
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Inventario</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Id Inventario</label>
-                                <input type="number" class="verde form-control" id="inputCodigo" name="codigoItem">
+                                <input type="text" class="verde form-control" id="inputInventario" name="codigoItem"
+                                    disabled>
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">Responsable</label>
-                                <input type="number" class="verde form-control" id="inputDeposito" name="deposito">
+                                <input type="text" class="verde form-control" id="inputResponsable" name="deposito"
+                                    disabled>
 
                             </div>
                         </div>
@@ -412,50 +264,57 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Observaciones</label>
-                                <input type="text" class="form-control" id="inputStockReal" name="stockReal">
+                                <input type="text" class="form-control" id="modalObservaciones" name="stockReal"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Depósito</label>
-                                <input type="text" class="form-control" id="inputStockFallado" name="stockFallado">
+                                <input type="text" class="form-control" id="modalDeposito" name="stockFallado" disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="inputFechaCreacion" name="observaciones"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Modificación</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="inputFechaModi" name="observaciones"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Ajuste</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="inputAjustes" name="observaciones" disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Código Artículo</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="inputCodArticulo" name="observaciones"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Descripción</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="inputDescripcion" name="observaciones"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="number" class="form-control" id="modalStockReal" name="observaciones"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Fallado</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="number" class="form-control" id="modalStockFallado" name="observaciones"
+                                    disabled>
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">Estado Inventario</label>
-                                <input type="text" class="form-control" id="inputObservaciones" p name="observaciones">
+                                <input type="text" class="form-control" id="inputEstado" name="observaciones" disabled>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
-                            aria-label="Close">
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
                     </div>
                 </form>
             </div>
@@ -469,7 +328,7 @@
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Ajuste</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
@@ -480,7 +339,7 @@
 
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>
-                                <input type="number" class="verde form-control" id="inputDeposito" name="deposito">
+                                <input type="number" class="verde form-control" id="" name="deposito">
 
                             </div>
                         </div>
@@ -488,49 +347,48 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Inventario</label>
-                                <input type="text" class="form-control" id="inputStockReal" name="stockReal">
+                                <input type="text" class="form-control" id="" name="stockReal">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Código Artículo</label>
-                                <input type="text" class="form-control" id="inputStockFallado" name="stockFallado">
+                                <input type="text" class="form-control" id="" name="stockFallado">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Descripción</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock de Sistema</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado de Sistema</label>
-                                <input type="text" class="form-control" id="inputObservaciones" p name="observaciones">
+                                <input type="text" class="form-control" id="" p name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado Real</label>
-                                <input type="text" class="form-control" id="inputObservaciones" name="observaciones">
+                                <input type="text" class="form-control" id="" name="observaciones">
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
-                            aria-label="Close">
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
 </body>
-
-
-
-
 
 </html>
