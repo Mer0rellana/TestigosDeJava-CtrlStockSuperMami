@@ -33,7 +33,7 @@ const postInventory = async (req, res) => {
             }
         );
         if (storage.matchedCount === 0) return new ErrorModel().newNotFound("El depósito ingresado no existe").send(res);
-        const item = await ItemSchema.find({ id: request.data.idItem });
+        const item = await ItemSchema.find({ code: request.data.idItem });
 
         if (!item.length) return new ErrorModel().newNotFound(`El código ${request.data.idItem} no pertenece a ningún artículo del sistema`).send(res);
 
@@ -41,7 +41,7 @@ const postInventory = async (req, res) => {
             idUser: token.id,
             idStorage: request.data.idStorage,
             idItem: request.data.idItem,
-            description: item.description,
+            description: item[0].description,
             realStock: request.data.realStock,
             failedRealStock: request.data.failedRealStock,
             observation: request.data.observation,

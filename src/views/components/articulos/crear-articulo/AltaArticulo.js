@@ -1,9 +1,4 @@
-const obj = {};
-document.cookie.split(';').forEach(e => {
-  const key = e.split('=')[0].trim();
-  const val = e.split('=')[1].trim();
-  obj[key] = val;
-});
+
 
 function AltaArt() {
   const code = document.getElementById('codigoArt').value;
@@ -27,7 +22,7 @@ function AltaArt() {
         icon: 'success',
         title: 'Articulo creado Correctamente, ¡Bravo!',
       })
-      borrarCampos() ;
+      borrarCampos();
     })
     .catch((error) => {
       if (error.response) {
