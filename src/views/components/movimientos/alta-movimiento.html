@@ -60,30 +60,34 @@
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
                             <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
                                     class="fa fa-users mr-3"></span> Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
+                        </li>
+                        <li>
+                            <a href="../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
                         </li>
                     </ul>
                 </div>
@@ -120,12 +124,12 @@
                                 <thead style="background-color: #1E450C; color: white;">
                                     <tr>
                                         <th class="text-center">Cod. Lote</th>
-                                        <th class="text-center">Cod. Articulo</th>
+                                        <th class="text-center">Cod. Artículo</th>
                                         <th class="text-center">Cantidad</th>
                                         <th class="text-center">Expiración</th>
-                                        <th class="text-center">Operaciones</th>
                                         <th class="text-center">Código de depósito</th>
                                         <th class="text-center">Código de área</th>
+                                        <th class="text-center">Operaciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-body-lotes">
@@ -157,35 +161,35 @@
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="">Id del Lote</label>
+                                    <label for="">Id Lote</label>
                                     <input type="text" class="verde form-control" id="inputIdLote"
-                                        placeholder="Ingrese Codigo" name="codigoItem">
+                                        placeholder="Ingrese lote" name="codigoItem">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Artículo</label>
                                     <select type="number" class="verde form-control" id="inputCodArticulo"
-                                        placeholder="Ingrese Deposito" name="deposito">
+                                        placeholder="Ingrese código artículo" name="deposito">
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Cantidad</label>
                                     <input type="text" class="form-control" id="inputCantidad"
-                                        placeholder="Ingrese Stock Real" name="stockReal">
+                                        placeholder="Ingrese cantidad" name="stockReal">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="">Fecha de expiracion</label>
+                                    <label for="">Fecha de expiración</label>
                                     <input type="date" class="form-control" id="inputFechaExp"
-                                        placeholder="Ingrese Stock Fallado Real" name="stockFallado">
+                                        placeholder="Ingrese fecha expiración" name="stockFallado">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="">Id de deposito</label>
+                                    <label for="">Id Depósito</label>
                                     <input type="text" class="form-control" id="inputIdDeposito"
-                                        placeholder="Ingrese Observaciones" name="observaciones">
+                                        placeholder="Ingrese depósito" name="observaciones">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="">Id de area</label>
+                                    <label for="">Id Área</label>
                                     <input type="text" class="form-control" id="inputIdArea"
-                                        placeholder="Ingrese Observaciones" name="observaciones">
+                                        placeholder="Ingrese área" name="observaciones">
                                 </div>
                             </div>
                         </div>
