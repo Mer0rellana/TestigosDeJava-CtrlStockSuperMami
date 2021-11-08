@@ -1,9 +1,4 @@
-const obj = {};
-document.cookie.split(';').forEach(e => {
-  const key = e.split('=')[0].trim();
-  const val = e.split('=')[1].trim();
-  obj[key] = val;
-});
+
 function ConsultarInventario() {
   axios({
     url: 'http://localhost:3000/inventory/',

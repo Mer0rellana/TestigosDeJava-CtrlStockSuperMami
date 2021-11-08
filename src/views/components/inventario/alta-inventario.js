@@ -1,11 +1,4 @@
 function AltaInventario() {
-  const obj = {};
-
-  document.cookie.split(';').forEach(e => {
-    const key = e.split('=')[0].trim();
-    const val = e.split('=')[1].trim();
-    obj[key] = val;
-  });
 
   const idItem = document.getElementById('inputCodigo').value;
   const idStorage = document.getElementById('inputDeposito').value;
