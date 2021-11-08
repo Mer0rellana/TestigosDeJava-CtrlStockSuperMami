@@ -4,7 +4,7 @@ const yup = require("yup");
 const moment = require('moment');
 const ErrorModel = require("../../../models/api-error");
 const Validator = require('../../../utils/validator');
-const { StorageSchema }  = require("../../../models/storage");
+const { StorageSchema } = require("../../../models/storage");
 
 const schema = yup.object().shape({
     idItem: yup.string().required(),
