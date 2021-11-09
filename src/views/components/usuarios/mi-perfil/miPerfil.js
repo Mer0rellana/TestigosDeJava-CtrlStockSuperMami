@@ -58,25 +58,25 @@ function ModificarUsuario() {
         })
         .catch((error) => {
             if (error.response) {
-                if (error.response.status == 500) {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error interno en el servidor',
-                    })
-                }
                 if (error.response.status == 400) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: `Error en la carga de datos`,
+                        title: 'Ocurrió un error',
+                        text: `${error.response.data.message}`
                     })
                 }
-                else if (error.response.status == 401) {
+                if (error.response.status == 401) {
                     swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Usuario no autorizado',
+                    })
+                }
+                if (error.response.status == 500) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${error.response.data.message}`,
                     })
                 }
             }
@@ -95,7 +95,7 @@ function ModificarPassword() {
     const newPassword = document.getElementById('inputContraseñaNueva').value;
     const confirmNewPassword = document.getElementById('inputConfirmarContraseña').value;
 
-    const data = { currentPassword , newPassword, confirmNewPassword }
+    const data = { currentPassword, newPassword, confirmNewPassword }
     console.log(data)
     axios({
         url: 'http://localhost:3000/user/updatePassword',
@@ -115,25 +115,25 @@ function ModificarPassword() {
         })
         .catch((error) => {
             if (error.response) {
-                if (error.response.status == 500) {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error interno en el servidor',
-                    })
-                }
                 if (error.response.status == 400) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Ocurrió un error',
                         text: `${error.response.data.message}`
                     })
                 }
-                else if (error.response.status == 401) {
+                if (error.response.status == 401) {
                     swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Usuario no autorizado',
+                    })
+                }
+                if (error.response.status == 500) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${error.response.data.message}`,
                     })
                 }
             }

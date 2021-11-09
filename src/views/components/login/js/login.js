@@ -28,14 +28,12 @@ function Login() {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Ocurrió un error interno en el servidor',
-                    footer: '<a href="">Why do I have this issue?</a>'
                 })
             } else {
                 swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Legajo o contraseña erróneos, por favor, vuelva a intentarlo',
-                    footer: '<a href="">Why do I have this issue?</a>'
                 })
             }
             console.log(error.response)

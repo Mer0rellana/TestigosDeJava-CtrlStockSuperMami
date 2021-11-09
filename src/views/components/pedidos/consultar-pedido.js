@@ -73,8 +73,6 @@ function crearTablaDetalle(lugar) {
     html += "<td class='text-center'>" + arrayItems[lugar][i].description + "</td>";
     html += "<td class='text-center'>" + arrayItems[lugar][i].amount + "</td>";
     html += "</tr>"
-    // let tabla = document.getElementById('tabla-usuario'); onclick="rellenarCampos('${datos[i].code}')"
-    // tabla.appendChild(html)B
     $("#table-body-detalle").append(html);
   }
 }
