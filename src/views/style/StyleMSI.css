@@ -38,6 +38,11 @@
     margin-top:auto;
     margin-bottom:auto;
   }
+  @media (min-width: 1200px){
+    .modal-xl {
+    max-width: 1140px!important; 
+    }
+  } 
   
   .vh-91{
     height:91vh;
@@ -2058,7 +2063,7 @@
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: 0.25rem;
+    border-radius: 7px;
     -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -8269,12 +8274,10 @@
     
     /* Tabla */
     .table-wrapper {
-      background: #fff;
       padding: 20px 25px;
       margin: 30px 0;
-      border-radius: 1px;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.247);
     }
+    
 
     .table-title {
       padding-bottom: 15px;
@@ -8527,7 +8530,7 @@
     }
 
     .modal .btn {
-      border-radius: 1px;
+      border-radius: 7px;
       min-width: 100px;
     }
 

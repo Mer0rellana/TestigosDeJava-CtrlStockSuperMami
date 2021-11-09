@@ -18,6 +18,8 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script defer src="../login/js/login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Super Mami - Login</title>
 </head>
 
@@ -27,7 +29,7 @@
             <div class="loginContainer" id="login1">
                 <form action="">
                     <div class="d-flex justify-content-center mt-5">
-                        <img src="img/logo-super-mami.png" class="logo" alt="">
+                        <img src="../../../Img/logo-super-mami.png" class="logo" alt="">
                     </div>
                     <div class="m-5">
                         <label for="" class="form-label">Legajo</label>
@@ -38,11 +40,12 @@
                     <div class="m-5">
                         <label for="" class="form-label">Contraseña</label>
                         <hr class="col-md-3 underline">
-                        <input type="text" class="form-control" id="inputContraseña">
+                        <input type="password" class="form-control" id="inputContraseña">
                         <span id="mensajeContraseña"></span>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-mami mb-5" type="button" id="btnIngresar">Ingresar</button>
+                        <button class="btn btn-mami mb-5" onclick="Login()" type="button"
+                            id="btnIngresar">Ingresar</button>
 
                     </div>
                 </form>
@@ -52,8 +55,8 @@
                 <div class="container">
                     <div class="row justify-content-center mb-3">
                         <div class="col-auto">
-                            <a data-bs-toggle="modal" data-bs-target="#mdlCambiarContraseña" href="">Olvidaste tu
-                                Contraseña?</a>
+                            <a data-bs-toggle="modal" data-bs-target="#mdlCambiarContraseña" href="">¿Olvidaste tu
+                                contraseña?</a>
                         </div>
                     </div>
                 </div>
@@ -65,7 +68,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Recuperar contraseña</h5>
                             <button type="button" data-bs-dismiss="modal" class="btn-close btn-close-white"
                                 aria-label="Close"></button>
                         </div>

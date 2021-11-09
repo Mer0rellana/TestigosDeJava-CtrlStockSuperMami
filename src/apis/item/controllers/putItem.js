@@ -5,13 +5,12 @@ const Validator = require("../../../utils/validator");
 const Moment = require("moment");
 
 const schema = yup.object().shape({
-  description: yup.string().min(3).max(30),
-  family: yup.string().min(3).max(30),
-  group: yup.string().min(3).max(30),
-  price: yup.number().positive(),
-  unit: yup.string().min(1).max(30),
-  amount: yup.number().max(1000),
-  //discutir en que endpoint va a ir cada estado
+  description: yup.string().required("Ingrese descripción del artículo"),
+  family: yup.string().required(" Ingrese familia del artículo"),
+  group: yup.string().required(" Ingrese grupo del artículo"),
+  price: yup.number().typeError(" Ingrese precio del artículo").required(),
+  unit: yup.string().required(" Ingrese unidad de medida del artículo"),
+  amount: yup.number().typeError(" Ingrese cantidad para la unidad de medida del artículo.").required(),
   state: yup.string().oneOf(["Activo"]).default("Activo"),
 });
 
