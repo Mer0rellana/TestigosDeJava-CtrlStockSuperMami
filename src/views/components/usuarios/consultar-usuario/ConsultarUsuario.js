@@ -89,19 +89,40 @@ function ModUsuario() {
     .catch((error) => {
       if (error.response) {
         if (error.response.status == 400) {
-          swal.fire({
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Ocurrió un error interno el servidor',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
           })
         }
-        if (error.response.status == 401) {
-          swal.fire({
+        else if (error.response.status == 401) {
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: 'Usuario no autorizado',
           })
         }
+        else if (error.response.status == 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+        else if (error.response.status == 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+      }
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un pequeño problema',
+        })
       }
     })
 }
@@ -117,7 +138,7 @@ function DeleteUsuario() {
     .then((data) => {
       swal.fire({
         icon: 'success',
-        title: 'Usuario borrado Correctamente, Ahora se encuentra inactivo',
+        title: 'Usuario dado de baja con éxito, ahora se encuentra inactivo',
       })
         .then(
           $('#cancelarDelete').click()
@@ -128,8 +149,8 @@ function DeleteUsuario() {
       if (error.response.status == 400) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Ocurrió un error interno el servidor',
+          title: 'Ocurrió un error',
+          text: `${error.response.data.message}`
         })
       }
     })

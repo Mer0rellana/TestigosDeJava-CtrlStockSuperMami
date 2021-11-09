@@ -23,7 +23,7 @@ function AltaUsuario() {
     .then((data) => {
       swal.fire({
         icon: 'success',
-        title: 'Usuario Creado Correctamente, ¡Bravo!',
+        title: 'Usuario Creado correctamente, ¡Bravo!',
       });
       limpiarCampos()
     })
@@ -33,14 +33,13 @@ function AltaUsuario() {
           icon: 'error',
           title: 'Oops...',
           text: 'Ocurrió un error al enviar el correo electrónico',
-          footer: '<a href="">¿Por qué me sale este error?</a>'
         })
       }
       if (error.response.status == 400) {
         swal.fire({
           icon: 'error',
           title: 'Ocurrió un error',
-          text: 'El usuario ya existe'
+          text: `${error.response.data.message}`
         })
       }
       if (error.response.status == 401) {
@@ -50,8 +49,21 @@ function AltaUsuario() {
           text: 'Usuario no autorizado',
         })
       }
+      if (error.response.status == 500) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${error.response.data.message}`,
+        })
+      }
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un pequeño problema',
+        })
+      }
     })
-
 
 }
 function limpiarCampos() {

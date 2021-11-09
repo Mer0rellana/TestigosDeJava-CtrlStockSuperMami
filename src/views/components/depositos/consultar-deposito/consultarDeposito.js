@@ -85,36 +85,43 @@ function ModificarDeposito() {
         })
         .catch((error) => {
             if (error.response) {
-                if (error.response.status == 500) {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error interno en el servidor',
-                    })
-                }
                 if (error.response.status == 400) {
-                    swal.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: `Error en la carga de datos`,
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+
                     })
                 }
                 else if (error.response.status == 401) {
-                    swal.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: 'Usuario no autorizado',
+                    })
+                }
+                else if (error.response.status == 404) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                else if (error.response.status == 500) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
                     })
                 }
             }
             else {
-                swal.fire({
+                Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Hubo un pequeño problema',
                 })
             }
-
         })
 }
 
@@ -137,33 +144,43 @@ function Delete() {
         })
         .catch((error) => {
             if (error.response) {
-                if (error.response.status == 500) {
-                    swal.fire({
+                if (error.response.status == 400) {
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error interno en el servidor',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+
                     })
                 }
                 else if (error.response.status == 401) {
-                    swal.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: 'Usuario no autorizado',
                     })
                 }
-                else {
-                    swal.fire({
+                else if (error.response.status == 404) {
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Hubo un problema',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                else if (error.response.status == 500) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
                     })
                 }
             }
-            swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Hubo un pequeño problema',
-            })
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Hubo un pequeño problema',
+                })
+            }
         })
 }
 
