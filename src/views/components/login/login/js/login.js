@@ -19,7 +19,7 @@ function Login() {
         })
 
         .then((data) => {
-            window.location = '../home/home.html'
+            window.location = '../../home/home/home.html'
         })
 
         .catch((error) => {
