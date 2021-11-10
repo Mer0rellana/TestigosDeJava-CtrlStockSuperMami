@@ -5,6 +5,8 @@ var _ = require('lodash');
 const GetMostEE = async (req, res) => {
     try {
         
+        const { order } = req.params;
+
         const item = await Item.find({});
 
         let items = [];
@@ -13,7 +15,7 @@ const GetMostEE = async (req, res) => {
             items.push(i);
         }
 
-        const report = _.sortBy(items, "entry", "exit").reverse();
+        const report = _.orderBy(items, ["entry", "exit"], order);
 
         return res.status(200).json({ report });
 

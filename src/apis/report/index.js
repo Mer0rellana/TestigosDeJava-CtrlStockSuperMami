@@ -5,6 +5,6 @@ const GetMostEE = require('./controllers/mostE-E');
 
 const router = express.Router();
 
-router.get('/entries',ensureUserAuthenticated, GetMostEE);
+router.get('/entries/:order',ensureUserAuthenticated, GetMostEE);
 
 module.exports = router;
