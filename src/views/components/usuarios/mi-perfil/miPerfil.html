@@ -53,7 +53,7 @@
                 </div>
                 <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                       <!--  <li class="active">
+                        <!--  <li class="active">
                             <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
@@ -183,13 +183,14 @@
                 <div class="modal-body">
                     <div class="form-group col-md-12">
                         <label for="">Contraseña actual</label>
-                        <input  type="password" class="form-control" id="inputContraseñaActual"
+                        <input type="password" class="form-control" id="inputContraseñaActual"
                             name="inputContraseñaActual">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="">Contraseña nueva</label>
-                        <input  type="password" class="form-control" id="inputContraseñaNueva"
-                            name="inputContraseñaNueva">
+                        <input type="password" class="form-control" id="inputContraseñaNueva"
+                            name="inputContraseñaNueva"  onkeyup="isGood(this.value)">
+                        <small class="help-block" id="password-text"></small>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="">Confirmar contraseña nueva</label>
@@ -199,9 +200,9 @@
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEditPassword"
-                    data-bs-dismiss="modal" aria-label="Close">
-                <button id="btnModificarDeposito" onclick="ModificarPassword()" type="button"
-                    class="btn btn-primary">Modificar</button>
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <button id="btnModificarDeposito" onclick="ModificarPassword()" type="button"
+                        class="btn btn-primary">Modificar</button>
                 </div>
             </div>
         </div>
@@ -233,9 +234,9 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
-                        data-bs-dismiss="modal" aria-label="Close">
-                    <button id="btnModificarDeposito" onclick="ModificarUsuario()" type="button"
-                        class="btn btn-primary">Modificar</button>
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <button id="btnModificarDeposito" onclick="ModificarUsuario()" type="button"
+                            class="btn btn-primary">Modificar</button>
                     </div>
                 </form>
             </div>
@@ -246,4 +247,5 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -20,7 +20,10 @@ function crearTabla(datos) {
         html += `<td class="text-center">` + datos[i].id + "</td>";
         html += `<td class="text-center">` + datos[i].mts + "</td>";
         html += `<td class="text-center">` + datos[i].state + "</td>";
-        html += `<td class="text-center">` + datos[i].availablePercentage + "</td>";
+        html += `<td class="text-center">  <div class="progress mt-1 " data-height="8" style="height: 15px;">
+        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100" tittle="hola" style="width: ${datos[i].availablePercentage};">
+            ${datos[i].availablePercentage}</div>` + "</td>";
 
         if (!(datos[i].state === 'Inactivo')) {
             html += `<td class="text-center">
