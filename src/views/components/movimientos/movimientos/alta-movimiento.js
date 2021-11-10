@@ -128,3 +128,5 @@ function crearTabla(datos) {
     $("#table-body-lotes").append(html);
   }
 }
+
+
