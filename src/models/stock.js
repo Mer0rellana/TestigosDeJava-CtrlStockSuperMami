@@ -13,27 +13,31 @@ const StockSchema = mongoose.model('stock', new Schema({
     idItem: {
         type: String,
         required: true,
-        unique:true
+        unique: true
     },
     description: {
         type: String,
         required: true
     },
-    currentStock:{
+    currentStock: {
         type: Number,
         required: true
     },
-    failedStock:{
+    failedStock: {
         type: Number,
         required: true
     },
-    minStock:{
+    minStock: {
         type: Number,
         required: true
     },
-    maxStock:{
+    maxStock: {
         type: Number,
         required: true
+    },
+    adjusted: {
+        type: Boolean,
+        default: false
     }
 },
     { versionKey: false }

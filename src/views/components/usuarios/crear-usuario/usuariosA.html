@@ -24,14 +24,19 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
+    <script src="AltaUsuario.js"></script>
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../../Img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -41,51 +46,59 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                        <!-- <li class="active">
                             <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="../consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
+                            <a href="../../usuarios/consultar-usuario/consultar-usuario.html"><span
+                                    class="fa fa-users mr-3"></span>
                                 Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
                         </li>
                         <li>
-                            <a href="../mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
+                            <a href="../../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
+                            <a href="../../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
+                        <li>
+                            <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
+                                Perfil</a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
 
             <div id="content" class="contenedor">
-                <div class="container">
-                    <form id="formRegistrarU" name="formulario" action="procesar.php" method="post"
-                        class="form-container needs-validation" name="formulario" novalidate>
+                <div class="container animate__animated animate__fadeIn">
+                    <form id="formRegistrarU" name="formulario" class="form-container needs-validation" novalidate>
                         <div class="mb-5 mt-3 text-center">
                             <div class="container-fluid header-content">
                                 <div class="row">
                                     <div class="col text-center">
                                         <div class="content-box">
-                                            <h2>Por favor, complete los siguientes campos</h2>
+
                                             <h1>Registrar Usuario</h1>
                                         </div>
                                     </div>
@@ -96,14 +109,14 @@
                         <div class="form-row">
                             <div class="col-md-6 mt-2">
                                 <label for="">DNI</label>
-                                <input type="number" class="form-control" id="inputLegajo"
-                                    placeholder="Ingrese Documento" name="dni" required>
+                                <input type="number" class="form-control" id="dni" placeholder="Ingrese Documento"
+                                    name="dni" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">Legajo</label>
-                                <input type="number" class="form-control" id="inputLegajo" placeholder="Ingrese Legajo"
+                                <input type="number" class="form-control" id="Legajo" placeholder="Ingrese Legajo"
                                     name="legajo" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
@@ -112,21 +125,21 @@
                         <div class="form-row">
                             <div class="col-md-6 mt-2">
                                 <label for="">Nombre Completo</label>
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese Nombre"
+                                <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingrese Nombre"
                                     name="nombre" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">Rol</label>
-                                <select id="inputRol" required class="form-control" name="Rol"
+                                <select id="rol" required class="form-control" name="rol"
                                     placeholder="Seleccione un rol">
                                     <option selected disabled value="">Seleccione Rol</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Gestión</option>
-                                    <option value="3">Encargado stock</option>
-                                    <option value="4">Operario stock</option>
-                                    <option value="5 ">Operario almacén</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Gerencia">Gerencia</option>
+                                    <option value="Encargado stock">Encargado stock</option>
+                                    <option value="Operario stock">Operario stock</option>
+                                    <option value="Operario almacén">Operario almacén</option>
                                 </select>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Por favor, seleccione un rol</div>
@@ -135,14 +148,14 @@
                         <div class="form-row">
                             <div class="col-md-6 mt-2">
                                 <label for="">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono"
-                                    placeholder="Ingrese Telefono" name="telefono" required>
+                                <input type="text" class="form-control" id="telefono" placeholder="Ingrese Telefono"
+                                    name="telefono" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">E-mail</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese E-mail"
+                                <input type="email" class="form-control" id="email" placeholder="Ingrese E-mail"
                                     name="email" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
@@ -151,39 +164,28 @@
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 mt-2">
                                 <label for="">Contraseña</label>
-                                <input type="password" class="form-control" id="inputTelefono"
+                                <input type="password" class="form-control" id="contraseña"
                                     placeholder="Ingrese su contraseña" name="telefono" required>
                                 <div class="valid-feedback">¡Ok válido!</div>
                                 <div class="invalid-feedback">Complete el campo.</div>
                             </div>
-                            <!-- <div class="col-md-6 mt-2">
-                                <label for="">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" id="inputEmail"
-                                    placeholder="Confirme su contraseña" name="email" required>
-                                <div class="valid-feedback">¡Ok válido!</div>
-                                <div class="invalid-feedback">Complete el campo.</div>
-                            </div> -->
                         </div>
                         <div class="mt-5 d-flex justify-content-center">
-                            <button id="btnRegistrarUsuario" onclick="" type="submit"
+                            <button id="btnRegistrarUsuario" onclick="AltaUsuario()" type="button"
                                 class="btn btn-primary btnform">Registrar</button>
+                                <input type="button" class="btn btn-primary ml-5"
+                                onclick="window.location='../consultar-usuario/consultar-usuario.html'" value="Volver">
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
-    <script src="lib/popper/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
-    <script src="lib/waypoints/jquery.waypoints.min.js"></script>
-    <script src="JavaScript/App.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="popper/popper.min.js"></script>
-    <script src="bootstrap4/js/bootstrap.min.js"></script>
 </body>
 
 </html>

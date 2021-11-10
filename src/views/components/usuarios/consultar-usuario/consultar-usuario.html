@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Index</title>
+    <title>Consultar Usuarios</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,20 +25,23 @@
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script defer src="../../usuarios/usuarios.js"></script>
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
-
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
+    <script defer src="ConsultarUsuario.js"></script>
 
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -48,234 +51,105 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                       <!--  <li class="active">
                             <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
-                            <a href="../consultar-usuario/consultar-usuario.html"><span class="fa fa-users mr-3"></span>
+                            <a href="../../usuarios/consultar-usuario/consultar-usuario.html"><span
+                                    class="fa fa-users mr-3"></span>
                                 Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
                         </li>
                         <li>
-                            <a href="../mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi Perfil</a>
+                            <a href="../../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
+                            <a href="../../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
+                        <li>
+                            <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
+                                Perfil</a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
-
-
             <!-- Page Content  -->
-
-
             <div id="content" class="contenedor">
-                <div class="container">
-                    <form id="formRegistrarU" name="formulario">
-                        <div class="mb-5 mt-3 text-center">
-                            <h1>Usuarios</h1>
+                <div class="container animate__animated animate__fadeIn">
+                    <div class="mb-5 mt-3 text-center">
+                        <h1>Usuarios</h1>
+                    </div>
+                    <hr>
+                    <div class="form-row justify-content-center align-items-center">
+                        <div class="form-group col-md-3">
+                            <label for="">Legajo</label>
+                            <input type="text" class="form-control" onkeyup="FiltroBusqueda()" id="inputLegajo"
+                                placeholder="Ingrese Legajo" name="inputLegajo">
                         </div>
-                        <hr>
-                        <div class="d-flex justify-content-center">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="">Legajo</label>
-                                    <input type="text" class="form-control" id="inputDni" placeholder="Ingrese Legajo"
-                                        name="inputLegajo">
-
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="">Rol</label>
-                                    <select id="inputRol" class="form-control" name="Rol"
-                                        placeholder="Seleccione un rol">
-                                        <option selected disabled value="">Seleccione Rol</option>
-                                        <option value="1">Administrador </option>
-                                        <option value="2">Gerencia</option>
-                                        <option value="3">Encargado Stock</option>
-                                        <option value="4">Operario de Stock</option>
-                                        <option value="5 ">Operario de almacenamiento</option>
-                                    </select>
-
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Estado</label>
-                                    <select id="inputEstado" class="form-control" name="Estado"
-                                        placeholder="Seleccione un estado">
-                                        <option selected disabled value="">Seleccione Estado</option>
-                                        <option value="1">Activo </option>
-                                        <option value="2">Inactivo</option>
-                                    </select>
-
-                                </div>
-                                <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                    <button id="btnFiltrarUsario" onclick="" type="button"
-                                        class="btn btn-primary">Filtrar</button>
-                                </div>
-                            </div>
+                        <div class="form-group col-md-3 ml-2">
+                            <label for="">Rol</label>
+                            <select id="comboRol" onchange="FiltroBusqueda('Rol')" class="form-control" name="Rol"
+                                placeholder="Seleccione un rol">
+                                <option selected disabled value="Rol">Seleccione Rol</option>
+                                <option value="Admin">Administrador </option>
+                                <option value="Gerencia">Gerencia</option>
+                                <option value="Encargado stock">Encargado stock</option>
+                                <option value="Operario stock">Operario stock</option>
+                                <option value="Operario almacén">Operario almacén</option>
+                            </select>
                         </div>
-                        <div>
-                            <table class="table table-striped table-hover table-bordered  display nowrap"
-                                cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="selectAll">
-                                                <label for="selectAll"></label>
-                                            </span>
-                                        </th>
-                                        <th class="text-center">Legajo</th>
-                                        <th class="text-center">Nombre</th>
-                                        <th class="text-center">DNI</th>
-                                        <th class="text-center">Telefono</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Fecha-Ingreso</th>
-                                        <th class="text-center">Rol</th>
-                                        <th class="text-center">Estado</th>
-                                        <th class="text-center">Modificaciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                <label for="checkbox1"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Facu Gomez</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">facu@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="" class="edit" data-bs-toggle="modal"
-                                                data-bs-target="#editEmployeeModal"><i class="fas fa-edit"
-                                                    title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox2" name="options[]" value="1">
-                                                <label for="checkbox2"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111950</td>
-                                        <td class="text-center">Joita Gual</td>
-                                        <td class="text-center">41152645</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">joa@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox3" name="options[]" value="1">
-                                                <label for="checkbox3"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Alan Monteiro</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">alan@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox4" name="options[]" value="1">
-                                                <label for="checkbox4"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Augusto Albarracin</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">augusto@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox5" name="options[]" value="1">
-                                                <label for="checkbox5"></label>
-                                            </span>
-                                        </td>
-                                        <td class="text-center">111549</td>
-                                        <td class="text-center">Emanuel Gutierrez</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">351675658</td>
-                                        <td class="text-center">ema@gmail.com</td>
-                                        <td class="text-center">17/10/2021</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">135795464</td>
-                                        <td class="text-center">
-                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-                                                    class="fas fa-edit" title="Editar"></i></a>
-                                            <a class="delete btnEliminar" data-toggle="modal"><i
-                                                    class="fas fa-trash-alt" title="Eliminar"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
-                            <button onclick="window.location='../crear-usuario/usuariosA.html'" type="button"
-                                class="btn btn-primary">Registrar nuevo
-                                usuario</button>
-                        </div>
+                        <button id="btnFiltrarUsario" onclick="limpiarFiltros()" type="button"
+                            class="btn btn-primary ml-4 mt-3">Limpiar Filtros</button>
+                    </div>
+
+                    <div>
+                        <table class="table table-striped table-hover table-bordered  display nowrap" cellspacing="0"
+                            width="100%" id="tabla-usuario">
+                            <thead style="background-color: #1E450C; color: white;">
+                                <tr>
+                                    <th class="text-center">Legajo</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">DNI</th>
+                                    <th class="text-center">Telefono</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Fecha-Ingreso</th>
+                                    <th class="text-center">Rol</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Operaciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-usuario-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
+                        <button onclick="window.location='../crear-usuario/usuariosA.html'" type="button"
+                            class="btn btn-primary">Registrar nuevo
+                            usuario</button>
+                    </div>
                 </div>
-                </form>
             </div>
         </div>
 
@@ -289,25 +163,30 @@
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Modificar Usuario</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
+                                <label for="">Legajo</label>
+                                <input type="number" disabled class="verde form-control" id="modalLegajo"
+                                    placeholder="Ingrese Documento" name="dni">
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label for="">DNI</label>
-                                <input type="number" class="verde form-control" id="inputDni"
+                                <input type="number" class="verde form-control" id="modalDNI"
                                     placeholder="Ingrese Documento" name="dni">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">Rol</label>
-                                <select id="inputRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
+                                <select id="modalRol" class="form-control" name="Rol" placeholder="Seleccione un rol">
                                     <option selected disabled value="">Seleccione Rol</option>
-                                    <option value="1">Administrador </option>
-                                    <option value="2">Gerencia</option>
-                                    <option value="3">Encargado Stock</option>
-                                    <option value="4">Operario de Stock</option>
-                                    <option value="5 ">Operario de almacenamiento</option>
+                                    <option value="Admin">Administrador </option>
+                                    <option value="Gerencia">Gerencia</option>
+                                    <option value="Encargado stock">Encargado stock</option>
+                                    <option value="Operario stock">Operario stock</option>
+                                    <option value="Operario almacén">Operario almacén</option>
                                 </select>
                             </div>
                         </div>
@@ -315,30 +194,31 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese Nombre"
+                                <input type="text" class="form-control" id="modalNombre" placeholder="Ingrese Nombre"
                                     name="nombre">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono"
+                                <input type="text" class="form-control" id="modalTelefono"
                                     placeholder="Ingrese Telefono" name="telefono">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">E-mail</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese E-mail"
+                                <input type="email" class="form-control" id="modalEmail" placeholder="Ingrese E-mail"
                                     name="email">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <button id="btnModificarUsuario" onclick="" type="button"
-                            class="btn btn-primary">Modificar</button>
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
+                        data-dismiss="modal" aria-label="Close">
+                    <button id="btnModificarDeposito" onclick="ModUsuario()" type="button"
+                        class="btn btn-primary">Modificar</button>
                     </div>
                 </form>
             </div>
         </div>
+
     </div>
     <!-- Delete Modal HTML -->
     <div id="deleteEmployeeModal" class="modal fade">
@@ -346,32 +226,26 @@
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
-                        <h4 class="modal-title">Delete Employee</h4>
+                        <h4 class="modal-title">Eliminar Usuario</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete these Records?</p>
-                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        <p>¿Está seguro que desea eliminar este usuario?</p>
                     </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-danger" value="Delete">
+                    <div class=" modal-footer">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarDelete"
+                        data-dismiss="modal" aria-label="Close">
+                    <button id="btnModificarDeposito" onclick="DeleteUsuario()" type="button"
+                        class="btn btn-primary">Eliminar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
-    <script src="lib/popper/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
-    <script src="lib/waypoints/jquery.waypoints.min.js"></script>
-    <script src="JavaScript/App.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="popper/popper.min.js"></script>
-    <script src="bootstrap4/js/bootstrap.min.js"></script>
 </body>
 
 </html>
