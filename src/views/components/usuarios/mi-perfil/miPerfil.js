@@ -175,13 +175,13 @@ function isGood(password) {
     switch (passed) {
       case 0:
       case 1:
-        strength = "<small class='progress-bar bg-danger progress' style='width: 40%'>Weak</small>";
+        strength = "<small class='progress-bar bg-danger progress mt-1' style='width: 40%'>Weak</small>";
         break;
       case 2:
-        strength = "<small class='progress-bar bg-warning progress' style='width: 60%'>Medium</small>";
+        strength = "<small class='progress-bar bg-warning progress mt-1' style='width: 60%'>Medium</small>";
         break;
       case 3:
-        strength = "<small class='progress-bar bg-success progress' style='width: 100%'>Strong</small>";
+        strength = "<small class='progress-bar bg-success progress mt-1' style='width: 100%'>Strong</small>";
         break;
 
     }
