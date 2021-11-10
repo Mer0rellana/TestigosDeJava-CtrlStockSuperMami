@@ -146,3 +146,45 @@ function ModificarPassword() {
             }
         })
 }
+
+
+function isGood(password) {
+    var password_strength = document.getElementById("password-text");
+
+    //TextBox left blank.
+    if (password.length == 0) {
+      password_strength.innerHTML = "";
+      return;
+    }
+
+    //Regular Expressions.
+    var regex = new Array();
+    regex.push("[A-Z]");
+    regex.push("[a-z]"); 
+    regex.push("[0-9]"); 
+
+    var passed = 0;
+    for (var i = 0; i < regex.length; i++) {
+      if (new RegExp(regex[i]).test(password)) {
+        passed++;
+      }
+    }
+
+    //Display status.
+    var strength = "";
+    switch (passed) {
+      case 0:
+      case 1:
+        strength = "<small class='progress-bar bg-danger progress' style='width: 40%'>Weak</small>";
+        break;
+      case 2:
+        strength = "<small class='progress-bar bg-warning progress' style='width: 60%'>Medium</small>";
+        break;
+      case 3:
+        strength = "<small class='progress-bar bg-success progress' style='width: 100%'>Strong</small>";
+        break;
+
+    }
+    password_strength.innerHTML = strength;
+
+  }
