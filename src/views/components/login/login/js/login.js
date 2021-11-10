@@ -41,3 +41,70 @@ function Login() {
 
         })
 }
+
+function RecuperarContra() {
+    const mail = document.getElementById('inputEmailRecuperarContraseña').value
+
+    const data = { mail }
+
+    axios({
+        url: 'http://localhost:3000/user/recoverPassword',
+        method: 'post',
+        data
+    })
+        .then((data) => {
+            swal.fire({
+                icon: 'success',
+                title: 'Contraseña recuperada con éxito. Revise su casilla de correo electrónico',
+            }).then(
+                limpiarCampos(),
+                $('#cancelar').click()
+
+            );
+        })
+
+        .catch((error) => {
+            if (error.response) {
+                if (error.response.status == 400) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                
+                else if (error.response.status == 404) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                else if (error.response.status == 500) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                else if (error.response.status == 535) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Hubo un pequeño problema',
+                })
+            }
+        })
+}
+
+function limpiarCampos() {
+    document.getElementById('inputEmailRecuperarContraseña').value = '';
+}
