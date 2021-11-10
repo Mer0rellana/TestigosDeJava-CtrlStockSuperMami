@@ -10,6 +10,7 @@ const inventoryRoute = require('./apis/inventory/index');
 const batchRoute = require('./apis/batch/index');
 const orderRoute = require('./apis/order/index');
 const stockRoute = require('./apis/stock/index');
+const reportRoute = require('./apis/report/index');
 
 
 const cors = require('cors');
@@ -49,6 +50,7 @@ app.use('/transaction', transactionRoute);
 app.use('/stock', stockRoute);
 app.use('/batch', batchRoute);
 app.use('/order', orderRoute);
+app.use('/report', reportRoute);
 
 //starting the server
 const server = app.listen(app.get('port'), () => {
