@@ -22,8 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="../../style/StyleMSI.css">
-    <script defer src="../../JavaScript Global/app.js"></script>
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
+    <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Animaciones -->
@@ -34,7 +34,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../../JavaScript Global/loginValidate.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
     <script defer src='consultar-stock.js'></script>
     <script defer src='alta-stock.js'></script>
 
@@ -43,8 +43,8 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="/src/views/components/home/home.html"><img
-                    src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img
+                    src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -54,9 +54,9 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
-                    <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                <div class="p-4" id="sideBar-lista">
+                    <ul class="list-unstyled components mb-5" >
+                        <!-- <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
@@ -93,7 +93,7 @@
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
