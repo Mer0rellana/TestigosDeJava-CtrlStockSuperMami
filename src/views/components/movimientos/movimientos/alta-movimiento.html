@@ -181,24 +181,48 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Id Depósito</label>
-                                    <input type="text" class="form-control" id="inputIdDeposito"
-                                        placeholder="Ingrese depósito" name="observaciones">
+                                    <div class="d-flex justify-content-between">
+                                        <input type="text" class="form-control" id="inputIdDeposito"
+                                            placeholder="Ingrese depósito" name="observaciones">
+                                        <button type="button" data-toggle="modal" data-target="#modalAreas" class="btn btn-primary"><i
+                                                class="fas fa-eye"></i></button>
+                                    </div>
                                 </div>
+
                                 <div class="form-group col-md-12">
                                     <label for="">Id Área</label>
-                                    <input type="text" class="form-control" id="inputIdArea"
-                                        placeholder="Ingrese área" name="observaciones">
+                                    <input type="text" class="form-control" id="inputIdArea" placeholder="Ingrese área"
+                                        name="observaciones">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" value="Cancelar" id="cancelar"
-                            data-dismiss="modal" aria-label="Close">
-                        <button id="btnModificarDeposito" onclick="agregarLote()" type="button"
-                            class="btn btn-primary">Agregar</button>
+                                data-dismiss="modal" aria-label="Close">
+                            <button id="btnModificarDeposito" onclick="agregarLote()" type="button"
+                                class="btn btn-primary">Agregar</button>
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalAreas" class="modal fade">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Areas Disponibles</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">  
+                        <div class="" id="areas">
+       
+                        </div>                      
+                    </div>
+                    <div class="modal-footer">                     
+                    </div>
+                </form>
             </div>
         </div>
     </div>
