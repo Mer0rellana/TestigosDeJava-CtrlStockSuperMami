@@ -23,7 +23,7 @@ function AltaUsuario() {
     .then((data) => {
       swal.fire({
         icon: 'success',
-        title: 'Usuario Creado correctamente, ¡Bravo!',
+        title: 'Usuario creado correctamente, ¡Bravo!',
       });
       limpiarCampos()
     })
