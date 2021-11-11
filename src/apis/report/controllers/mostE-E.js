@@ -15,9 +15,9 @@ const GetMostEE = async (req, res) => {
             items.push(i);
         }
 
-        const report = _.orderBy(items, ["entry", "exit"], order);
+        const report = _.orderBy(items.slice(0,5), ["entry", "exit"], order);
 
-        return res.status(200).json({ report });
+        return res.status(200).json(report);
 
     } catch (err) {
         return new ErrorModel().newInternalServerError(err.message).send(res);
