@@ -6,13 +6,8 @@ const yup = require("yup");
 const Validator = require("../../../utils/validator");
 
 const schema = yup.object().shape({
-  idStorage: yup
-    .number()
-    .positive()
-    .min(1)
-    .max(30)
-    .required("Codigo de almacén necesario"),
-  idArea: yup.string().min(2).max(2).required("Codigo de area necesario"),
+  idStorage: yup.number().required().typeError("Ingrese ID del depósito"),
+  idArea: yup.string().required(" Ingrese código de área").min(2, " El código de área debe tener dos caracteres").max(2, " El código de área debe tener dos caracteres")
 });
 
 const BatchUpdate = async (req, res) => {
@@ -21,7 +16,6 @@ const BatchUpdate = async (req, res) => {
     if (
       token.role === "Admin" ||
       token.role === "Encargado stock" ||
-      token.role === "Gerencia" ||
       token.role === "Operario almacén"
     ) {
       const request = await Validator(req.body, schema);
@@ -31,7 +25,6 @@ const BatchUpdate = async (req, res) => {
       const idStorage = req.body.idStorage;
       const area = req.body.idArea;
       const batch2 = await BatchSchema.findOne({ id: id });
-      console.log(batch2.idArea);
       const batch = await BatchSchema.updateOne(
         { id: id },
         { ...req.body, updatedAt: Moment.now() }
