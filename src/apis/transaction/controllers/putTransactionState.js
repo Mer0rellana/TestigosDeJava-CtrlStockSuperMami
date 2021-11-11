@@ -4,6 +4,7 @@ const ErrorModel = require('../../../models/api-error');
 const moment = require('moment');
 const Transaction = require('../../../models/transaction');
 const Batch = require('../../../models/batch');
+const { StorageSchema: Storage }= require('../../../models/storage');
 
 const schema = yup.object().shape({
     anulatedReason: yup.string().required('La razón de anulado es un campo obligatorio').max(1500)
@@ -21,19 +22,24 @@ const TSstate = async (req, res) => {
 
             let arrayBatches = [];
 
-            const query = await Transaction.findById({ _id: _id });
+            const query = await Transaction.find({ _id: _id });
             if (!query.length) return new ErrorModel().newNotFound('El movimiento no existe').send(res);
 
-            if (query.type === "Entrada") {
+            if (query[0].type === "Entrada") {
 
-                for (const b of query.batches) {
-
+                for (const b of query[0].batches) {
                     arrayBatches.push(b);
 
+                    const batch = await Batch.find({ id: b});
+                    const storage = await Storage.findOne({ id: batch[0].idStorage });
+                    const area = storage.area.filter(area => area.id === batch[0].idArea);
+
+                    area[0].available = "true";
+                    await storage.save();
                     await Batch.deleteOne({ id: b });
                 }
 
-                const doc = await Transaction.updateOne({
+                await Transaction.updateOne({
                     _id: _id
                 }, {
                     state: 'Anulado',
@@ -48,7 +54,7 @@ const TSstate = async (req, res) => {
                     const doc = await Batch.updateOne({
                         id: b
                     }, {
-                        state: 'Almacenado',
+                        state: 'Ingresado',
                         updatedAt: moment.now()
                     });
 

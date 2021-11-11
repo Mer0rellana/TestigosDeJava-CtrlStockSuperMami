@@ -164,14 +164,22 @@ components:
                 type: string
               amount:
                 type: number
+              storage:
+                type: string
+              area:
+                type: string
           example:
             - id: 202109300830P03ST4
               codeItem: 8878
               amount: 25
+              storage: 122
+              area: A1
             - id: 202109301030P03S48
               codeItem: 122222
               expiredAt: 21/05/2022
               amount: 150
+              storage: 122
+              area: A2
               
     ResponseGetTransactionById:
       type: object
@@ -205,6 +213,7 @@ components:
                 type: number
               expiredAt:
                 type: string
+            
         
           
     ResponseTransaction:

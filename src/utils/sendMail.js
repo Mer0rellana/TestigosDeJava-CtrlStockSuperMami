@@ -12,7 +12,9 @@ function SendTemplate(to, subject, template, context) {
                 auth: {
                     user: EMAIL,
                     pass: EMAIL_PASSWORD
-                }
+                },
+                tls: { rejectUnauthorized: false }
+
             });
             const handlebarOptions = {
                 viewEngine: {
@@ -33,7 +35,7 @@ function SendTemplate(to, subject, template, context) {
                 context,
                 attachments: [{
                     filename: 'logo-super-mami.png',
-                    path: path.join(__dirname, '../views/emailTemplates/img/logo-super-mami.png'),
+                    path: path.join(__dirname, '../img/logo-super-mami.png'),
                     cid: 'logo'
                 }]
             };
