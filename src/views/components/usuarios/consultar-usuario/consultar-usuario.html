@@ -25,7 +25,6 @@
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script defer src="../../usuarios/usuarios.js"></script>
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
     <!-- Animaciones -->
@@ -42,7 +41,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -52,14 +51,14 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                       <!--  <li class="active">
                             <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="../../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                            <a href="../../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
                                 Depósitos</a>
                         </li>
                         <li>
@@ -91,7 +90,7 @@
                         <li>
                             <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -115,9 +114,9 @@
                                 <option selected disabled value="Rol">Seleccione Rol</option>
                                 <option value="Admin">Administrador </option>
                                 <option value="Gerencia">Gerencia</option>
-                                <option value="Encargado stock">Encargado Stock</option>
-                                <option value="Operario stock">Operario de Stock</option>
-                                <option value="Operario almacenamiento">Operario de almacenamiento</option>
+                                <option value="Encargado stock">Encargado stock</option>
+                                <option value="Operario stock">Operario stock</option>
+                                <option value="Operario almacén">Operario almacén</option>
                             </select>
                         </div>
                         <button id="btnFiltrarUsario" onclick="limpiarFiltros()" type="button"
@@ -185,9 +184,9 @@
                                     <option selected disabled value="">Seleccione Rol</option>
                                     <option value="Admin">Administrador </option>
                                     <option value="Gerencia">Gerencia</option>
-                                    <option value="Encargado stock">Encargado Stock</option>
-                                    <option value="Operario stock">Operario de Stock</option>
-                                    <option value="Operario almacén">Operario de almacenamiento</option>
+                                    <option value="Encargado stock">Encargado stock</option>
+                                    <option value="Operario stock">Operario stock</option>
+                                    <option value="Operario almacén">Operario almacén</option>
                                 </select>
                             </div>
                         </div>
@@ -211,10 +210,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
-                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                            onclick="ModUsuario()" class="btn btn-danger" value="Modificar">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
+                        data-dismiss="modal" aria-label="Close">
+                    <button id="btnModificarDeposito" onclick="ModUsuario()" type="button"
+                        class="btn btn-primary">Modificar</button>
                     </div>
                 </form>
             </div>
@@ -232,14 +231,12 @@
                     </div>
                     <div class="modal-body">
                         <p>¿Está seguro que desea eliminar este usuario?</p>
-                        <p class="text-warning"><small style="color: #9c0202e8  !important;">Esta acción no podrá
-                                ser revertida.</small></p>
                     </div>
                     <div class=" modal-footer">
-                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarDelete">
-                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                            onclick="DeleteUsuario()" class="btn btn-danger" value="Eliminar">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarDelete"
+                        data-dismiss="modal" aria-label="Close">
+                    <button id="btnModificarDeposito" onclick="DeleteUsuario()" type="button"
+                        class="btn btn-primary">Eliminar</button>
                     </div>
                 </form>
             </div>

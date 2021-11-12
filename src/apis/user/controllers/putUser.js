@@ -6,9 +6,9 @@ const moment = require('moment');
 const { PhoneReg } = require('../../../utils/reg-exp')
 
 const schema = yup.object().shape({
-    name: yup.string(),
-    tel: yup.string().matches(PhoneReg),
-    mail: yup.string().email().transform((dato) => dato.toLowerCase())
+    name: yup.string().required("Ingrese nombre completo del usuario"),
+    tel: yup.string().matches(PhoneReg, {message:" El número debe tener el siguiente formato 3516319913"}).required(" Ingrese teléfono"),
+    mail: yup.string().email(" Ingrese un mail válido").required(" Ingrese mail").transform((dato) => dato.toLowerCase()),
 })
 
 const UpdateProfile = async (req, res) =>{

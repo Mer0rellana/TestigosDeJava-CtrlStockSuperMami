@@ -8,7 +8,7 @@ const RandomPassword = require('secure-random-password');
 const { Hash } = require('../../../utils/hashing');
 
 const schema = yup.object().shape({
-    mail: yup.string().email().required().transform((data) => data.toLowerCase()),
+    mail: yup.string().email("Ingrese un mail válido").required(" Ingrese un mail").transform((data) => data.toLowerCase()),
 });
 
 const RecoverPassword = async (req, res) => {

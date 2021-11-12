@@ -22,8 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="../../style/StyleMSI.css">
-    <script defer src="../../JavaScript Global/app.js"></script>
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
+    <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
@@ -33,7 +33,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../../JavaScript Global/loginValidate.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
     <script src="./alta-movimiento.js"></script>
 
 
@@ -43,7 +43,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -53,38 +53,42 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                        <!-- <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-archive mr-3"></span> Depósitos</a>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-list-alt mr-3"></span> Pedidos</a>
+                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
                         </li>
                         <li>
                             <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
                                     class="fa fa-users mr-3"></span> Usuarios</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-th mr-3"></span> Stock</a>
+                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                            <a href="../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
+                        </li>
+                        <li>
+                            <a href="../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Configuración</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -120,12 +124,12 @@
                                 <thead style="background-color: #1E450C; color: white;">
                                     <tr>
                                         <th class="text-center">Cod. Lote</th>
-                                        <th class="text-center">Cod. Articulo</th>
+                                        <th class="text-center">Cod. Artículo</th>
                                         <th class="text-center">Cantidad</th>
                                         <th class="text-center">Expiración</th>
-                                        <th class="text-center">Operaciones</th>
                                         <th class="text-center">Código de depósito</th>
                                         <th class="text-center">Código de área</th>
+                                        <th class="text-center">Operaciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-body-lotes">
@@ -138,69 +142,92 @@
                                 <button data-toggle="modal" data-target="#modalAgregar" type="button"
                                     class="edit btn btn-primary ml-3">+</button>
                             </div>
-
-
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <!-- Agregar inventario -->
+        <!-- Agregar lote -->
         <div id="modalAgregar" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">
-                            <h4 class="modal-title">Agregar Inventario</h4>
+                            <h4 class="modal-title">Agregar Lote</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="">Id del Lote</label>
+                                    <label for="">Id Lote</label>
                                     <input type="text" class="verde form-control" id="inputIdLote"
-                                        placeholder="Ingrese Codigo" name="codigoItem">
+                                        placeholder="Ingrese lote" name="codigoItem">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Artículo</label>
                                     <select type="number" class="verde form-control" id="inputCodArticulo"
-                                        placeholder="Ingrese Deposito" name="deposito">
+                                        placeholder="Ingrese código artículo" name="deposito">
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Cantidad</label>
                                     <input type="text" class="form-control" id="inputCantidad"
-                                        placeholder="Ingrese Stock Real" name="stockReal">
+                                        placeholder="Ingrese cantidad" name="stockReal">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="">Fecha de expiracion</label>
+                                    <label for="">Fecha de expiración</label>
                                     <input type="date" class="form-control" id="inputFechaExp"
-                                        placeholder="Ingrese Stock Fallado Real" name="stockFallado">
+                                        placeholder="Ingrese fecha expiración" name="stockFallado">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="">Id de deposito</label>
-                                    <input type="text" class="form-control" id="inputIdDeposito"
-                                        placeholder="Ingrese Observaciones" name="observaciones">
+                                    <label for="">Id Depósito</label>
+                                    <div class="d-flex justify-content-between">
+                                        <select type="number" class="verde form-control mr-1" id="inputIdDeposito"
+                                        placeholder="Ingrese deposito" name="observaciones">
+                                        </select>                                   
+                                        <button type="button" data-toggle="modal" id="btnAreas" onclick="verAreas(obtenerId())"data-target="#modalAreas" class="btn btn-primary"><i
+                                                class="fas fa-eye "></i></button>
+                                    </div>
                                 </div>
+
                                 <div class="form-group col-md-12">
-                                    <label for="">Id de area</label>
-                                    <input type="text" class="form-control" id="inputIdArea"
-                                        placeholder="Ingrese Observaciones" name="observaciones">
+                                    <label for="">Id Área</label>
+                                    <input type="text" class="form-control" id="inputIdArea" placeholder="Ingrese área"
+                                        name="observaciones">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input style="background-color: #9c0202e8  !important; color: white !important;"
-                                type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar"
-                                id="cancelarAltaMov">
-                            <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                                class="btn btn-success" onclick="agregarLote()" value="Añadir">
+                            <input type="button" class="btn btn-default" value="Cancelar" id="cancelar"
+                                data-dismiss="modal" aria-label="Close">
+                            <button id="btnModificarDeposito" onclick="agregarLote()" type="button"
+                                class="btn btn-primary">Agregar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <div id="modalAreas" class="modal fade">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Áreas Disponibles</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">  
+                        <div class="" id="areas">
+       
+                        </div>                      
+                    </div>
+                    <div class="modal-footer">                     
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../ver-areas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"

@@ -1,5 +1,5 @@
 
-function ConsultarArticulos() {
+function ConsultarDepositos() {
     axios({
         url: 'http://localhost:3000/storage/',
         method: 'get',
@@ -20,12 +20,17 @@ function crearTabla(datos) {
         html += `<td class="text-center">` + datos[i].id + "</td>";
         html += `<td class="text-center">` + datos[i].mts + "</td>";
         html += `<td class="text-center">` + datos[i].state + "</td>";
-        html += `<td class="text-center">` + datos[i].availablePercentage + "</td>";
+        html += `<td class="text-center">  <div class="progress mt-1 " data-height="8" style="height: 15px;">
+        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100" tittle="hola" style="width: ${datos[i].availablePercentage};">
+            ${datos[i].availablePercentage}</div>` + "</td>";
 
         if (!(datos[i].state === 'Inactivo')) {
             html += `<td class="text-center">
       <button class="edit" onclick="rellenarCampos('${datos[i].id}')" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none;"
       data-toggle="modal" data-target="#editStorageModal"  type="button"><i class="fas fa-edit"></i></button>
+      <button type="button" data-toggle="modal" id="btnAreas" onclick="verAreas('${datos[i].id}')"data-target="#modalAreas" class="edit" style="font-weight: 200; color: #1e450c; background-color: white; border: none;"><i
+      class="fas fa-eye"></i></button>
       <button class="delete btnEliminar" onclick="rellenarCampos('${datos[i].id}')"  style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
       data-toggle="modal" data-target="#deleteStorageModal"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
@@ -34,6 +39,8 @@ function crearTabla(datos) {
             html += `<td class="text-center">
         <button class="edit" onclick="rellenarCampos('${datos[i].id}')" style="font-weight: 200; color: #ffbb2f; background-color: white;  border: none;"
         data-toggle="modal" data-target="#editStorageModal"  type="button"><i class="fas fa-edit"></i></button>
+        <button type="button" data-toggle="modal" id="btnAreas" onclick="verAreas(obtenerId())"data-target="#modalAreas" class="edit" style="font-weight: 200; color: #1e450c; background-color: white; border: none;"><i
+        class="fas fa-eye"></i></button>
         <button disabled class="delete btnEliminar" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none;"
           type="button"><i class="fas fa-trash-alt"
         title="Eliminar"></i></button>
@@ -62,9 +69,9 @@ function ModificarDeposito() {
 
     const id = document.getElementById('inputModalId').value;
     const mts = document.getElementById('inputModalMetros').value;
-    const estado = document.getElementById('inputModalEstado').value;
+    const state = document.getElementById('inputModalEstado').value;
 
-    const data = { id, mts, estado }
+    const data = { id, mts, state }
     console.log(data)
     axios({
         url: 'http://localhost:3000/storage/update/' + id,
@@ -86,35 +93,42 @@ function ModificarDeposito() {
         .catch((error) => {
             if (error.response) {
                 if (error.response.status == 400) {
-                    swal.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: `Error en la carga de datos`,
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+
                     })
                 }
                 else if (error.response.status == 401) {
-                    swal.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: 'Usuario no autorizado',
                     })
                 }
-                else {
-                    swal.fire({
+                else if (error.response.status == 404) {
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Hubo un problema',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                else if (error.response.status == 500) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
                     })
                 }
             }
             else {
-                swal.fire({
+                Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Hubo un pequeño problema',
                 })
             }
-
         })
 }
 
@@ -137,33 +151,43 @@ function Delete() {
         })
         .catch((error) => {
             if (error.response) {
-                if (error.response.status == 500) {
-                    swal.fire({
+                if (error.response.status == 400) {
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error interno en el servidor',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+
                     })
                 }
                 else if (error.response.status == 401) {
-                    swal.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: 'Usuario no autorizado',
                     })
                 }
-                else {
-                    swal.fire({
+                else if (error.response.status == 404) {
+                    Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Hubo un problema',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
+                    })
+                }
+                else if (error.response.status == 500) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un problema',
+                        text: `${error.response.data.message}`,
                     })
                 }
             }
-            swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Hubo un pequeño problema',
-            })
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Hubo un pequeño problema',
+                })
+            }
         })
 }
 

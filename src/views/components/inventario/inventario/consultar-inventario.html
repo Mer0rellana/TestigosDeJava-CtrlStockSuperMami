@@ -22,9 +22,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="../../style/StyleMSI.css">
-    <script defer src="../../JavaScript Global/app.js"></script>
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
+    <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- Animaciones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -34,15 +35,16 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../../JavaScript Global/loginValidate.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
     <script defer src='consultar-inventario.js'></script>
     <script defer src="alta-inventario.js"></script>
+    <script defer src="../ajuste/consultar-ajuste.js"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -52,14 +54,14 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                        <!-- <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
                                 Depósitos</a>
                         </li>
                         <li>
@@ -91,7 +93,7 @@
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -104,25 +106,23 @@
                             <h1>Consultar Inventario</h1>
                         </div>
                         <hr>
-                        <div class="">
+                        <!-- <div class="">
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
                                     <label for="">ID Inventario</label>
-                                    <select class="form-control" name="" id="idArticulo"></select>
-                                    <!-- <input type="text" class="form-control" onchange="FiltrarBusqueda()"
-                                        id="filtroInventario" name="idInventario" placeholder="Ingrese ID" required> -->
+                                    <input type="text" class="form-control" onkeyup="FiltroBusqueda()"
+                                        id="filtroInventario" name="idInventario" placeholder="Ingrese ID" required>
 
-                                </div>s
+                                </div>
                                 <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
                                     <button id="btnFiltrarUsario" onclick="LimpiarFiltro()" type="button"
                                         class="btn btn-primary mt-2">Limpiar Filtros</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
-                            <table
-                                class="table table-striped table-hover table-bordered table-responsive display nowrap"
-                                cellspacing="0" width="100%">
+                            <table class="table table-striped table-hover table-bordered display nowrap" cellspacing="0"
+                                width="100%">
                                 <thead style="background-color: #1E450C; color: white;">
                                     <tr>
 
@@ -153,31 +153,16 @@
                         cellspacing="0" width="100%">
                         <thead style="background-color: #1E450C; color: white;">
                             <tr>
-                                <th class="text-center">Cod. Artículo</th>
-                                <th class="text-center">Depósito</th>
+                                <th class="text-center">ID Stock</th>
+                                <th class="text-center">ID Inventario</th>
                                 <th class="text-center">Stock Real</th>
                                 <th class="text-center">Stock Fallado Real</th>
-                                <th class="text-center">Observaciones</th>
+                                <th class="text-center">Descripcion</th>
                                 <th class="text-center">Operaciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="TablaAjuste">
 
-                                <td class="text-center">joita pt</td>
-                                <td class="text-center">soengsouy@mail.com</td>
-                                <td class="text-center">89 Chiaroscuro Rd, Portland, Phnom Penh</td>
-                                <td class="text-center">0966686371</td>
-                                <td class="text-center">0966686371</td>
-                                <td class="text-center">
-                                    <a href="" class="seeMore" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfoAjustes"><i class="fas fa-info"
-                                            title="Ver Mas"></i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-                                            class="fas fa-trash-alt" title="Eliminar"></i></a>
-
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -227,11 +212,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
-                            class="btn btn-default" value="Cancelar" id="cancelarAltaInventario" data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                            onclick="AltaInventario()" class="btn btn-danger" value="Agregar">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarAltaInventario"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <button id="btnModificarDeposito" onclick="AltaInventario()" type="button"
+                            class="btn btn-primary">Agregar</button>
                     </div>
                 </form>
             </div>
@@ -340,7 +324,7 @@
 
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>
-                                <input type="number" class="verde form-control" id="" name="deposito">
+                                <input type="number" class="verde form-control" id="inputAjuste" name="deposito">
 
                             </div>
                         </div>
@@ -348,31 +332,31 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Inventario</label>
-                                <input type="text" class="form-control" id="" name="stockReal">
+                                <input type="text" class="form-control" id="inputAjuste" name="stockReal">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Código Artículo</label>
-                                <input type="text" class="form-control" id="" name="stockFallado">
+                                <input type="text" class="form-control" id="inputAjuste" name="stockFallado">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Descripción</label>
-                                <input type="text" class="form-control" id="" name="observaciones">
+                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock de Sistema</label>
-                                <input type="text" class="form-control" id="" name="observaciones">
+                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input type="text" class="form-control" id="" name="observaciones">
+                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado de Sistema</label>
-                                <input type="text" class="form-control" id="" p name="observaciones">
+                                <input type="text" class="form-control" id="inputAjuste" p name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado Real</label>
-                                <input type="text" class="form-control" id="" name="observaciones">
+                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
                             </div>
 
                         </div>

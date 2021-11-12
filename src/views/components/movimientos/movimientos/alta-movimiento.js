@@ -31,7 +31,10 @@ function agregarLote() {
 
   const data = { id, codeItem, amount, expiredAt, storage, area };
   arrayLotes.push(data);
+  
   crearTabla(arrayLotes)
+  $('#cancelar').click()
+  
 }
 
 function altaMovimiento() {
@@ -49,7 +52,7 @@ function altaMovimiento() {
     .then((data) => {
       Swal.fire({
         icon: 'success',
-        title: 'Movimiento creado Correctamente, ¡Bravo!',
+        title: 'Movimiento creado correctamente, ¡Bravo!',
       }).then(
         $('#cancelarAltaMov').click()
       )
@@ -60,7 +63,7 @@ function altaMovimiento() {
           swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Ocurrió un error interno el servidor',
+            text: `${error.response.data.message}`,
           })
         }
         else if (error.response.status == 401) {
@@ -125,3 +128,5 @@ function crearTabla(datos) {
     $("#table-body-lotes").append(html);
   }
 }
+
+
