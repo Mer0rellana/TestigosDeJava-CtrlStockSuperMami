@@ -12,7 +12,22 @@ function ConsultarInventario() {
       console.log(error.response);
       console.log(error)
     })
+  function llenarCombo(data) {
+    var html = "<option disabled> Seleccione una ID para filtrar</option >";
+    $("#idArticulo").append(html);
+    select = document.getElementById("idArticulo")
+    for (let i = 0; i < data.length; i++) {
+      var option = document.createElement("option");
+      option.value = data[i].idItem;
+      option.text = data[i].idItem;
+      select.add(option)
+    }
+  }
+  console.log(data[i].idItem)
 }
+
+
+
 function crearTabla(datos) {
   $("#tabla-inventario tr").remove();
   for (var i = 0; i < datos.length; i++) {
@@ -64,12 +79,14 @@ function rellenarCampos(id) {
       document.getElementById('modalStockFallado').value = data.data.failedRealStock;
       document.getElementById('inputEstado').value = data.data.state;
 
-      console.log(data.data.observation)
+      console.log(data)
 
+      console.log(data.data._id)
     })
 }
 
 function ModInventario(id) {
+  console.log(id)
   Swal.fire({
     title: '¿Estas seguro de querer ajustar el inventario?',
     text: "¡No podras revertir esta acción!",
@@ -84,6 +101,7 @@ function ModInventario(id) {
         url: 'http://localhost:3000/adjustment/add/' + id,
         method: 'post',
         headers: { Authorization: `Bearer ${obj.token}` },
+
       }).then(() => {
         Swal.fire(
           '¡Inventario Ajustado correctamente!',
@@ -167,7 +185,7 @@ function EliminarInventario(id) {
   })
 }
 
-function FiltroBusqueda() {
+function FiltrarBusqueda() {
   const id = document.getElementById('filtroInventario').value;
   if (id.length > 0) {
     let id = '';
