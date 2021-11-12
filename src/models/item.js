@@ -6,7 +6,8 @@ if (ENV === "dev") {
   mongoose.set('debug', true);
 }
 
-const ItemSchema = new Schema({
+const collection = 'items'
+const ItemSchema = mongoose.model('item', new Schema({
   code: {
     type: String,
     required: true,
@@ -62,8 +63,6 @@ const ItemSchema = new Schema({
   },
 },
   { versionKey: false }
-);
+), collection);
 
-ItemSchema.set('collection', 'items');
-
-module.exports = mongoose.model('item', ItemSchema);
+module.exports = { ItemSchema }; 

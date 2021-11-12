@@ -170,7 +170,7 @@ function isGood(password) {
       }
     }
 
-    //Display status.
+    //Display status
     var strength = "";
     switch (passed) {
       case 0:
