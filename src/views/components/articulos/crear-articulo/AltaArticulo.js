@@ -20,39 +20,49 @@ function AltaArt() {
     .then((data) => {
       Swal.fire({
         icon: 'success',
-        title: 'Articulo creado Correctamente, ¡Bravo!',
+        title: 'Articulo creado correctamente, ¡Bravo!',
       })
       borrarCampos();
     })
     .catch((error) => {
       if (error.response) {
         if (error.response.status == 400) {
-          swal.fire({
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Ocurrió un error interno el servidor',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+            
           })
         }
         else if (error.response.status == 401) {
-          swal.fire({
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: 'Usuario no autorizado',
           })
         }
-        else {
-          swal.fire({
+        else if (error.response.status == 404) {
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Hubo un problema',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+        else if (error.response.status == 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
           })
         }
       }
-      swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Hubo un pequeño problema',
-      })
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un pequeño problema',
+        })
+      }
     })
 }
 

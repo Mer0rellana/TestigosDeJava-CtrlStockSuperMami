@@ -24,6 +24,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link defer rel="stylesheet" href="../../style/StyleMSI.css">
     <script defer src="../../JavaScript Global/app.js"></script>
+    <script defer src="../../JavaScript Global/loginValidate.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src=""></script>
     <!-- Animaciones -->
@@ -36,14 +37,15 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src=""></script>
+    <script defer src="consultar-lote.js"></script>
 
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../img/logo-super-mami.png" class=" img-fluid logo"
+                    alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -54,13 +56,14 @@
                     </button>
                 </div>
                 <div class="p-4">
-                     <ul class="list-unstyled components mb-5">
+                    <ul class="list-unstyled components mb-5">
                         <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="../depositos/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span
+                                    class="fa fa-archive mr-3"></span>
                                 Depósitos</a>
                         </li>
                         <li>
@@ -118,13 +121,14 @@
 
                         <div class="form-group col-md-4">
                             <label for="">Código Artículo</label>
-                            <input type="text" class="form-control" id="inputArticulo" placeholder="Ingrese Cód. Artículo"
-                                name="inputArticulo">
+                            <input type="text" class="form-control" id="inputArticulo"
+                                placeholder="Ingrese Cód. Artículo" name="inputArticulo">
                         </div>
-                        
+
                         <div class="form-group col-md-4">
                             <label for="">Estado</label>
-                            <select id="inputEstado" class="form-control" name="Estado" placeholder="Seleccione un Estado">
+                            <select id="inputEstado" class="form-control" name="Estado"
+                                placeholder="Seleccione un Estado">
                                 <option selected disabled value="">Seleccione Estado</option>
                                 <option value="1">Ingresado </option>
                                 <option value="2">Egresado</option>
@@ -133,14 +137,14 @@
 
                         <div class="form-group col-md-4">
                             <label for="">Fecha de expiración</label>
-                            <input type="date" class="form-control" id="inputFechaExp" placeholder="Ingrese Fecha de Expiración"
-                                name="inputFechaExp"> 
+                            <input type="date" class="form-control" id="inputFechaExp"
+                                placeholder="Ingrese Fecha de Expiración" name="inputFechaExp">
                         </div>
                         <div class="form-check form-group col-md-2 mt-4 d-flex justify-content-center">
                             <div>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label text-center" for="flexCheckDefault">Fallado</label>
-                        </div>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label text-center" for="flexCheckDefault">Fallado</label>
+                            </div>
                         </div>
                         <button id="btnFiltrarUsario" onclick="" type="button"
                             class="btn btn-primary mt-3 col-md-2">Filtrar</button>
@@ -179,7 +183,7 @@
                                     <td class="text-center">11/05/2021</td>
                                     <td class="text-center">
                                         <a class="edit" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i
-                                            class="fas fa-edit" title="Editar"></i></a>
+                                                class="fas fa-edit" title="Editar"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -213,8 +217,8 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Área</label>
-                                <input type="text" class="verde form-control" id="inputÁrea"
-                                    placeholder="Ingrese Área" name="area">
+                                <input type="text" class="verde form-control" id="inputÁrea" placeholder="Ingrese Área"
+                                    name="area">
                             </div>
                         </div>
                     </div>

@@ -28,9 +28,9 @@ function crearTabla(datos) {
 
 
     html += `<td class="text-center"> 
-      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #ffbb2f; border: none; outline: none !important; -webkit-appearance: none !important;"
+      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #ffbb2f; background-color:white; border: none; outline: none !important; -webkit-appearance: none !important;"
       data-toggle="modal" data-target="#editEmployeeModal"  type="button"><i class="fas fa-edit"></i></button>
-      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #9c0202e8; border: none; outline: none !important; -webkit-appearance: none !important;"
+      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #9c0202e8; background-color:white; border: none; outline: none !important; -webkit-appearance: none !important;"
       data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"></i></button>
     </td>`
     html += "</tr>"
@@ -89,19 +89,40 @@ function ModUsuario() {
     .catch((error) => {
       if (error.response) {
         if (error.response.status == 400) {
-          swal.fire({
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Ocurrió un error interno el servidor',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
           })
         }
-        if (error.response.status == 401) {
-          swal.fire({
+        else if (error.response.status == 401) {
+          Swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: 'Usuario no autorizado',
           })
         }
+        else if (error.response.status == 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+        else if (error.response.status == 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+      }
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un pequeño problema',
+        })
       }
     })
 }
@@ -117,7 +138,7 @@ function DeleteUsuario() {
     .then((data) => {
       swal.fire({
         icon: 'success',
-        title: 'Usuario borrado Correctamente, Ahora se encuentra inactivo',
+        title: 'Usuario dado de baja con éxito, ahora se encuentra inactivo',
       })
         .then(
           $('#cancelarDelete').click()
@@ -128,8 +149,8 @@ function DeleteUsuario() {
       if (error.response.status == 400) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Ocurrió un error interno el servidor',
+          title: 'Ocurrió un error',
+          text: `${error.response.data.message}`
         })
       }
     })

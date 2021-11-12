@@ -36,7 +36,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../../Img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -46,9 +46,9 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                        <!-- <li class="active">
                             <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
@@ -85,7 +85,7 @@
                         <li>
                             <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -173,6 +173,9 @@
                         <div class="mt-5 d-flex justify-content-center">
                             <button id="btnRegistrarUsuario" onclick="AltaUsuario()" type="button"
                                 class="btn btn-primary btnform">Registrar</button>
+                                <input type="button" class="btn btn-primary ml-5"
+                                onclick="window.location='../consultar-usuario/consultar-usuario.html'" value="Volver">
+
                         </div>
                     </form>
                 </div>

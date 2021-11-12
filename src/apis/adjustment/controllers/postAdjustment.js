@@ -24,6 +24,8 @@ const postAdjustment = async (req, res) => {
             await StockSchema.findByIdAndUpdate(stock._id, 
                 {
                     $set: {
+                        currentStock: inventory.realStock,
+                        failedStock: inventory.failedRealStock,
                         adjusted: true,
                         updatedAt: moment.now()
                     }

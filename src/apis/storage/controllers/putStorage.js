@@ -6,7 +6,7 @@ const yup = require("yup");
 
 
 const schema = yup.object().shape({
-  mts: yup.number(),
+  mts: yup.number().required().typeError(" Debe ingresar mts cuadrados del depósito"),
   state: yup.string().oneOf(["Bloqueado", "Activo", "Inactivo"])
 })
 

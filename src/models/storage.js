@@ -38,6 +38,8 @@ const StorageSchema = mongoose.model('storage', new Schema({
     },
     createdAt: Number,
     updatedAt: Number,
+    rows: Number,
+    columns: Number
 },
     { versionKey: false },
 ), collection)
