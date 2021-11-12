@@ -4,7 +4,7 @@ const { StorageSchema: Storage } = require('../../../models/storage');
 const ErrorModel = require('../../../models/api-error');
 const yup = require("yup");
 const Validator = require('../../../utils/validator');
-const Item = require("../../../models/item");
+const { ItemSchema }= require("../../../models/item");
 const moment = require('moment');
 const { DateReg } = require('../../../utils/reg-exp');
 

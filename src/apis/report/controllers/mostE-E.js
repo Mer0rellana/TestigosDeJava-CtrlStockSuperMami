@@ -1,4 +1,4 @@
-const Item = require("../../../models/item");
+const { ItemSchema } = require("../../../models/item");
 const ErrorModel = require('../../../models/api-error');
 var _ = require('lodash');
 
@@ -7,7 +7,7 @@ const GetMostEE = async (req, res) => {
         
         const { order } = req.params;
 
-        const item = await Item.find({});
+        const item = await ItemSchema.find({});
 
         let items = [];
 
