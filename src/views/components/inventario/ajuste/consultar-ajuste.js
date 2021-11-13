@@ -22,7 +22,7 @@ function crearTablaAjuste(datos) {
         html += "<td>" + datos[i].description + "</td>";
 
     html += `<td class="text-center"> 
-      <button class="edit" onclick="rellenarCampoAjuste('${datos[i]._id}')" style="font-weight: 200; color: #ffbb2f; border: none; outline: none !important; -webkit-appearance: none !important;"
+      <button class="edit" onclick="rellenarCampoAjuste('${datos[i]._id}')" style="font-weight: 200; background-color:white; color: #ffbb2f; border: none; outline: none !important; -webkit-appearance: none !important;"
       data-toggle="modal" data-target="#modalInfoAjustes"  type="button"><i class="fas fa-info"></i></button>
     </td>`
     html += "</tr>"
