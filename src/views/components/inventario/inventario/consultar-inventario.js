@@ -9,7 +9,6 @@ function ConsultarInventario() {
       crearTabla(data.data)
     })
     .catch((error) => {
-      console.log(error.response);
       console.log(error)
     })
 }
