@@ -43,8 +43,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home/home.html"><img
-                    src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -55,7 +54,7 @@
                     </button>
                 </div>
                 <div class="p-4" id="sideBar-lista">
-                    <ul class="list-unstyled components mb-5" >
+                    <ul class="list-unstyled components mb-5">
                         <!-- <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
@@ -109,13 +108,12 @@
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
                                     <label for="">ID Articulo</label>
-                                    <input type="text" class="form-control" id="idStock" name="idStock"
-                                        placeholder="Ingrese ID" required>
-
+                                    <input type="text" class="form-control" onkeyup="FiltroBusqueda()" id="idArticulo"
+                                        name="idStock" placeholder="Ingrese ID">
                                 </div>
                                 <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
-                                    <button id="btnFiltrarStock" onclick="" type="button"
-                                        class="btn btn-primary mt-2">Filtrar</button>
+                                    <button id="btnFiltrarStock" onclick="limpiarfiltros()" type="button"
+                                        class="btn btn-primary mt-2">Limpiar Filtros</button>
                                 </div>
                             </div>
                         </div>
@@ -192,9 +190,9 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" value="Cancelar" id="cancelarAltaInventario"
-                        data-bs-dismiss="modal" aria-label="Close">
-                    <button id="btnModificarDeposito" onclick="AltaStock()" type="button"
-                        class="btn btn-primary">Registrar</button>
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <button id="btnModificarDeposito" onclick="AltaStock()" type="button"
+                            class="btn btn-primary">Registrar</button>
                     </div>
                 </form>
             </div>

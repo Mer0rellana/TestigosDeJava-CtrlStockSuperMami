@@ -12,6 +12,7 @@ function ConsultarStock() {
     })
 }
 function crearTabla(datos) {
+  console.log(datos)
   $("#tabla-stock tr").remove();
   for (var i = 0; i < datos.length; i++) {
     var html = "<tr>"
@@ -33,3 +34,30 @@ function crearTabla(datos) {
   }
 }
 ConsultarStock()
+
+function FiltroBusqueda() {
+
+  const id = document.getElementById('idArticulo').value;
+
+  if (id.length > 0) {
+    consulta = 'idItem=' + id
+    axios({
+      url: 'http://localhost:3000/Stock?' + consulta,
+      method: 'get',
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+      .then((data) => {
+        crearTabla(data.data)
+
+      }).catch((error) => {
+        console.log(error)
+      })
+  } else {
+    ConsultarStock()
+  }
+}
+
+function limpiarfiltros() {
+  document.getElementById('idArticulo').value = '';
+  ConsultarStock()
+}

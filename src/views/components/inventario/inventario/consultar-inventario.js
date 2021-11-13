@@ -7,23 +7,24 @@ function ConsultarInventario() {
   })
     .then((data) => {
       crearTabla(data.data)
+      llenarCombo(data.data)
     })
     .catch((error) => {
       console.log(error)
     })
-  function llenarCombo(data) {
-    var html = "<option disabled> Seleccione una ID para filtrar</option >";
-    $("#idArticulo").append(html);
-    select = document.getElementById("idArticulo")
-    for (let i = 0; i < data.length; i++) {
-      var option = document.createElement("option");
-      option.value = data[i].idItem;
-      option.text = data[i].idItem;
-      select.add(option)
-    }
-  }
-  console.log(data[i].idItem)
 }
+function llenarCombo(data) {
+  var html = "<option disabled> Seleccione una ID para filtrar</option >";
+  $("#idArticulo").append(html);
+  select = document.getElementById("idArticulo")
+  for (let i = 0; i < data.length; i++) {
+    var option = document.createElement("option");
+    option.value = data[i].idItem;
+    option.text = data[i].idItem;
+    select.add(option)
+  }
+}
+
 
 
 
@@ -71,8 +72,8 @@ function rellenarCampos(id) {
       document.getElementById('modalDeposito').value = data.data.idStorage;
       document.getElementById('inputFechaCreacion').value = data.data.createdAt;
       document.getElementById('inputFechaModi').value = data.data.updatedAt;
-      let state= '';
-      data.data.adjusted ? state = "Ajustado" : state= "No ajustado";
+      let state = '';
+      data.data.adjusted ? state = "Ajustado" : state = "No ajustado";
       document.getElementById('inputAjustes').value = state;
       document.getElementById('inputCodArticulo').value = data.data.idItem;
       document.getElementById('inputDescripcion').value = data.data.description;
@@ -187,12 +188,11 @@ function EliminarInventario(id) {
 }
 
 function FiltrarBusqueda() {
-  const id = document.getElementById('filtroInventario').value;
-  if (id.length > 0) {
-    let id = '';
-    consulta = 'id=' + id
+  const select = document.getElementById('idArticulo');
+  if (select.selectedIndex > 0) {
+    consulta = 'idItem=' + select.value
     axios({
-      url: 'http://localhost:3000/inventory/?' + consulta,
+      url: 'http://localhost:3000/inventory?' + consulta,
       method: 'get',
       headers: { Authorization: `Bearer ${obj.token}` },
     }).then((data) => {
