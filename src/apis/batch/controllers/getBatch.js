@@ -16,7 +16,7 @@ const schema = yup.object().shape({
 
 const getBatch = async (req, res) => {
   try {
-    const request = await Validator(req.body, schema);
+    const request = await Validator(req.query, schema);
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
       const { idStorage, idArea, codeItem, state, failed, expiredAt, } = request.data;
@@ -35,10 +35,6 @@ const getBatch = async (req, res) => {
     return new ErrorModel().newInternalServerError(err.message).send(res);
 
   }
-
-  /* res.render('index',{
-    items
-  }); */
 };
 
 module.exports = getBatch;
