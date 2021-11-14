@@ -1,4 +1,5 @@
 function cargarCombo(params) {
+
   axios({
     url: 'http://localhost:3000/item',
     headers: { Authorization: `Bearer ${obj.token}` },
@@ -21,7 +22,9 @@ let arrayLotes = [];
 function agregarLote() {
 
   const id = document.getElementById("inputIdLote").value;
-  const codeItem = document.getElementById("inputCodArticulo").value;
+  const combo = document.getElementById("inputCodArticulo");
+  const codeItem = combo.value;
+  const descriptionItem = combo.options[combo.selectedIndex].text;
   const amount = document.getElementById("inputCantidad").value;
   const date = document.getElementById("inputFechaExp").value;
   const arrayDate = date.split('-');
@@ -29,12 +32,23 @@ function agregarLote() {
   const storage = document.getElementById("inputIdDeposito").value;
   const area = document.getElementById("inputIdArea").value;
 
-  const data = { id, codeItem, amount, expiredAt, storage, area };
-  arrayLotes.push(data);
-  
+  const data = { id, codeItem, descriptionItem, amount, expiredAt, storage, area };
+  if (!(arrayLotes.some((l) => l.id === data.id))) {
+
+    //const loteEliminado=lotes.find(l=>l.id===data.id);
+    arrayLotes.push(data);
+    lotes = lotes.filter(l => l.id !== data.id)
+    cargarComboLotes()
+  }
+
+
   crearTabla(arrayLotes)
+  $("#inputTipo").prop("disabled", false);
+  if (arrayLotes.length > 0) {
+    $("#inputTipo").prop("disabled", true);
+  }
   $('#cancelar').click()
-  
+
 }
 
 function altaMovimiento() {
@@ -99,11 +113,23 @@ function altaMovimiento() {
 }
 
 function borrarLote(id) {
-  const newArrayLotes = arrayLotes.filter(lote =>
-    lote.id !== id
+
+  const loteBorrado = arrayLotes.find(lote =>
+    lote.id === id
   )
-  arrayLotes = newArrayLotes;
+  loteBorrado.idStorage = loteBorrado.storage;
+  loteBorrado.idArea = loteBorrado.area;
+
+  lotes.push(loteBorrado);
+  arrayLotes = arrayLotes.filter(lote =>
+    lote.id !== id
+  );
+  cargarComboLotes()
   crearTabla(arrayLotes);
+  $("#inputTipo").prop("disabled", false);
+  if (arrayLotes.length > 0) {
+    $("#inputTipo").prop("disabled", true);
+  }
 }
 
 function crearTabla(datos) {
@@ -129,4 +155,79 @@ function crearTabla(datos) {
   }
 }
 
+let lotes = [];
+async function llenarLotes() {
+  await axios({
+    url: 'http://localhost:3000/batch',
+    headers: { Authorization: `Bearer ${obj.token}` },
+    method: 'get'
+  }).
+    then(data => {
+      data = data.data
+      data.map((d) => {
+        if (d.state === "Ingresado") {
+          lotes.push(d)
+        }
+      })
+    });
+}
+llenarLotes();
+
+function movimientoSalida() {
+  const comboValue = document.getElementById("inputTipo").value;
+  const input = document.getElementById("inputIdLote");
+  const divIdLote = document.getElementById("divIdLote");
+  divIdLote.removeChild(input);
+  if (comboValue !== "Entrada") {
+    $("#modalAgregar :input[type='text']").prop("disabled", true);
+    $("#modalAgregar :input[type='date']").prop("disabled", true);
+    $("#modalAgregar :input[type='number']").prop("disabled", true);
+    const inputLote = document.createElement("select");
+    inputLote.id = "inputIdLote";
+    inputLote.className = "verde form-control";
+    divIdLote.appendChild(inputLote);
+    cargarComboLotes();
+    inputLote.onchange = llenarDatosLotes;
+    llenarDatosLotes()
+  } else {
+    $("#modalAgregar :input[type='text']").prop("disabled", false);
+    $("#modalAgregar :input[type='date']").prop("disabled", false);
+    $("#modalAgregar :input[type='number']").prop("disabled", false);
+    const inputLote = document.createElement("input");
+    inputLote.id = "inputIdLote";
+    inputLote.className = "verde form-control"
+    divIdLote.appendChild(inputLote);
+    document.getElementById("inputIdLote").value="";
+    document.getElementById("inputCodArticulo").selectedIndex=0;
+    document.getElementById("inputCantidad").value="";
+    document.getElementById("inputFechaExp").value=""
+    document.getElementById("inputIdDeposito").selectedIndex=0;
+    document.getElementById("inputIdArea").value="";
+
+  }
+}
+
+function llenarDatosLotes() {
+  const select = document.getElementById("inputIdLote").value;
+  const selectedLote = lotes.find((l) => l.id === select);
+  document.getElementById("inputIdLote").value = selectedLote.id;
+  document.getElementById("inputCodArticulo").value = selectedLote.codeItem;
+  document.getElementById("inputCantidad").value = selectedLote.amount;
+  const date = selectedLote.expiredAt;
+  const arrayDate = date.split('/');
+  const expiredAt = `${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}`;
+  document.getElementById("inputFechaExp").value = expiredAt;
+  document.getElementById("inputIdDeposito").value = selectedLote.idStorage;
+  document.getElementById("inputIdArea").value = selectedLote.idArea;
+}
+
+function cargarComboLotes() {
+  $("#inputIdLote option").remove();
+  for (var i = 0; i < lotes.length; i++) {
+    let option = document.createElement("option");
+    option.text = lotes[i].id;
+    option.value = lotes[i].id
+    $("#inputIdLote").append(option);
+  }
+}
 
