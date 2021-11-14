@@ -97,7 +97,7 @@ function consultarFuncionDeToken() {
     .catch((error) => {
       console.log(error)
       if (error.response && error.response.status === 401) {
-        window.location = '../../login/login.html'
+        window.location = '../../login/login/login.html'
       }
     })
 }
