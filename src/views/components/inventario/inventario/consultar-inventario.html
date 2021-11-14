@@ -25,7 +25,7 @@
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
 
     <!-- Animaciones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -106,24 +106,19 @@
                             <h1>Consultar Inventario</h1>
                         </div>
                         <hr>
-                        <!-- <div class="">
-                            <div class="d-flex justify-content-between">
-                                <div class="form-group col-md-4">
-                                    <label for="">ID Inventario</label>
-                                    <input type="text" class="form-control" onkeyup="FiltroBusqueda()"
-                                        id="filtroInventario" name="idInventario" placeholder="Ingrese ID" required>
-
-                                </div>
-                                <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
-                                    <button id="btnFiltrarUsario" onclick="LimpiarFiltro()" type="button"
-                                        class="btn btn-primary mt-2">Limpiar Filtros</button>
-                                </div>
+                        <div class="form-row justify-content-center align-items-center">
+                            <div class="form-group col-md-3">
+                                <label for="">Artículo</label>
+                                <select onchange="FiltrarBusqueda()" class="form-control" id="idArticulo"></select>
                             </div>
-                        </div> -->
+                            <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
+                                <button id="btnFiltrarStock" onclick="limpiarfiltros()" type="button"
+                                    class="btn btn-primary mt-2">Limpiar Filtros</button>
+                            </div>
+                        </div>
                         <div>
-                            <table
-                                class="table table-striped table-hover table-bordered display nowrap"
-                                cellspacing="0" width="100%">
+                            <table class="table table-striped table-hover table-bordered display nowrap" cellspacing="0"
+                                width="100%">
                                 <thead style="background-color: #1E450C; color: white;">
                                     <tr>
 
@@ -148,24 +143,24 @@
                     </form>
                     <hr>
                     <div class="mb-5 mt-3 text-center">
-                        <h1>Ajustes</h1>
+                        <h1>Consultar Ajustes</h1>
                     </div>
                     <table class="table table-striped table-hover table-bordered table-responsive display nowrap mb-5"
-                      cellspacing="0" width="100%">
+                        >
                         <thead style="background-color: #1E450C; color: white;">
                             <tr>
-                                <th class="text-center">ID Stock</th>
                                 <th class="text-center">ID Inventario</th>
+                                <th class="text-center">Artículo</th>
                                 <th class="text-center">Stock Real</th>
                                 <th class="text-center">Stock Fallado Real</th>
-                                <th class="text-center">Descripcion</th>
-                                <th class="text-center">Operaciones</th>
+                                <th class="text-center" style="width: 180px !important;">Fecha Creación</th>
+                                <th class="text-center" style="width: 180px !important;">Operaciones</th>
                             </tr>
                         </thead>
                         <tbody id="TablaAjuste">
-                       
+
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>
@@ -189,7 +184,7 @@
 
                             <div class="form-group col-md-12">
                                 <label for="">ID Depósito</label>
-                                <input type="text" class="verde form-control" id="inputDeposito"
+                                <input type="number" class="verde form-control" id="inputDeposito"
                                     placeholder="Ingrese Deposito" name="deposito">
 
                             </div>
@@ -197,12 +192,12 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input type="text" class="form-control" id="inputStockReal"
+                                <input type="number" class="form-control" id="inputStockReal"
                                     placeholder="Ingrese Stock Real" name="stockReal">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Fallado Real</label>
-                                <input type="text" class="form-control" id="inputStockFallado"
+                                <input type="number" class="form-control" id="inputStockFallado"
                                     placeholder="Ingrese Stock Fallado Real" name="stockFallado">
                             </div>
                             <div class="form-group col-md-12">
@@ -299,8 +294,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarAltaInventario"
-                        data-dismiss="modal" aria-label="Close">
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
                     </div>
                 </form>
             </div>
@@ -320,12 +315,12 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Ajuste</label>
-                                <input type="text" class="verde form-control" id="modalAjuste" name="idAjuste">
+                                <input disabled type="text" class="verde form-control" id="modalAjuste" name="idAjuste">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>
-                                <input type="number" class="verde form-control" id="modalFechaCreacion" name="deposito">
+                                <input disabled type="text" class="verde form-control" id="modalFechaCreacion" name="deposito">
 
                             </div>
                         </div>
@@ -333,38 +328,38 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Inventario</label>
-                                <input type="text" class="form-control" id="modalInventario" name="stockReal">
+                                <input disabled type="text" class="form-control" id="modalInventario" name="modalInventario">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="">ID Usuario</label>
-                                <input type="text" class="form-control" id="modalUsuario" name="stockFallado">
+                                <label for="">Responsable</label>
+                                <input disabled type="number" class="form-control" id="modalUsuario" name="stockFallado">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Descripción</label>
-                                <input type="text" class="form-control" id="modalDescripcion" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalDescripcion" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock de Sistema</label>
-                                <input type="text" class="form-control" id="modalStockSistema" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockSistema" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input type="number" class="form-control" id="modalRealStock" name="observaciones">
+                                <input disabled type="number" class="form-control" id="modalRealStock" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado de Sistema</label>
-                                <input type="text" class="form-control" id="modalStockFalladoSistema" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockFalladoSistema" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado Real</label>
-                                <input type="text" class="form-control" id="modalStockFalladoReal" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockFalladoReal" name="observaciones">
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarAltaInventario"
-                        data-dismiss="modal" aria-label="Close">
+                        <input style="background-color: #9c0202e8    !important; color: white !important;" type="button"
+                            class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarEdit">
                     </div>
                 </form>
             </div>

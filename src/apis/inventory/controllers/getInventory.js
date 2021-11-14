@@ -25,7 +25,7 @@ const GetInventory = async (req, res) => {
             createdAt: moment(inventory.createdAt).format('DD/MM/YYYY'),
             updatedAt: inventory.updatedAt ? moment(inventory.updatedAt).format('DD/MM/YYYY') : "",
         }
-        console.log(response)
+        
         return res.status(200).send(response);
 
     } catch (err) {

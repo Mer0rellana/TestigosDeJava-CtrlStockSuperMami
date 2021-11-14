@@ -5,7 +5,7 @@ const yup = require("yup");
 const Validator = require('../../../utils/validator');
 
 const schema = yup.object().shape({
-    id: yup.string().max(24, 'El id del inventario debe tener 24 caracteres').min(24)
+    id: yup.string()
 });
 
 const GetInventories = async (req, res) => {
@@ -14,9 +14,9 @@ const GetInventories = async (req, res) => {
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
         let inventories = [];
-
+      
         if (request.data.id) {
-            inventories = await InventorySchema.find({ _id: request.data.id });
+            inventories = await InventorySchema.find({ idItem: request.data.id });
         } else {
             inventories = await InventorySchema.find();
         }
@@ -33,7 +33,7 @@ const GetInventories = async (req, res) => {
             }
             return i;
         })
-        console.log(response)
+        
         return res.status(200).send(response);
 
 

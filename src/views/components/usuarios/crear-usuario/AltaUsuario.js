@@ -31,28 +31,28 @@ function AltaUsuario() {
       if (error.response.status == 535) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Hubo un problema.',
           text: 'Ocurrió un error al enviar el correo electrónico',
         })
       }
       if (error.response.status == 400) {
         swal.fire({
           icon: 'error',
-          title: 'Ocurrió un error',
+          title: 'Hubo un problema',
           text: `${error.response.data.message}`
         })
       }
       if (error.response.status == 401) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Hubo un problema',
           text: 'Usuario no autorizado',
         })
       }
       if (error.response.status == 500) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Hubo un problema',
           text: `${error.response.data.message}`,
         })
       }
