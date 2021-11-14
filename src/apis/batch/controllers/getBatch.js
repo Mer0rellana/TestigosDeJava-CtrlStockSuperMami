@@ -29,7 +29,23 @@ const getBatch = async (req, res) => {
       expiredAt ? data.expiredAt = moment(expiredAt,'DD/MM/YYYY') : null;
 
       const batch = await batchSchema.find(data);
-      return res.status(200).send(batch);
+
+      const response = batch.map(b => {
+        b = {
+            amount:b.amount,
+            codeItem:b.codeItem,
+            descriptionItem:b.descriptionItem,
+            expiredAt: moment(b.expiredAt).format('DD/MM/YYYY'),
+            failed:b.falied,
+            id:b.id,
+            idArea:b.idArea,
+            idStorage:b.idStorage,
+            state:b.state,
+            _id:b._id
+        }
+        return b;
+    })
+      return res.status(200).send(response);
 
   } catch (err) {
     return new ErrorModel().newInternalServerError(err.message).send(res);
