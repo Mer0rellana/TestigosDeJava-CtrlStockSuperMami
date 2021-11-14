@@ -26,13 +26,13 @@ function Login() {
             if (error.response.status == 500) {
                 swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
+                    title: 'Hubo un problema',
                     text: 'Ocurrió un error interno en el servidor',
                 })
             } else {
                 swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
+                    title: 'Hubo un problema',
                     text: 'Legajo o contraseña erróneos, por favor, vuelva a intentarlo',
                 })
             }

@@ -55,10 +55,10 @@ function crearTabla(datos) {
   for (var i = 0; i < datos.length; i++) {
     var html = "<tr>"
 
-    html += "<td>" + datos[i].idItem + "</td>";
-    html += "<td>" + datos[i].description + "</td>";
-    html += "<td>" + datos[i].idUser + "</td>";
-    html += "<td>" + datos[i].createdAt + "</td>";
+    html += `<td class="text-center">` + datos[i].idItem + "</td>";
+    html += `<td class="text-center">`+ datos[i].description + "</td>";
+    html += `<td class="text-center">` + datos[i].idUser + "</td>";
+    html += `<td class="text-center">`+ datos[i].createdAt + "</td>";
     datos[i].adjusted ? html += "<td> <button style='background-color: #00bb2d; color: white; border-radius: 10px;'>Sí</button></td>" : html += "<td> <button style='background-color :#9c0202e8; color: white; border-radius: 10px';>No</button></td>";
     datos[i].state == 'Activo' ? html += "<td> <button style='background-color: #00bb2d; color: white; border-radius: 10px;'>Activo</button></td>" : html += "<td> <button style='background-color :#9c0202e8; color: white; border-radius: 10px';>Inactivo</button></td>";
 
@@ -134,23 +134,31 @@ function ModInventario(id) {
         )
         ConsultarInventario()
       }).catch((error) => {
+        console.log(error.response)
         if (error.response) {
-          if (error.response.status == 404) {
-            swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: `${error.response.data.message}`
-            })
-          }
-          if (error.response.status == 401) {
-            swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Usuario no autorizado',
-            })
-          }
+            if (error.response.status == 404) {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Hubo un problema',
+                    text: `${error.response.data.message}`
+                })
+            }
+            if (error.response.status == 401) {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Hubo un problema',
+                    text: 'Usuario no autorizado',
+                })
+            }
+            if (error.response.status == 400) {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Hubo un problema',
+                    text: `${error.response.data.message}`
+                })
+            }
         }
-      })
+    })
     }
   })
 }
@@ -185,21 +193,21 @@ function EliminarInventario(id) {
             if (error.response.status == 404) {
               swal.fire({
                 icon: 'error',
-                title: 'Oops...',
+                title: 'Hubo un problema',
                 text: `${error.response.data.message}`
               })
             }
             if (error.response.status == 401) {
               swal.fire({
                 icon: 'error',
-                title: 'Oops...',
+                title: 'Hubo un problema',
                 text: 'Usuario no autorizado',
               })
             }
             if (error.response.status == 400) {
               swal.fire({
                 icon: 'error',
-                title: 'Oops...',
+                title: 'Hubo un problema',
                 text: `${error.response.data.message}`
               })
             }

@@ -143,18 +143,18 @@
                     </form>
                     <hr>
                     <div class="mb-5 mt-3 text-center">
-                        <h1>Ajustes</h1>
+                        <h1>Consultar Ajustes</h1>
                     </div>
                     <table class="table table-striped table-hover table-bordered table-responsive display nowrap mb-5"
-                        cellspacing="0" width="100%">
+                        >
                         <thead style="background-color: #1E450C; color: white;">
                             <tr>
-                                <th class="text-center">ID Stock</th>
                                 <th class="text-center">ID Inventario</th>
+                                <th class="text-center">Artículo</th>
                                 <th class="text-center">Stock Real</th>
                                 <th class="text-center">Stock Fallado Real</th>
-                                <th class="text-center">Descripcion</th>
-                                <th class="text-center">Operaciones</th>
+                                <th class="text-center" style="width: 180px !important;">Fecha Creación</th>
+                                <th class="text-center" style="width: 180px !important;">Operaciones</th>
                             </tr>
                         </thead>
                         <tbody id="TablaAjuste">
@@ -315,12 +315,12 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Ajuste</label>
-                                <input type="number" class="verde form-control" id="inputAjuste" name="idAjuste">
+                                <input disabled type="text" class="verde form-control" id="modalAjuste" name="idAjuste">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>
-                                <input type="number" class="verde form-control" id="inputAjuste" name="deposito">
+                                <input disabled type="text" class="verde form-control" id="modalFechaCreacion" name="deposito">
 
                             </div>
                         </div>
@@ -328,31 +328,31 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Inventario</label>
-                                <input type="text" class="form-control" id="inputAjuste" name="stockReal">
+                                <input disabled type="text" class="form-control" id="modalInventario" name="modalInventario">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="">Código Artículo</label>
-                                <input type="text" class="form-control" id="inputAjuste" name="stockFallado">
+                                <label for="">Responsable</label>
+                                <input disabled type="number" class="form-control" id="modalUsuario" name="stockFallado">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Descripción</label>
-                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalDescripcion" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock de Sistema</label>
-                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockSistema" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
+                                <input disabled type="number" class="form-control" id="modalRealStock" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado de Sistema</label>
-                                <input type="text" class="form-control" id="inputAjuste" p name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockFalladoSistema" name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado Real</label>
-                                <input type="text" class="form-control" id="inputAjuste" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockFalladoReal" name="observaciones">
                             </div>
 
                         </div>

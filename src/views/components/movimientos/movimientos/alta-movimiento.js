@@ -62,21 +62,21 @@ function altaMovimiento() {
         if (error.response.status == 400) {
           swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: `${error.response.data.message}`,
           })
         }
         else if (error.response.status == 401) {
           swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema.',
             text: 'Usuario no autorizado',
           })
         }
         else if (error.response.status == 404) {
           swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: error.response.data.message,
           })
         }
