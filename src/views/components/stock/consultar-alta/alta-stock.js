@@ -3,10 +3,11 @@ function AltaStock() {
   const idItem = document.getElementById('modalCodArticulo').value;
   const currentStock = document.getElementById('inputStockActual').value;
   const failedStock = document.getElementById('inputStockFallado').value;
+  const batchStock = document.getElementById('inputStockLotes').value;
   const maxStock = document.getElementById('inputStockMaximo').value;
   const minStock = document.getElementById('inputStockMinimo').value;
 
-  const data = { idItem, currentStock, failedStock, maxStock, minStock }
+  const data = { idItem, currentStock, failedStock, batchStock, maxStock, minStock }
 
   axios({
     url: 'http://localhost:3000/Stock/add',
@@ -71,6 +72,7 @@ function limpiarCampos() {
   document.getElementById('modalCodArticulo').value = '';
   document.getElementById('inputStockActual').value = '';
   document.getElementById('inputStockFallado').value = '';
+  document.getElementById('inputStockLotes').value = '';
   document.getElementById('inputStockMaximo').value = '';
   document.getElementById('inputStockMinimo').value = '';
 }

@@ -8,7 +8,8 @@ const { ItemSchema } = require("../../../models/item");
 
 const schema = yup.object().shape({
     idItem: yup.string().required("Ingrese código del artículo"),
-    currentStock: yup.number().required().typeError(" Ingrese stock"),
+    currentStock: yup.number().required().typeError(" Ingrese stock en artículos"),
+    batchStock: yup.number().required().typeError(" Ingrese el stock en lotes"),
     failedStock: yup.number().required().typeError(" Ingrese stock fallado"),
     minStock: yup.number().required().typeError(" Ingrese stock mínimo"),
     maxStock: yup.number().required().typeError(" Ingrese stock máximo"),
