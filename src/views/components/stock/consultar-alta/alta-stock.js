@@ -1,14 +1,12 @@
 function AltaStock() {
 
   const idItem = document.getElementById('modalCodArticulo').value;
-  const currentStock = document.getElementById('inputModalStockActual').value;
+  const currentStock = document.getElementById('inputStockActual').value;
   const failedStock = document.getElementById('inputStockFallado').value;
   const maxStock = document.getElementById('inputStockMaximo').value;
   const minStock = document.getElementById('inputStockMinimo').value;
 
   const data = { idItem, currentStock, failedStock, maxStock, minStock }
-  console.log('holis')
-  console.log(data)
 
   axios({
     url: 'http://localhost:3000/Stock/add',
@@ -23,17 +21,56 @@ function AltaStock() {
         title: 'Stock creado correctamente'
       })
       ConsultarStock()
+      limpiarCampos()
+      $("#cancelarEdit").click()
+      
     })
     .catch((error) => {
-      console.log(error)
-      console.log(error.response.status)
+      if (error.response) {
+        if (error.response.status == 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
 
-      if (error.response.status == 404) {
-        swal.fire({
+          })
+        }
+        else if (error.response.status == 401) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: 'Usuario no autorizado',
+          })
+        }
+        else if (error.response.status == 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+        else if (error.response.status == 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+      }
+      else {
+        Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: `${error.response.data.message}`
+          text: 'Hubo un pequeño problema',
         })
       }
     })
+}
+
+function limpiarCampos() {
+  document.getElementById('modalCodArticulo').value = '';
+  document.getElementById('inputStockActual').value = '';
+  document.getElementById('inputStockFallado').value = '';
+  document.getElementById('inputStockMaximo').value = '';
+  document.getElementById('inputStockMinimo').value = '';
 }

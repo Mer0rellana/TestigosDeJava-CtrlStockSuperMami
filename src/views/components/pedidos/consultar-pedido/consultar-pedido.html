@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="/src/views/style/StyleMSI.css">
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,8 +44,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo"
-                    alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -114,9 +113,9 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">Estado</label>
-                                    <select id="comboState" class="form-control" name="estado" onchange="consultarFiltro()"
-                                        placeholder="Seleccione un estado">
-                                        <option selected disabled  value="">Seleccione Estado</option>
+                                    <select id="comboState" class="form-control" name="estado"
+                                        onchange="consultarFiltro()" placeholder="Seleccione un estado">
+                                        <option selected disabled value="">Seleccione Estado</option>
                                         <option value="Pendiente">Pendiente </option>
                                         <option value="Anulado">Anulado</option>
                                         <option value="Remitido">Remitido</option>
@@ -128,7 +127,8 @@
 
                                 </div>
                                 <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                    <button id="filtro" onclick="limpiarFiltro()" type="button" class="btn btn-primary">Limpiar filtros</button>
+                                    <button id="filtro" onclick="limpiarFiltro()" type="button"
+                                        class="btn btn-primary">Limpiar filtros</button>
                                 </div>
                             </div>
                         </div>
@@ -199,8 +199,8 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <input type="button"
-                        class="btn btn-default" data-dismiss="modal" value="Cancelar" id="cancelarDelete">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar"
+                            id="cancelarDelete">
                     </div>
                 </form>
             </div>

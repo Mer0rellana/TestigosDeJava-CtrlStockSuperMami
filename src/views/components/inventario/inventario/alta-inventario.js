@@ -29,28 +29,42 @@ function AltaInventario() {
     })
 
     .catch((error) => {
-      console.log(error)
-      console.log(error.response.status)
+      if (error.response) {
+        if (error.response.status == 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
 
-      if (error.response.status == 400) {
-        swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Error al cargar los datos, por favor, intente más tarde'
-        })
+          })
+        }
+        else if (error.response.status == 401) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: 'Usuario no autorizado',
+          })
+        }
+        else if (error.response.status == 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
+        else if (error.response.status == 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema',
+            text: `${error.response.data.message}`,
+          })
+        }
       }
-      if (error.response.status == 404) {
-        swal.fire({
+      else {
+        Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: `${error.response.data.message}`
-        })
-      }
-      if (error.response.status == 401) {
-        swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Usuario no autorizado',
+          text: 'Hubo un pequeño problema',
         })
       }
     })

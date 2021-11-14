@@ -18,9 +18,8 @@ const InventorySchema = mongoose.model('inventory', new Schema({
     },
     observation: {
         type: String,
-        required: true,
         trim: true,
-        max: 1500
+        max: 500
     },
     createdAt: {
         type: Number,
