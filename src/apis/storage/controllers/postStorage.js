@@ -26,8 +26,7 @@ const postStorage = async (req, res) => {
       if (query[0]) return new ErrorModel().newBadRequest(`El id del lote ingresado ya existe en el sistema`).send(res);
       
       const storage = new StorageSchema({
-        id: request.data.id,
-        mts: request.data.mts,
+        ...request.data,
         createdAt: Moment.now(),
         state: "Activo",
       });

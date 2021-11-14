@@ -27,13 +27,18 @@
     <!-- Animaciones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
+
 
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../home/home.html"><img src="../../../img/logo-super-mami.png" class="logo img-fluid" alt=""></a>
+            <a href="../home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo img-fluid"
+                    alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -43,14 +48,15 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                     <!--    <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span
+                                    class="fa fa-archive mr-3"></span>
                                 Depósitos</a>
                         </li>
                         <li>
@@ -82,7 +88,7 @@
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -93,7 +99,7 @@
             <div id="content" class="contenedor">
                 <div class="vh-91 d-flex justify-content-center ">
                     <div class="centrar-vertical animate__animated animate__fadeInDown">
-                        <img class="img-fluid" src="../../../img/logo-super-mami.png" alt="">
+                        <img class="img-fluid" src="../../../../img/logo-super-mami.png" alt="">
                     </div>
                 </div>
             </div>

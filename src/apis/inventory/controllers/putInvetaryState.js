@@ -7,7 +7,7 @@ const putInventaryState = async (req, res) => {
     const token = res.locals.payload;
     const fecha = Moment.now();
     const { _id } = req.params;
-    console.log(_id)
+    
 
     if (
       token.role === "Admin" ||

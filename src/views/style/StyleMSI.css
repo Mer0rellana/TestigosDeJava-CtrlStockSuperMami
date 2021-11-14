@@ -43,6 +43,36 @@
     max-width: 1140px!important; 
     }
   } 
+  .boxf{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background-color: red;
+    margin: 2px;
+    border-radius: 7px;
+}
+.boxt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background-color: green;
+    margin: 2px;
+    border-radius: 7px;
+}
+
+.areas{
+    display: flex;
+    justify-content:space-evenly;
+}
+.centrar-texto{   
+    text-align: center;
+    font-size: 25px;
+    color: white;
+}
   
   .vh-91{
     height:91vh;
@@ -4361,7 +4391,7 @@
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    background-color: #007bff;
+    background-color: green;
     -webkit-transition: width 0.6s ease;
     -o-transition: width 0.6s ease;
     transition: width 0.6s ease; }
@@ -8531,7 +8561,6 @@
 
     .modal .btn {
       border-radius: 7px;
-      min-width: 100px;
     }
 
     /* .modal form label {
