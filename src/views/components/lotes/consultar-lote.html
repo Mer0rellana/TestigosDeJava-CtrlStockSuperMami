@@ -109,25 +109,25 @@
                     <div class="form-row justify-content-between align-items-center">
                         <div class="form-group col-md-4">
                             <label for="">Depósito</label>
-                            <input type="number" class="form-control" id="inputDeposito" placeholder="Ingrese Depósito"
-                                name="inputDeposito">
+                            <input type="number" class="form-control" onkeyup="FiltrarBusqueda()" id="inputDeposito"
+                                placeholder="Ingrese Depósito" name="inputDeposito">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Área</label>
-                            <input type="text" class="form-control" id="inputArea" placeholder="Ingrese Área"
-                                name="inputÁrea">
+                            <input type="text" class="form-control" onkeyup="FiltrarBusqueda()" id="inputArea"
+                                placeholder="Ingrese Área" name="inputÁrea">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Código Artículo</label>
-                            <input type="text" class="form-control" id="inputArticulo"
+                            <input type="text" class="form-control" onkeyup="FiltrarBusqueda()" id="inputArticulo"
                                 placeholder="Ingrese Cód. Artículo" name="inputArticulo">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Estado</label>
-                            <select id="selectEstado" class="form-control" name="Estado"
+                            <select id="selectEstado" class="form-control" onchange="FiltrarBusqueda()" name="Estado"
                                 placeholder="Seleccione un Estado">
                                 <option selected disabled value="">Seleccione Estado</option>
                                 <option value="1">Ingresado </option>
