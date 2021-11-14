@@ -4,7 +4,7 @@ const { DateReg } = require('../../../utils/reg-exp');
 const moment = require('moment');
 const yup = require("yup");
 const Validator = require('../../../utils/validator');
-
+//probando
 const schema = yup.object().shape({
   idStorage:yup.number(),
   idArea:yup.string(),
