@@ -225,7 +225,7 @@ function cargarComboLotes() {
   $("#inputIdLote option").remove();
   for (var i = 0; i < lotes.length; i++) {
     let option = document.createElement("option");
-    option.text = lotes[i].descriptionItem;
+    option.text = lotes[i].id;
     option.value = lotes[i].id
     $("#inputIdLote").append(option);
   }
