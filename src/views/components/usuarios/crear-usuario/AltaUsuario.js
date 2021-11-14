@@ -66,13 +66,3 @@ function AltaUsuario() {
     })
 
 }
-function limpiarCampos() {
-
-  document.getElementById('dni').value = '';
-  document.getElementById('nombreCompleto').value = '';
-  document.getElementById('Legajo').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('contraseña').value = '';
-  document.getElementById('rol').selectedIndex = 0;
-  document.getElementById('telefono').value = '';
-}
