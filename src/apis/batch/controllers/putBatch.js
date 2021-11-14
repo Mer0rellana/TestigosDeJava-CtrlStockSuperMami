@@ -1,6 +1,6 @@
 const BatchSchema = require("../../../models/batch");
 const ErrorModel = require("../../../models/api-error");
-const StorageSchema = require("../../../models/storage");
+const { StorageSchema } = require("../../../models/storage");
 const Moment = require("moment");
 const yup = require("yup");
 const Validator = require("../../../utils/validator");
@@ -22,23 +22,34 @@ const BatchUpdate = async (req, res) => {
       if (request.err)
         return new ErrorModel().newBadRequest(request.data).send(res);
       const { id } = req.params;
-      const idStorage = req.body.idStorage;
-      const area = req.body.idArea;
+
+      const idStorage = request.data.idStorage;
+      const area = request.data.idArea;
+
       const batch2 = await BatchSchema.findOne({ id: id });
+      const available = await StorageSchema.find({ id: request.data.idStorage });
+
+      if (!available.length) return new ErrorModel().newNotFound("El depósito no existe").send(res);
+
+      const availableArea = available[0].area.filter(area => area.id === request.data.idArea);
+      if (!availableArea.length) return new ErrorModel().newNotFound(`El área no existe`).send(res);
+      if (availableArea[0].available === false) return new ErrorModel().newBadRequest(`El área está ocupada`).send(res);
+
       const batch = await BatchSchema.updateOne(
         { id: id },
-        { ...req.body, updatedAt: Moment.now() }
+        { ...request.data, updatedAt: Moment.now() }
       );
+      if (batch.matchedCount === 0) return new ErrorModel().newNotFound("El lote que quiere actualizar no existe").send(res);
+
       const storage2 = await StorageSchema.updateOne(
         { id: batch2.idStorage, "area.id": batch2.idArea },
         {
           "area.$.available": true,
-        
         }
       );
-      if (storage2.matchedCount === 0)
-        return new ErrorModel().newNotFound("El depósito no existe").send(res);
-      const storage = await StorageSchema.updateOne(
+      if (storage2.matchedCount === 0) return new ErrorModel().newNotFound("El depósito no existe").send(res);
+
+      await StorageSchema.updateOne(
         {
           id: idStorage,
           "area.id": area,
@@ -48,11 +59,6 @@ const BatchUpdate = async (req, res) => {
           "area.$.available": false,
         }
       );
-
-      if (storage.matchedCount === 0)
-        return new ErrorModel().newNotFound("El depósito no existe").send(res);
-      if (batch.matchedCount === 0)
-        return new ErrorModel().newNotFound("El lote no existe").send(res);
 
       return res.status(200).send({ message: "Lote actualizado con éxito" });
     } else {
