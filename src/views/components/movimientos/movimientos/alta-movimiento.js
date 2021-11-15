@@ -27,12 +27,17 @@ function agregarLote() {
   const descriptionItem = combo.options[combo.selectedIndex].text;
   const amount = document.getElementById("inputCantidad").value;
   const date = document.getElementById("inputFechaExp").value;
-  const arrayDate = date.split('-');
-  const expiredAt = `${arrayDate[2]}/${arrayDate[1]}/${arrayDate[0]}`;
   const storage = document.getElementById("inputIdDeposito").value;
   const area = document.getElementById("inputIdArea").value;
-
-  const data = { id, codeItem, descriptionItem, amount, expiredAt, storage, area };
+  const arrayDate = date.split('-');
+  const expiredAt = `${arrayDate[2]}/${arrayDate[1]}/${arrayDate[0]}`;
+  let data = {}
+  if(expiredAt !== "undefined/undefined/") {
+    data = { id, codeItem, descriptionItem, amount, expiredAt, storage, area };
+  } else {
+    data = { id, codeItem, descriptionItem, amount, storage, area };
+  }
+  
   if (!(arrayLotes.some((l) => l.id === data.id))) {
 
     //const loteEliminado=lotes.find(l=>l.id===data.id);
@@ -48,6 +53,7 @@ function agregarLote() {
     $("#inputTipo").prop("disabled", true);
   }
   $('#cancelar').click()
+  limpiarCampos()
 
 }
 
@@ -68,7 +74,7 @@ function altaMovimiento() {
         icon: 'success',
         title: 'Movimiento creado correctamente, ¡Bravo!',
       }).then(
-        $('#cancelarAltaMov').click()
+        $('#volver').click()
       )
     })
     .catch((error) => {
@@ -143,7 +149,7 @@ function crearTabla(datos) {
     html += "<td class='text-center'>" + datos[i].storage + "</td>";
     html += "<td class='text-center'>" + datos[i].area + "</td>";
     html += `<td class="text-center">
-      <button class="delete btnEliminar"  style="font-weight: 200; color: #9c0202e8; border: none;"
+      <button class="delete btnEliminar"  style="font-weight: 200; background-color: white; color: #9c0202e8; border: none;"
       data-toggle="modal" data-target="#deleteEmployeeModal" onclick="borrarLote('${datos[i].id}')"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`
@@ -231,3 +237,12 @@ function cargarComboLotes() {
   }
 }
 
+function limpiarCampos() {
+
+  document.getElementById('inputIdLote').value = '';
+  document.getElementById('inputCodArticulo').selectedIndex = -1;
+  document.getElementById('inputCantidad').value = '';
+  document.getElementById('inputFechaExp').value = '';
+  document.getElementById('inputIdDeposito').selectedIndex = -1;
+  document.getElementById('inputIdArea').value = '';
+}

@@ -61,7 +61,7 @@
             </nav>
             <!-- Page Content  -->
             <div id="content" class="contenedor">
-                <div class="container animate__animated animate__fadeIn">
+                <div class="container animate_animated animate_fadeIn">
                     <form id="" name="formulario" class="needs-validation" novalidate>
                         <div class="mb-5 mt-3 text-center">
                             <h1>Stock</h1>
@@ -90,8 +90,9 @@
                                     <tr>
                                         <th class="text-center">Código Artículo</th>
                                         <th class="text-center">Descripción</th>
-                                        <th class="text-center">Stock Actual</th>
+                                        <th class="text-center">Stock Actual en Artículos</th>
                                         <th class="text-center">Stock Fallado</th>
+                                        <th class="text-center">Stock Actual en Lotes</th>
                                         <th class="text-center">Stock Máximo</th>
                                         <th class="text-center">Stock Mínimo</th>
                                     </tr>
@@ -129,7 +130,7 @@
                                     placeholder="Ingrese ID" name="id">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="">Stock Actual</label>
+                                <label for="">Stock Actual en Artículos</label>
                                 <input type="number" class="verde form-control" id="inputStockActual"
                                     placeholder="Ingrese Stock Actual" name="StockA">
                             </div>
@@ -139,6 +140,11 @@
                                 <label for="">Stock Fallado</label>
                                 <input type="number" class="verde form-control" id="inputStockFallado"
                                     placeholder="Ingrese Stock Fallado" name="StockF">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="">Stock Actual en Lotes</label>
+                                <input type="number" class="verde form-control" id="inputStockLotes"
+                                    placeholder="Ingrese Stock Actual en Lotes" name="StockLotes">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Máximo</label>

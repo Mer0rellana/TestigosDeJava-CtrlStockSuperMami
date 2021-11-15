@@ -6,7 +6,7 @@ const GetRepo = require('./controllers/repo');
 
 const router = express.Router();
 
-router.get('/entries/:order',ensureUserAuthenticated, GetMostEE);
+router.get('/entries/',ensureUserAuthenticated, GetMostEE);
 router.get('/restock', ensureUserAuthenticated, GetRepo);
 
 module.exports = router;

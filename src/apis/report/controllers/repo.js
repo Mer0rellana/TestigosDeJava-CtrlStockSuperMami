@@ -12,7 +12,6 @@ const GetRepo = async (req, res) => {
                 repo.push(i);
             } 
         }
-
         return res.status(200).json(repo);
     } catch (err) {
         return new ErrorModel().newInternalServerError(err.message).send(res);

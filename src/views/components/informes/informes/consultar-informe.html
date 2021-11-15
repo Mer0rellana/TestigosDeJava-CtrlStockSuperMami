@@ -22,9 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="../../style/StyleMSI.css">
-    <script defer src="../../JavaScript Global/app.js"></script>
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link defer rel="stylesheet" href="/src/views/style/StyleMSI.css">
+    <script defer src="../../../JavaScript Global/app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--   Datatables-->
@@ -34,7 +33,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../../JavaScript Global/loginValidate.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"
         integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
 
@@ -44,8 +43,8 @@
 
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../components/home/home/home.html"><img src="../../../img/logo-super-mami.png" class="logo"
-                    alt=""></a>
+            <a href="../../../components/home/home/home.html"><img src="../../../../img/logo-super-mami.png"
+                    class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -57,44 +56,6 @@
                 </div>
                 <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <!-- <li class="active">
-                            <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
-                                    class="fa fa-shopping-cart mr-3"></span> Artículos</a>
-                        </li>
-                        <li>
-                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
-                                Depósitos</a>
-                        </li>
-                        <li>
-                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
-                                Pedidos</a>
-                        </li>
-                        <li>
-                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
-                        </li>
-                        <li>
-                            <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
-                                    class="fa fa-users mr-3"></span>
-                                Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
-                        </li>
-                        <li>
-                            <a href="../inventario/consultar-inventario.html"><span
-                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
-                        </li>
-                        <li>
-                            <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
-                        </li>
-                        <li>
-                            <a href="../movimientos/consultar-movimientos.html"><span
-                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
-                        </li>
-                        <li>
-                            <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
-                                Perfil</a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -113,40 +74,33 @@
                         <div class="container text-center">
                             <h4>Movimientos de artículos</h4>
                         </div>
-
-                        <div class="container" style="height:700px; width: 700px;">
-                            <canvas id="myChart" width="100" height="100"></canvas>
-                        </div>
-                        <hr>
-
-                        <div class="container text-center">
-                            <h4>Artículos para reposición</h4>
-                        </div>
-
                         <div class="">
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">Ordenar por:</label>
-                                    <select id="comboOrden" class="form-control" name="orden" onchange=""
+                                    <select id="comboOrden" class="form-control" name="orden" onchange="traerDatos()"
                                         placeholder="Seleccione un orden">
-                                        <option selected disabled value="">Seleccione Orden</option>
-                                        <option value="asc">Ariculos con más movimientos</option>
-                                        <option value="desc">Artículos con menos monvimientos</option>
-
+                                        <option value="desc">Artículos con más movimientos</option>
+                                        <option value="asc">Artículos con menos movimientos</option>
                                     </select>
                                     <div class="valid-feedback">¡Ok válido!</div>
                                     <div class="invalid-feedback">Complete el campo.</div>
-
-
-                                </div>
-                                <div class=" mb-5 ml-5 mt-4 d-flex justify-content-center">
-                                    <button id="filtro" onclick="limpiarFiltro()" type="button"
-                                        class="btn btn-primary">Limpiar filtros</button>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="container" style="height:700px; width: 700px;" id="canvasContainer">
+                            <canvas id="myChart" width="100" height="100"></canvas>
+                        </div>
+                        <hr>
+
+
+
                     </form>
                     <form action="">
+                        <div class="container text-center">
+                            <h4>Artículos para reposición</h4>
+                        </div>
                         <div>
                             <table class="table table-striped table-hover table-bordered  display nowrap"
                                 cellspacing="0" width="100%">
@@ -158,9 +112,8 @@
                                         <th class="text-center">Stock mínimo</th>
                                     </tr>
                                 </thead>
-                                <tbody id="table-pedidos-body">
-                                    <tr>
-                                    </tr>
+                                <tbody id="table-articulos-body">
+
                                 </tbody>
                             </table>
                         </div>

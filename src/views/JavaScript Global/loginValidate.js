@@ -26,7 +26,7 @@ function agregarBotones(rol) {
   }
   if (["Admin", "Gerencia"].includes(rol)) {
     botones += `<li>
-  <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+  <a href="../../informes/informes/consultar-informe.html"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
   </li>`;
   }
   if (["Admin"].includes(rol)) {
