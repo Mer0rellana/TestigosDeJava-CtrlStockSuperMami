@@ -22,8 +22,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link defer rel="stylesheet" href="../../style/StyleMSI.css">
-    <script defer src="../../JavaScript Global/app.js"></script>
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
+    <script defer src="../../../JavaScript Global/app.js"></script>
+    <script defer src="../../../JavaScript Global/loginValidate.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src=""></script>
     <!-- Animaciones -->
@@ -36,14 +37,15 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src=""></script>
+    <script defer src="consultar-lote.js"></script>
 
 </head>
 
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home/home.html"><img src="../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class=" img-fluid logo"
+                    alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -53,14 +55,15 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
-                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                <div class="p-4" id="sideBar-lista">
+                    <ul class="list-unstyled components mb-5">
+                        <!-- <li class="active">
                             <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
                         <li>
-                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span
+                                    class="fa fa-archive mr-3"></span>
                                 Depósitos</a>
                         </li>
                         <li>
@@ -86,13 +89,13 @@
                             <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
                         </li>
                         <li>
-                            <a href="../movimientos/consultar-movimientos.html"><span
+                            <a href="../../movimientos/consultar-movimientos.html"><span
                                     class="fa fa-paper-plane mr-3"></span> Movimientos</a>
                         </li>
                         <li>
                             <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -106,44 +109,28 @@
                     <div class="form-row justify-content-between align-items-center">
                         <div class="form-group col-md-4">
                             <label for="">Depósito</label>
-                            <input type="number" class="form-control" id="inputDeposito" placeholder="Ingrese Depósito"
-                                name="inputDeposito">
-                        </div>
-
-                        <div class="form-group col-md-4">
-                            <label for="">Área</label>
-                            <input type="text" class="form-control" id="inputArea" placeholder="Ingrese Área"
-                                name="inputÁrea">
+                            <input type="number" class="form-control" onkeyup="FiltrarBusqueda()" id="inputDeposito"
+                                placeholder="Ingrese Depósito" name="inputDeposito">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Código Artículo</label>
-                            <input type="text" class="form-control" id="inputArticulo" placeholder="Ingrese Cód. Artículo"
-                                name="inputArticulo">
-                        </div>
-                        
-                        <div class="form-group col-md-4">
-                            <label for="">Estado</label>
-                            <select id="inputEstado" class="form-control" name="Estado" placeholder="Seleccione un Estado">
-                                <option selected disabled value="">Seleccione Estado</option>
-                                <option value="1">Ingresado </option>
-                                <option value="2">Egresado</option>
-                            </select>
+                            <input type="text" class="form-control" onkeyup="FiltrarBusqueda()" id="inputArticulo"
+                                placeholder="Ingrese Cód. Artículo" name="inputArticulo">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="">Fecha de expiración</label>
-                            <input type="date" class="form-control" id="inputFechaExp" placeholder="Ingrese Fecha de Expiración"
-                                name="inputFechaExp"> 
+                            <label for="">Estado</label>
+                            <select id="selectEstado" class="form-control" onchange="FiltrarBusqueda()" name="Estado"
+                                placeholder="Seleccione un Estado">
+                                <option selected disabled value="">Seleccione Estado</option>
+                                <option value="Ingresado">Ingresado </option>
+                                <option value="Egresado">Egresado</option>
+                            </select>
                         </div>
-                        <div class="form-check form-group col-md-2 mt-4 d-flex justify-content-center">
-                            <div>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label text-center" for="flexCheckDefault">Fallado</label>
-                        </div>
-                        </div>
-                        <button id="btnFiltrarUsario" onclick="" type="button"
-                            class="btn btn-primary mt-3 col-md-2">Filtrar</button>
+
+                        <button id="btnFiltrarUsario" onclick="limpiarFiltros()" type="button"
+                            class="btn btn-primary mt-3 col-md-2">Limpiar Filtros</button>
                     </div>
 
                     <div class="mt-5">
@@ -152,36 +139,16 @@
                             <thead style="background-color: #1E450C; color: white;">
                                 <tr>
                                     <th class="text-center">Código Lote</th>
-                                    <th class="text-center">Código Artículo</th>
                                     <th class="text-center">Descripción</th>
                                     <th class="text-center">Cantidad</th>
                                     <th class="text-center">Estado</th>
-                                    <th class="text-center">Depóstio</th>
+                                    <th class="text-center">Depósito</th>
                                     <th class="text-center">Área</th>
-                                    <th class="text-center">Fallado</th>
-                                    <th class="text-center">Fecha Expiración</th>
-                                    <th class="text-center">Fecha Ingreso</th>
+                                    <th class="text-center">Fecha de expiración</th>
                                     <th class="text-center">Operaciones</th>
-
                                 </tr>
                             </thead>
                             <tbody id="tabla-lote-body">
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">5</td>
-                                    <td class="text-center">Lote</td>
-                                    <td class="text-center">100</td>
-                                    <td class="text-center">Ingresado</td>
-                                    <td class="text-center">5</td>
-                                    <td class="text-center">B</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">11/05/2021</td>
-                                    <td class="text-center">11/05/2021</td>
-                                    <td class="text-center">
-                                        <a class="edit" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i
-                                            class="fas fa-edit" title="Editar"></i></a>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -193,13 +160,13 @@
     </div>
 
     <!-- Edit Modal HTML -->
-    <div id="editEmployeeModal" class="modal fade">
+    <div id="modalEditarLote" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Modificar Lote</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
@@ -213,18 +180,26 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">Área</label>
-                                <input type="text" class="verde form-control" id="inputÁrea"
-                                    placeholder="Ingrese Área" name="area">
+                                <input type="text" class="verde form-control" id="inputÁrea" placeholder="Ingrese Área"
+                                    name="area">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <button id="btnModificarLote" onclick="" type="button"
+                        <input type="button" class="btn btn-default" value="Cancel" data-dismiss="modal"
+                            aria-label="Close" id="cancelarButton">
+                        <button id="btnModificarLote" onclick="ModLote()" type="button"
                             class="btn btn-primary">Modificar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

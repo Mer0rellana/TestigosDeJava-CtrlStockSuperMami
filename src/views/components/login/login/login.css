@@ -19,7 +19,9 @@ body{
      font-weight: bold;
  }
  .logo{
+     display: flex;
      width: 20rem;
+     justify-content: center;
  }
  .btn-mami{
      background-color: #1E450C;

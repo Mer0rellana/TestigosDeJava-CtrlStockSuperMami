@@ -5,26 +5,26 @@ let userRol = "";
 function agregarBotones(rol) {
   console.log(rol)
   let botones = "";
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
     botones += `<li >
     <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
             class="fa fa-shopping-cart mr-3"></span> Artículos</a>
     </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
 
     botones += `<li>
     <a href="../../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
     Depósitos</a>
     </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock"].includes(rol)) {
     botones += `<li>
   <a href="../../pedidos/consultar-pedido/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
       Pedidos</a>
   </li>`;
   }
-  if (["Admin","Gerencia"].includes(rol)) {
+  if (["Admin", "Gerencia"].includes(rol)) {
     botones += `<li>
   <a href="../../informes/informes/consultar-informe.html"><span class="fa fa-sticky-note mr-3"></span> Informes</a>
   </li>`;
@@ -36,23 +36,23 @@ function agregarBotones(rol) {
       Usuarios</a>
   </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock"].includes(rol)) {
     botones += `<li>
   <a href="../../stock/consultar-alta/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
   </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock"].includes(rol)) {
     botones += `<li>
   <a href="../../inventario/inventario/consultar-inventario.html"><span
           class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
   </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
     botones += `<li>
-  <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
+  <a href="../../lotes/lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
   </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock"].includes(rol)) {
     botones += `<li>
   <a href="../../movimientos/movimientos/consultar-movimientos.html"><span
           class="fa fa-paper-plane mr-3"></span> Movimientos</a>
@@ -104,5 +104,5 @@ function consultarFuncionDeToken() {
 
 $(document).ready(function () {
   consultarFuncionDeToken()
-  
+
 })

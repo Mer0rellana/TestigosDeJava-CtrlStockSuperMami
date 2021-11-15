@@ -1,6 +1,6 @@
-const arrayItems=[];
+const arrayItems = [];
 function consultarPedidos() {
-  arrayItems.splice(0,arrayItems.length);
+  arrayItems.splice(0, arrayItems.length);
   axios({
     url: 'http://localhost:3000/order/',
     method: 'get',
@@ -16,16 +16,16 @@ function consultarPedidos() {
 }
 
 function limpiarFiltro() {
-  document.getElementById("comboState").selectedIndex=0;
+  document.getElementById("comboState").selectedIndex = 0;
   consultarPedidos()
 }
 
 function consultarFiltro() {
-  const estado= document.getElementById("comboState");
-  arrayItems.splice(0,arrayItems.length);
-  if(estado.selectedIndex>0){
+  const estado = document.getElementById("comboState");
+  arrayItems.splice(0, arrayItems.length);
+  if (estado.selectedIndex > 0) {
     axios({
-      url: 'http://localhost:3000/order?state='+estado.value,
+      url: 'http://localhost:3000/order?state=' + estado.value,
       method: 'get',
       headers: { Authorization: `Bearer ${obj.token}` },
     })
@@ -36,7 +36,7 @@ function consultarFiltro() {
         console.log(error.response);
         console.log(error)
       })
-  }else{
+  } else {
     consultarPedidos();
   }
 }
