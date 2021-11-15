@@ -30,7 +30,7 @@ function CrearTabla(datos) {
 
         html += `<td class="text-center">
     
-    <button class="edit" onclick="" style="font-weight: 200; color: #ffbb2f; background-color:white; border: none; outline: none !important; -webkit-appearance: none !important;"
+    <button class="edit"onclick="rellenarCampos('${datos[i]._id}')" style="font-weight: 200; color: #ffbb2f; background-color:white; border: none; outline: none !important; -webkit-appearance: none !important;"
     data-toggle="modal" data-target="#modalEditarLote"  type="button"><i class="fas fa-edit"></i></button>
     </td>`
 
@@ -41,14 +41,28 @@ function CrearTabla(datos) {
 }
 ConsultarLote();
 
+function rellenarCampos(id) {
+    axios({
+        url: 'http://localhost:3000/batch/?id=' + id,
+        method: 'get',
+        headers: { Authorization: `Bearer ${obj.token}` },
+    })
+        .then((data) => {
+            document.getElementById('inputDepósito').value = data.data[0].idStorage;
+            document.getElementById('inputÁrea').value = data.data[0].idArea;
+            document.getElementById('inputId').value = data.data[0].id;
+        })
+}
 function ModLote() {
+
+    const id = document.getElementById('inputId').value;
     const idStorage = document.getElementById('inputDepósito').value;
     const idArea = document.getElementById('inputÁrea').value;
 
-    const data = { idStorage, idArea, }
+    const data = { idStorage, idArea }
 
     axios({
-        url: 'http://localhost:3000/Batch/Update/' + idStorage,
+        url: 'http://localhost:3000/Batch/Update/' + id,
         method: 'PUT',
         headers: { Authorization: `Bearer ${obj.token}` },
         data

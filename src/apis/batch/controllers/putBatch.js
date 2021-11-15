@@ -1,4 +1,4 @@
-const BatchSchema = require("../../../models/batch");
+const BatchSchema= require("../../../models/batch");
 const ErrorModel = require("../../../models/api-error");
 const { StorageSchema } = require("../../../models/storage");
 const Moment = require("moment");
@@ -27,6 +27,7 @@ const BatchUpdate = async (req, res) => {
       const area = request.data.idArea;
 
       const batch2 = await BatchSchema.findOne({ id: id });
+      console.log(batch2)
       const available = await StorageSchema.find({ id: request.data.idStorage });
 
       if (!available.length) return new ErrorModel().newNotFound("El depósito no existe").send(res);

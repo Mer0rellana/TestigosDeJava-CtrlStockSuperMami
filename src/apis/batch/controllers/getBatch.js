@@ -19,7 +19,12 @@ const getBatch = async (req, res) => {
     const request = await Validator(req.query, schema);
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
-      const { idStorage, idArea, codeItem, state, failed, expiredAt, } = request.data;
+      const { idStorage, idArea, codeItem, state, failed, expiredAt, id} = request.data;
+      if(id){
+        const batch = await batchSchema.find({id: id});
+        console.log(batch);
+        return res.status(200).send(batch);
+      }
       let data = {};
       idStorage ? data.idStorage = idStorage : null;
       state ? data.state = state : null;
