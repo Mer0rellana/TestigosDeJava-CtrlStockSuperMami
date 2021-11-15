@@ -8709,3 +8709,11 @@ textarea{
           flex: 0 0 25%;
           max-width: 25%; }
         
+
+.selectize-input.full {
+  background-color: #35990750 !important;
+  border: 1px solid #1E450C !important;
+  border-radius: 7px !important;
+  font-family: "Poppins",sans-serif !important;
+  color:black !important;
+}

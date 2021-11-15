@@ -8,7 +8,7 @@ const getAdjustment = async (req, res) => {
 
         const token = res.locals.payload;
 
-        if (token.role === "Admin" || token.role === 'Encargado stock') {
+        if (token.role === "Admin" || token.role === 'Encargado stock' || token.role === 'Operario stock') {
 
             const { _id } = req.query;
 

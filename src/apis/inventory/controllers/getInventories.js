@@ -14,9 +14,11 @@ const GetInventories = async (req, res) => {
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
         let inventories = [];
-      
+        console.log(request.data.id)
+        console.log(req.query)
         if (request.data.id) {
             inventories = await InventorySchema.find({ idItem: request.data.id });
+            console.log(inventories)
         } else {
             inventories = await InventorySchema.find();
         }

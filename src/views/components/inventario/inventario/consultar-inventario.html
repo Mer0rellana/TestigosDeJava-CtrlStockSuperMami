@@ -39,6 +39,13 @@
     <script defer src='consultar-inventario.js'></script>
     <script defer src="alta-inventario.js"></script>
     <script defer src="../ajuste/consultar-ajuste.js"></script>
+        <!--Selectize js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+        integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.min.css"
+        integrity="sha512-MMojOrCQrqLg4Iarid2YMYyZ7pzjPeXKRvhW9nZqLo6kPBBTuvNET9DBVWptAo/Q20Fy11EIHM5ig4WlIrJfQw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -109,7 +116,10 @@
                         <div class="form-row justify-content-center align-items-center">
                             <div class="form-group col-md-3">
                                 <label for="">Artículo</label>
-                                <select onchange="FiltrarBusqueda()" class="form-control" id="idArticulo"></select>
+                                <select type="number" onchange="FiltrarBusqueda()" id="idArticulo"
+                                    class="selectize-style" placeholder="Ingrese un artículo" name="deposito">
+                                </select>
+
                             </div>
                             <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
                                 <button id="btnFiltrarStock" onclick="limpiarfiltros()" type="button"
@@ -145,8 +155,7 @@
                     <div class="mb-5 mt-3 text-center">
                         <h1>Consultar Ajustes</h1>
                     </div>
-                    <table class="table table-striped table-hover table-bordered table-responsive display nowrap mb-5"
-                        >
+                    <table class="table table-striped table-hover table-bordered table-responsive display nowrap mb-5">
                         <thead style="background-color: #1E450C; color: white;">
                             <tr>
                                 <th class="text-center">ID Inventario</th>
@@ -320,7 +329,8 @@
 
                             <div class="form-group col-md-12">
                                 <label for="">Fecha Creación</label>
-                                <input disabled type="text" class="verde form-control" id="modalFechaCreacion" name="deposito">
+                                <input disabled type="text" class="verde form-control" id="modalFechaCreacion"
+                                    name="deposito">
 
                             </div>
                         </div>
@@ -328,31 +338,38 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="">ID Inventario</label>
-                                <input disabled type="text" class="form-control" id="modalInventario" name="modalInventario">
+                                <input disabled type="text" class="form-control" id="modalInventario"
+                                    name="modalInventario">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Responsable</label>
-                                <input disabled type="number" class="form-control" id="modalUsuario" name="stockFallado">
+                                <input disabled type="number" class="form-control" id="modalUsuario"
+                                    name="stockFallado">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Descripción</label>
-                                <input disabled type="text" class="form-control" id="modalDescripcion" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalDescripcion"
+                                    name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock de Sistema</label>
-                                <input disabled type="text" class="form-control" id="modalStockSistema" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockSistema"
+                                    name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Real</label>
-                                <input disabled type="number" class="form-control" id="modalRealStock" name="observaciones">
+                                <input disabled type="number" class="form-control" id="modalRealStock"
+                                    name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado de Sistema</label>
-                                <input disabled type="text" class="form-control" id="modalStockFalladoSistema" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockFalladoSistema"
+                                    name="observaciones">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock fallado Real</label>
-                                <input disabled type="text" class="form-control" id="modalStockFalladoReal" name="observaciones">
+                                <input disabled type="text" class="form-control" id="modalStockFalladoReal"
+                                    name="observaciones">
                             </div>
 
                         </div>

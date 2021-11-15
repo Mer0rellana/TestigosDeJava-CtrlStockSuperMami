@@ -13,6 +13,9 @@ function cargarCombo(params) {
         option.value = data[i].code
         $("#inputCodArticulo").append(option);
       }
+      $('#inputCodArticulo').selectize({
+        sortField: 'text'
+      });
     });
 
 
@@ -32,12 +35,12 @@ function agregarLote() {
   const arrayDate = date.split('-');
   const expiredAt = `${arrayDate[2]}/${arrayDate[1]}/${arrayDate[0]}`;
   let data = {}
-  if(expiredAt !== "undefined/undefined/") {
+  if (expiredAt !== "undefined/undefined/") {
     data = { id, codeItem, descriptionItem, amount, expiredAt, storage, area };
   } else {
     data = { id, codeItem, descriptionItem, amount, storage, area };
   }
-  
+
   if (!(arrayLotes.some((l) => l.id === data.id))) {
 
     //const loteEliminado=lotes.find(l=>l.id===data.id);
@@ -203,12 +206,12 @@ function movimientoSalida() {
     inputLote.id = "inputIdLote";
     inputLote.className = "verde form-control"
     divIdLote.appendChild(inputLote);
-    document.getElementById("inputIdLote").value="";
-    document.getElementById("inputCodArticulo").selectedIndex=0;
-    document.getElementById("inputCantidad").value="";
-    document.getElementById("inputFechaExp").value=""
-    document.getElementById("inputIdDeposito").selectedIndex=0;
-    document.getElementById("inputIdArea").value="";
+    document.getElementById("inputIdLote").value = "";
+    document.getElementById("inputCodArticulo").selectedIndex = 0;
+    document.getElementById("inputCantidad").value = "";
+    document.getElementById("inputFechaExp").value = ""
+    document.getElementById("inputIdDeposito").selectedIndex = 0;
+    document.getElementById("inputIdArea").value = "";
 
   }
 }
@@ -246,3 +249,4 @@ function limpiarCampos() {
   document.getElementById('inputIdDeposito').selectedIndex = -1;
   document.getElementById('inputIdArea').value = '';
 }
+

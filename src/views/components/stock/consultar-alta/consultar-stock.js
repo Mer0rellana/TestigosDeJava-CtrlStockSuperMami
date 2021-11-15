@@ -16,6 +16,9 @@ function cargarCombo(params) {
         option.value = data[i].code
         $("#inputCodArticulo").append(option);
       }
+      $('#inputCodArticulo').selectize({
+        sortField: 'text'
+      });
     });
 
 

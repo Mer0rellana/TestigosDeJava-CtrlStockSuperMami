@@ -25,7 +25,10 @@
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+ <!--Selectize js-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+ integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.min.css" integrity="sha512-MMojOrCQrqLg4Iarid2YMYyZ7pzjPeXKRvhW9nZqLo6kPBBTuvNET9DBVWptAo/Q20Fy11EIHM5ig4WlIrJfQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Animaciones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--   Datatables-->
@@ -71,9 +74,10 @@
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
                                     <label for="">Artículo</label>
-                                    <select type="number" onchange="FiltroBusqueda()" class="verde form-control"
-                                        id="inputCodArticulo" name="articulo">
+                                    <select type="number" onChange="FiltroBusqueda()" id="inputCodArticulo" class="selectize-style" placeholder="Ingrese un artículo"
+                                        name="deposito">
                                     </select>
+
                                 </div>
                                 <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
                                     <button id="btnFiltrarStock" onclick="limpiarfiltros()" type="button"

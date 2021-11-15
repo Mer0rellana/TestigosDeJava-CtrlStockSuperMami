@@ -25,6 +25,10 @@
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Selectize js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+        integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.min.css" integrity="sha512-MMojOrCQrqLg4Iarid2YMYyZ7pzjPeXKRvhW9nZqLo6kPBBTuvNET9DBVWptAo/Q20Fy11EIHM5ig4WlIrJfQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 
@@ -105,8 +109,8 @@
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
                                     <label for="">Tipo de remito:</label>
-                                    <select id="inputTipo" onchange="movimientoSalida()" class="form-control" name="Tipo"
-                                        placeholder="Seleccione un Tipo">
+                                    <select id="inputTipo" onchange="movimientoSalida()" class="form-control"
+                                        name="Tipo" placeholder="Seleccione un Tipo">
                                         <option value="Entrada">Entrada </option>
                                         <option value="Salida">Salida</option>
                                     </select>
@@ -141,8 +145,9 @@
                                 <label for="" class="mt-1">Agregar Lote</label>
                                 <button data-toggle="modal" data-target="#modalAgregar" type="button"
                                     class="edit btn btn-primary ml-3">+</button>
-                                    <input type="button" class="btn btn-primary ml-5"
-                                onclick="window.location='../movimientos/consultar-movimientos.html'" id="volver" value="Volver">
+                                <input type="button" class="btn btn-primary ml-5"
+                                    onclick="window.location='../movimientos/consultar-movimientos.html'" id="volver"
+                                    value="Volver">
                             </div>
                         </div>
                     </form>
@@ -167,9 +172,10 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Artículo</label>
-                                    <select type="number" class="verde form-control" id="inputCodArticulo"
-                                        placeholder="Ingrese código artículo" name="deposito">
+                                    <select type="number" id="inputCodArticulo" class="selectize-style" placeholder="Ingrese código artículo"
+                                        name="deposito">
                                     </select>
+
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Cantidad</label>

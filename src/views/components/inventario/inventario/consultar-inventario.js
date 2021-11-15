@@ -31,7 +31,11 @@ function llenarCombo() {
         option.text = data[i].description;
         option.value = data[i].code
         $("#idArticulo").append(option);
+        
       }
+      $('#idArticulo').selectize({
+        sortField: 'text'
+      });
     })
 }
 /*
@@ -219,8 +223,8 @@ function EliminarInventario(id) {
 
 function FiltrarBusqueda() {
   const select = document.getElementById('idArticulo');
-  if (select.selectedIndex > 0) {
-    consulta = 'id=' + select.value
+  if (select.value.length > 0) {
+    const consulta = 'id=' + select.value
     axios({
       url: 'http://localhost:3000/inventory/?' + consulta,
       method: 'get',
