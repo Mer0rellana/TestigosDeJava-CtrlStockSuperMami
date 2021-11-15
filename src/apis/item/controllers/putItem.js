@@ -18,7 +18,7 @@ const ItemUpdate = async (req, res) => {
   try {
     const token = res.locals.payload;
 
-    if (token.role === "Admin") {
+    if (token.role === "Admin" ||  token.role === "Operario stock" || token.role === "Encargado stock" ) {
       const request = await Validator(req.body, schema);
       if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 

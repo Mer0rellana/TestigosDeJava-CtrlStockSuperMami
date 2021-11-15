@@ -6,6 +6,7 @@ const yup = require("yup");
 const Validator = require('../../../utils/validator');
 
 const schema = yup.object().shape({
+  id: yup.string(),
   idStorage:yup.number(),
   idArea:yup.string(),
   codeItem:yup.string(),
@@ -20,9 +21,9 @@ const getBatch = async (req, res) => {
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
       const { idStorage, idArea, codeItem, state, failed, expiredAt, id} = request.data;
+
       if(id){
-        const batch = await batchSchema.find({id: id});
-        console.log(batch);
+        const batch = await batchSchema.find({_id: id});
         return res.status(200).send(batch);
       }
       let data = {};

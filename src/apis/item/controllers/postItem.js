@@ -22,7 +22,7 @@ const postItem = async (req, res) => {
     const request = await Validator(req.body, schema);
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
-    if (token.role === "Admin") {
+    if (token.role === "Admin" || token.role === "Operario stock" || token.role === "Encargado stock" ) {
 
       const query = await ItemSchema.find({ code: req.body.code });
       if (query.length) return new ErrorModel().newBadRequest("El código de artículo ya existe en el sistema").send(res);

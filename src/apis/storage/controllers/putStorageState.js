@@ -8,7 +8,7 @@ const StorageUpdateState = async (req,res) => {
     try{
         const token = res.locals.payload;
 
-        if (token.role === "Admin"||token.role === "Encargado stock"||token.role === "Gerencia"){
+        if (token.role === "Admin" || token.role === "Operario stock" || token.role === "Encargado stock" ) {
 
             const { id } = req.params;
 

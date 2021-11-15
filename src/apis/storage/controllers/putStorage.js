@@ -20,8 +20,7 @@ const PutStorage = async (req, res) => {
 
     if (
       token.role === "Admin" ||
-      token.role === "Encargado stock" ||
-      token.role === "Gerencia"
+      token.role === "Encargado stock" 
     ) {
 
       const { id } = req.params;

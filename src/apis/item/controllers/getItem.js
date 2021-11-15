@@ -4,7 +4,7 @@ const ErrorModel = require('../../../models/api-error');
 const getAllItems = async (req, res) => {
   try {
     const token = res.locals.payload;
-    if (token.role === "Admin") {
+    if (token.role === "Admin" || token.role === "Operario almacén" || token.role === "Operario stock" || token.role === "Encargado stock") {
       const { state, code } = req.query;
       if (!state && !code) {
         //getAll

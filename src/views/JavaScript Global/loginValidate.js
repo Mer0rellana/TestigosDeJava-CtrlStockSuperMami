@@ -5,13 +5,13 @@ let userRol = "";
 function agregarBotones(rol) {
   console.log(rol)
   let botones = "";
-  if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock", "Operario almacén"].includes(rol)) {
     botones += `<li >
     <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
             class="fa fa-shopping-cart mr-3"></span> Artículos</a>
     </li>`;
   }
-  if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock", "Operario almacén"].includes(rol)) {
 
     botones += `<li>
     <a href="../../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
@@ -47,7 +47,7 @@ function agregarBotones(rol) {
           class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
   </li>`;
   }
-  if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
+  if (["Admin", "Encargado stock", "Operario stock", "Operario almacén"].includes(rol)) {
     botones += `<li>
   <a href="../../lotes/lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
   </li>`;
