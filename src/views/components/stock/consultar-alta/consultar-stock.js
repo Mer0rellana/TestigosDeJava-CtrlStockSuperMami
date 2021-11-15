@@ -44,6 +44,7 @@ function crearTabla(datos) {
     html += "<td>" + datos[i].description + "</td>";
     html += "<td>" + datos[i].currentStock + "</td>";
     html += "<td>" + datos[i].failedStock + "</td>";
+    html += "<td>" + datos[i].batchStock + "</td>";
     html += "<td>" + datos[i].maxStock + "</td>";
     html += "<td>" + datos[i].minStock + "</td>";
 

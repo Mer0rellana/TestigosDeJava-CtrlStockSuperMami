@@ -4,22 +4,23 @@ const { StorageSchema: Storage } = require('../../../models/storage');
 const ErrorModel = require('../../../models/api-error');
 const yup = require("yup");
 const Validator = require('../../../utils/validator');
-const { ItemSchema }= require("../../../models/item");
+const { ItemSchema } = require("../../../models/item");
 const moment = require('moment');
 const { DateReg } = require('../../../utils/reg-exp');
+const { StockSchema } = require("../../../models/stock");
 
 const schema = yup.object().shape({
     type: yup.string().required("Debe ingresar el tipo de movimiento").oneOf(['Entrada', 'Salida'], 'Los tipos de movimiento son entrada y salida'),
     batches: yup.array(
         yup.object({
             id: yup.string().required("Debe ingresar el id del lote"),
-            codeItem: yup.string().required("Debe ingresar el código del artículo"),
-            expiredAt: yup.string().optional().matches(DateReg, 'El formato de fecha debe ser dd/mmm/yyyy'),
-            amount: yup.number().required("Debe ingresar la cantidad del artículo"),
-            storage: yup.number().required("Debe ingresar el depósito de almacenamiento del lote"),
-            area: yup.string().required("Debe ingresar el área de almacenamiento del lote")
-        }).required("Debe ingresar lotes")
-    ).required("Debe ingresar lotes"),
+            codeItem: yup.string().required(" Debe ingresar el código del artículo"),
+            expiredAt: yup.string().optional().matches(DateReg),
+            amount: yup.number().required().typeError(" Debe ingresar la cantidad del artículo"),
+            storage: yup.number().required().typeError(" Debe ingresar el depósito de almacenamiento del lote"),
+            area: yup.string().required(" Debe ingresar el área de almacenamiento del lote")
+        }).required().typeError(" Debe ingresar lotes")
+    ).required().typeError(" Debe ingresar lotes"),
 });
 
 const CreateTransaction = async (req, res) => {
@@ -37,7 +38,7 @@ const CreateTransaction = async (req, res) => {
 
             for (const b of request.data.batches) {
 
-                const item = await Item.find({ code: b.codeItem });
+                const item = await ItemSchema.find({ code: b.codeItem });
                 if (!item.length) return new ErrorModel().newNotFound(`El código ${b.codeItem} no pertenece a ningún artículo del sistema. Registre el artículo antes de continuar con la transacción`).send(res);
 
                 const storage = await Storage.find({ id: b.storage });
@@ -71,10 +72,23 @@ const CreateTransaction = async (req, res) => {
                     area[0].available = "false";
                     storages.push(storage[0]);
 
-                    await Item.findOneAndUpdate({ code: b.codeItem },
+                    await ItemSchema.findOneAndUpdate({ code: b.codeItem },
                         {
-                            entry: item[0].entry +1,
+                            entry: item[0].entry + 1,
                         });
+
+                    const stock = await StockSchema.find({ idItem: b.codeItem });
+                    if (!stock.length) {
+                        return new ErrorModel().newNotFound(`El artículo ${item[0].description} no tiene sus especificaciones de stock. Cree el stock del artículo e intente de nuevo`).send(res);
+                    } else {
+                        await StockSchema.updateOne({
+                            idItem: b.codeItem 
+                        }, {
+                            currentStock: stock[0].currentStock + b.amount,
+                            batchStock: stock[0].batchStock + 1,
+                            updatedAt: moment.now()
+                        });
+                    }
 
                 } else {
                     if (!batche[0]) return new ErrorModel().newNotFound(`El lote ${b.id} no existe en el sistema`).send(res);
@@ -92,10 +106,20 @@ const CreateTransaction = async (req, res) => {
                     area[0].available = "true";
                     storages.push(storage[0]);
 
-                    await Item.findOneAndUpdate({ code: b.codeItem },
+                    await ItemSchema.findOneAndUpdate({ code: b.codeItem },
                         {
-                            exit: item[0].exit +1,
+                            exit: item[0].exit + 1,
                         });
+
+                    const stock = await StockSchema.find({ idItem: b.codeItem });
+                    await StockSchema.updateOne({
+                        idItem: b.codeItem 
+                    }, {
+                        currentStock: stock[0].currentStock - b.amount,
+                        batchStock: stock[0].batchStock - 1,
+                        updatedAt: moment.now()
+                    });
+
                 }
 
                 arrayBatches.push(b.id);

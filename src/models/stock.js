@@ -23,6 +23,10 @@ const StockSchema = mongoose.model('stock', new Schema({
         type: Number,
         required: true
     },
+    batchStock: {
+        type: Number,
+        required: true
+    },
     failedStock: {
         type: Number,
         required: true
