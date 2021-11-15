@@ -64,13 +64,24 @@ function agregarBotones(rol) {
       Perfil</a>
   </li>`;
 
+  botones += `<li>
+    <a href="javascript:cerrarSesion()"><span class="fa fa-user mr-3"></span> Cerrar
+      Sesión</a>
+  </li>`;
+
   console.log(botones)
   $("#sideBar-lista ul").append(botones);
-
 
   //$("#sideBar-lista").listview("refresh");
 
 }
+
+function cerrarSesion() {
+  obj.token = '';
+  document.cookie = `token = ""; path=/`
+  window.location = '../../login/login/login.html'
+}
+
 
 if (document.cookie) {
   document.cookie.split(';').forEach(e => {
