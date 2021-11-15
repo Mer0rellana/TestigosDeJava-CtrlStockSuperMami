@@ -61,21 +61,21 @@ function ModificarUsuario() {
                 if (error.response.status == 400) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Ocurrió un error',
+                        title: 'Hubo un problema',
                         text: `${error.response.data.message}`
                     })
                 }
                 if (error.response.status == 401) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: 'Usuario no autorizado',
                     })
                 }
                 if (error.response.status == 500) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: `${error.response.data.message}`,
                     })
                 }
@@ -118,21 +118,21 @@ function ModificarPassword() {
                 if (error.response.status == 400) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Ocurrió un error',
+                        title: 'Hubo un problema',
                         text: `${error.response.data.message}`
                     })
                 }
                 if (error.response.status == 401) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: 'Usuario no autorizado',
                     })
                 }
                 if (error.response.status == 500) {
                     swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Hubo un problema',
                         text: `${error.response.data.message}`,
                     })
                 }
@@ -153,38 +153,38 @@ function isGood(password) {
 
     //TextBox left blank.
     if (password.length == 0) {
-      password_strength.innerHTML = "";
-      return;
+        password_strength.innerHTML = "";
+        return;
     }
 
     //Regular Expressions.
     var regex = new Array();
     regex.push("[A-Z]");
-    regex.push("[a-z]"); 
-    regex.push("[0-9]"); 
+    regex.push("[a-z]");
+    regex.push("[0-9]");
 
     var passed = 0;
     for (var i = 0; i < regex.length; i++) {
-      if (new RegExp(regex[i]).test(password)) {
-        passed++;
-      }
+        if (new RegExp(regex[i]).test(password)) {
+            passed++;
+        }
     }
 
     //Display status
     var strength = "";
     switch (passed) {
-      case 0:
-      case 1:
-        strength = "<small class='progress-bar bg-danger progress mt-1' style='width: 40%'>Weak</small>";
-        break;
-      case 2:
-        strength = "<small class='progress-bar bg-warning progress mt-1' style='width: 60%'>Medium</small>";
-        break;
-      case 3:
-        strength = "<small class='progress-bar bg-success progress mt-1' style='width: 100%'>Strong</small>";
-        break;
+        case 0:
+        case 1:
+            strength = "<small class='progress-bar bg-danger progress mt-1' style='width: 40%'>Weak</small>";
+            break;
+        case 2:
+            strength = "<small class='progress-bar bg-warning progress mt-1' style='width: 60%'>Medium</small>";
+            break;
+        case 3:
+            strength = "<small class='progress-bar bg-success progress mt-1' style='width: 100%'>Strong</small>";
+            break;
 
     }
     password_strength.innerHTML = strength;
 
-  }
+}

@@ -1,3 +1,27 @@
+function cargarCombo(params) {
+  axios({
+    url: 'http://localhost:3000/item',
+    headers: { Authorization: `Bearer ${obj.token}` },
+    method: 'get'
+  }).
+    then(data => {
+      data = data.data
+      let option = document.createElement("option");
+      option.text = "Seleccione un artículo";
+      option.value = ""
+      $("#inputCodArticulo").append(option);
+      for (var i = 0; i < data.length; i++) {
+        option = document.createElement("option");
+        option.text = data[i].description;
+        option.value = data[i].code
+        $("#inputCodArticulo").append(option);
+      }
+    });
+
+
+}
+cargarCombo()
+
 function ConsultarStock() {
   axios({
     url: 'http://localhost:3000/Stock/',
@@ -12,6 +36,7 @@ function ConsultarStock() {
     })
 }
 function crearTabla(datos) {
+  console.log(datos)
   $("#tabla-stock tr").remove();
   for (var i = 0; i < datos.length; i++) {
     var html = "<tr>"
@@ -22,14 +47,35 @@ function crearTabla(datos) {
     html += "<td>" + datos[i].maxStock + "</td>";
     html += "<td>" + datos[i].minStock + "</td>";
 
-    html += `<td class="text-center"> 
-      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #ffbb2f; background-color: white; border: none; outline: none !important; -webkit-appearance: none !important;"
-      data-toggle="modal" data-target="#editEmployeeModal"  type="button"><i class="fas fa-edit"></i></button>
-      <button class="edit" onclick="rellenarCampos(${datos[i].id})" style="font-weight: 200; color: #9c0202e8; background-color: white; border: none; outline: none !important; -webkit-appearance: none !important;"
-      data-toggle="modal" data-target="#deleteEmployeeModal"  type="button"><i class="fas fa-trash-alt"></i></button>
-    </td>`
-    html += "</tr>"
     $("#tabla-stock").append(html);
   }
 }
 ConsultarStock()
+
+function FiltroBusqueda() {
+
+  const id = document.getElementById('inputCodArticulo').value;
+
+  if (id.length > 0) {
+    consulta = 'idItem=' + id
+    axios({
+      url: 'http://localhost:3000/Stock?' + consulta,
+      method: 'get',
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+      .then((data) => {
+        crearTabla(data.data)
+
+      }).catch((error) => {
+        console.log(error)
+      })
+  } else {
+    ConsultarStock()
+  }
+}
+
+function limpiarfiltros() {
+  document.getElementById('inputCodArticulo').selectedIndex=0;
+  ConsultarStock()
+}
+

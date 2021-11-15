@@ -14,8 +14,9 @@ const postAdjustment = async (req, res) => {
         if (token.role === 'Encargado stock' || token.role === 'Admin') {
 
             const inventory = await InventorySchema.findById(_id);
-
+            console.log(inventory)
             if (!inventory) return new ErrorModel().newNotFound(`El código ${_id} no pertenece a ningún inventario del sistema`).send(res);
+            if (inventory.adjusted === true) return new ErrorModel().newBadRequest(`El inventario ya fue ajustado`).send(res);
 
             const stock = await StockSchema.findOne({ idItem: inventory.idItem });
 
@@ -53,6 +54,7 @@ const postAdjustment = async (req, res) => {
                 createdAt: moment.now(),
             });
 
+            console.log(adjustment)
             const err = adjustment.validateSync();
             if (err) return new ErrorModel().newBadRequest(err.message).send(res);
 

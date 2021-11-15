@@ -124,33 +124,40 @@ function FiltrarBusqueda() {
     const expiredAt = document.getElementById('inputFechaExp').value;
 
     if (idStorage.length > 0 || idArea.length > 0 || idItem.length > 0 || state.selectedIndex > 0) {
-        let data = {};
+        let consulta = '';
 
         if (state.selectedIndex > 0) {
-
-            data.state = state.value
+            if (consulta != '') {
+                consulta += '&'
+            }
+            consulta += 'state=' + state.value
 
         } if (idStorage.length > 0) {
-
-            data.idStorage = idStorage
+            if (consulta != '') {
+                consulta += '&'
+            }
+            consulta += 'idStorage=' + idStorage
 
         } if (idItem.length > 0) {
-
-            data.idItem = idItem
+            if (consulta != '') {
+                consulta += '&'
+            }
+            consulta += 'codeItem=' + idItem
 
         } if (idArea.length > 0) {
-
-            data.idArea = idArea
+            if (consulta != '') {
+                consulta += '&'
+            }
+            consulta += 'idArea=' + idArea
         }
-        console.log(data)
+        console.log(consulta)
         axios({
-            url: 'http://localhost:3000/Batch',
+            url: 'http://localhost:3000/Batch/?' + consulta,
             method: 'get',
-            headers: { Authorization: `Bearer ${obj.token}` },
-            data
+            headers: { Authorization: `Bearer ${obj.token}` }
         }).then((data) => {
             CrearTabla(data.data)
-            console.log(data.data)
+            console.log(consulta)
         })
     } else {
         ConsultarLote()

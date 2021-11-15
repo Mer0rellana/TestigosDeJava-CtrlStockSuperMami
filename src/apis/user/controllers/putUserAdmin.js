@@ -24,9 +24,7 @@ const UpdateAdmin = async (req, res) => {
             if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
             const { id } = req.params;
-            console.log(id);
-            console.log(request.data);
-
+            
             await User.updateOne({
                 id: id
             }, {

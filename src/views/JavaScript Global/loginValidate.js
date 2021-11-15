@@ -24,7 +24,7 @@ function agregarBotones(rol) {
       Pedidos</a>
   </li>`;
   }
-  if (["Admin","Gerencia"].includes(rol)) {
+  if (["Admin", "Gerencia"].includes(rol)) {
     botones += `<li>
   <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
   </li>`;
@@ -52,7 +52,7 @@ function agregarBotones(rol) {
   <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
   </li>`;
   }
-  if (["Admin"].includes(rol)) {
+  if (["Admin", "Encargado Stock", "Operario Stock"].includes(rol)) {
     botones += `<li>
   <a href="../../movimientos/movimientos/consultar-movimientos.html"><span
           class="fa fa-paper-plane mr-3"></span> Movimientos</a>
@@ -97,12 +97,12 @@ function consultarFuncionDeToken() {
     .catch((error) => {
       console.log(error)
       if (error.response && error.response.status === 401) {
-        window.location = '../../login/login.html'
+        window.location = '../../login/login/login.html'
       }
     })
 }
 
 $(document).ready(function () {
   consultarFuncionDeToken()
-  
+
 })

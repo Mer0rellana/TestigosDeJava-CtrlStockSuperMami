@@ -22,25 +22,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<<<<<<< HEAD:src/views/components/stock/consultar-stock.html
-    <link defer rel="stylesheet" href="./../../style/StyleMSI.css">
-    <script defer src="../../JavaScript Global/app.js"></script>
-    <!-- axios-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../../JavaScript Global/loginValidate.js"></script>
-    <script src="alta-stock.js"></script>
-
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Animaciones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-=======
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> b474520a21cc61aeccd849edec89966e8123b26a:src/views/components/stock/consultar-alta/consultar-stock.html
 
     <!-- Animaciones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -59,13 +43,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-<<<<<<< HEAD:src/views/components/stock/consultar-stock.html
-            <a href="/src/views/components/home/home.html"><img
-                    src="/TestigosDeJava-CtrlStockSuperMami/src/img/logo-super-mami.png" class="logo" alt=""></a>
-=======
-            <a href="../../home/home/home.html"><img
-                    src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
->>>>>>> b474520a21cc61aeccd849edec89966e8123b26a:src/views/components/stock/consultar-alta/consultar-stock.html
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -76,45 +54,8 @@
                     </button>
                 </div>
                 <div class="p-4" id="sideBar-lista">
-                    <ul class="list-unstyled components mb-5" >
-                        <!-- <li class="active">
-                            <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
-                                    class="fa fa-shopping-cart mr-3"></span> Artículos</a>
-                        </li>
-                        <li>
-                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
-                                Depósitos</a>
-                        </li>
-                        <li>
-                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
-                                Pedidos</a>
-                        </li>
-                        <li>
-                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
-                        </li>
-                        <li>
-                            <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
-                                    class="fa fa-users mr-3"></span>
-                                Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
-                        </li>
-                        <li>
-                            <a href="../inventario/consultar-inventario.html"><span
-                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
-                        </li>
-                        <li>
-                            <a href="../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
-                        </li>
-                        <li>
-                            <a href="../movimientos/consultar-movimientos.html"><span
-                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
-                        </li>
-                        <li>
-                            <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
-                                Perfil</a>
-                        </li> -->
+                    <ul class="list-unstyled components mb-5">
+
                     </ul>
                 </div>
             </nav>
@@ -129,14 +70,14 @@
                         <div class="">
                             <div class="d-flex justify-content-between">
                                 <div class="form-group col-md-4">
-                                    <label for="">ID Articulo</label>
-                                    <input type="text" class="form-control" id="idStock" name="idStock"
-                                        placeholder="Ingrese ID" required>
-
+                                    <label for="">Artículo</label>
+                                    <select type="number" onchange="FiltroBusqueda()" class="verde form-control"
+                                        id="inputCodArticulo" name="articulo">
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-2 mt-4 d-flex justify-content-end">
-                                    <button id="btnFiltrarStock" onclick="" type="button"
-                                        class="btn btn-primary mt-2">Filtrar</button>
+                                    <button id="btnFiltrarStock" onclick="limpiarfiltros()" type="button"
+                                        class="btn btn-primary mt-2">Limpiar Filtros</button>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +94,6 @@
                                         <th class="text-center">Stock Fallado</th>
                                         <th class="text-center">Stock Máximo</th>
                                         <th class="text-center">Stock Mínimo</th>
-                                        <th class="text-center">Operaciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabla-stock">
@@ -169,36 +109,28 @@
                 </form>
             </div>
         </div>
-
     </div>
     </div>
+    <!--Modal Agregar Stock -->
     <!--Modal Agregar Stock -->
     <div id="modalAgregar" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
-<<<<<<< HEAD:src/views/components/stock/consultar-stock.html
-                        <h4 class="modal-title">Registrar Stock</h4>
-=======
-                        <h4 class="modal-title">Agregar Inventario</h4>
->>>>>>> b474520a21cc61aeccd849edec89966e8123b26a:src/views/components/stock/consultar-alta/consultar-stock.html
+                        <h4 class="modal-title">Agregar Stock</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="">ID Item</label>
-<<<<<<< HEAD:src/views/components/stock/consultar-stock.html
-                                <input type="number" class="verde form-control" id="inputModalIDStock"
-=======
-                                <input type="number" class="verde form-control" id="modalCodArticulo"
->>>>>>> b474520a21cc61aeccd849edec89966e8123b26a:src/views/components/stock/consultar-alta/consultar-stock.html
+                                <label for="">Código Artículo</label>
+                                <input type="text" class="verde form-control" id="modalCodArticulo"
                                     placeholder="Ingrese ID" name="id">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Actual</label>
-                                <input type="number" class="verde form-control" id="inputModalStockActual"
+                                <input type="number" class="verde form-control" id="inputStockActual"
                                     placeholder="Ingrese Stock Actual" name="StockA">
                             </div>
                         </div>
@@ -210,60 +142,31 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Máximo</label>
-                                <input type="text" class="form-control" id="inputStockMaximo"
+                                <input type="number" class="form-control" id="inputStockMaximo"
                                     placeholder="Ingrese Stock Máximo" name="StockMax">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">Stock Mínimo</label>
-                                <input type="text" class="form-control" id="inputStockMinimo"
+                                <input type="number" class="form-control" id="inputStockMinimo"
                                     placeholder="Ingrese Stock Máximo" name="StockMax">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarAltaInventario"
-                        data-bs-dismiss="modal" aria-label="Close">
-                    <button id="btnModificarDeposito" onclick="AltaStock()" type="button"
-                        class="btn btn-primary">Registrar</button>
-                    </div>
-                </form>
-            </div>
-<<<<<<< HEAD:src/views/components/stock/consultar-stock.html
-            <div class="modal-footer">
-                <input type="button" class="btn btn-default" value="Cancel" data-bs-dismiss="modal" aria-label="Close"
-                    id="cancelarAltaStock">
-                <input style="background-color: #00bb2d  !important; color: white !important;" type="button"
-                    onclick="AltaStock()" class="btn btn-danger" value="Agregar">
-            </div>
-            </form>
-=======
->>>>>>> b474520a21cc61aeccd849edec89966e8123b26a:src/views/components/stock/consultar-alta/consultar-stock.html
-        </div>
-    </div>
-    <!-- Delete Modal HTML -->
-    <div id="deleteEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h4 class="modal-title">Eliminar stock</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>¿Está seguro que desea eliminar este stock?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                        <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <button id="btnModificarDeposito" onclick="AltaStock()" type="button"
+                            class="btn btn-primary">Registrar</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
