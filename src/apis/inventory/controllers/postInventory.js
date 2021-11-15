@@ -7,11 +7,11 @@ const Validator = require('../../../utils/validator');
 const { StorageSchema } = require("../../../models/storage");
 
 const schema = yup.object().shape({
-    idItem: yup.string().required(),
-    idStorage: yup.number().required(),
-    realStock: yup.number().required(),
-    failedRealStock: yup.number().required(),
-    observation: yup.string().required().max(1500)
+    idItem: yup.string().required("Ingrese código del artículo"),
+    idStorage: yup.number().required().typeError(" Ingrese ID del depósito"),
+    realStock: yup.number().required().typeError(" Ingrese stock real"),
+    failedRealStock: yup.number().required().typeError(" Ingrese stock fallado"),
+    observation: yup.string().max(500," La observación cómo máximo puede tener 500 caracteres")
 })
 
 
@@ -21,8 +21,6 @@ const postInventory = async (req, res) => {
 
         const request = await Validator(req.body, schema);
         if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
-
-        console.log(request.data.idStorage)
 
         const storage = await StorageSchema.updateOne({ id: request.data.idStorage },
             {

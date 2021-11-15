@@ -166,21 +166,21 @@ function DeleteModificar() {
         if (error.response.status == 500) {
           swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: 'Ocurrió un error interno el servidor',
           })
         }
         else if (error.response.status == 401) {
           swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: 'Hubo un problema',
             text: 'Usuario no autorizado',
           })
         }
       }
       swal.fire({
         icon: 'error',
-        title: 'Oops...',
+        title: 'Hubo un problema',
         text: 'Hubo un pequeño problema',
       })
     })

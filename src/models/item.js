@@ -46,22 +46,23 @@ const ItemSchema = mongoose.model('item', new Schema({
     trim: true,
     min: 0,
   },
-  createdAt: {
-    type: String,
-    trim: true,
-  },
-  updatedAt: {
-    type: String,
-    trim: true,
-  },
+  createdAt: Number,
+  updatedAt: Number,
   state: {
     type: String,
     enum: ['Activo', 'Eliminado '],
     trim: true,
   },
+  entry: {
+    type: Number,
+    default: 0
+  },
+  exit: {
+    type: Number,
+    default: 0
+  },
 },
   { versionKey: false }
-), collection)
+), collection);
 
-
-module.exports = { ItemSchema };
+module.exports = { ItemSchema }; 

@@ -11,8 +11,6 @@ function AltaUsuario() {
 
   const data = { dni, name, id, mail, password, role, tel }
 
-  console.log(data)
-
   axios({
     url: 'http://localhost:3000/user/add',
     method: 'post',
@@ -23,56 +21,41 @@ function AltaUsuario() {
     .then((data) => {
       swal.fire({
         icon: 'success',
-        title: 'Usuario Creado correctamente, ¡Bravo!',
+        title: 'Usuario creado correctamente, ¡Bravo!',
       });
       limpiarCampos()
     })
     .catch((error) => {
+
       if (error.response.status == 535) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Hubo un problema.',
           text: 'Ocurrió un error al enviar el correo electrónico',
         })
       }
       if (error.response.status == 400) {
         swal.fire({
           icon: 'error',
-          title: 'Ocurrió un error',
+          title: 'Hubo un problema',
           text: `${error.response.data.message}`
         })
       }
       if (error.response.status == 401) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Hubo un problema',
           text: 'Usuario no autorizado',
         })
       }
       if (error.response.status == 500) {
         swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Hubo un problema',
           text: `${error.response.data.message}`,
         })
       }
-      else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Hubo un pequeño problema',
-        })
-      }
+      
     })
 
-}
-function limpiarCampos() {
-
-  document.getElementById('dni').value = '';
-  document.getElementById('nombreCompleto').value = '';
-  document.getElementById('Legajo').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('contraseña').value = '';
-  document.getElementById('rol').selectedIndex = 0;
-  document.getElementById('telefono').value = '';
 }

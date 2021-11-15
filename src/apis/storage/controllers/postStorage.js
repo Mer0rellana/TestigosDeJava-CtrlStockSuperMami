@@ -20,14 +20,13 @@ const postStorage = async (req, res) => {
     const request = await Validator(req.body, schema);
     if (request.err) return new ErrorModel().newBadRequest(request.data).send(res);
 
-    if (token.role === "Admin" || token.role === "Encargado stock" || token.role === "Gerencia") {
+    if (token.role === "Admin" || token.role === "Encargado stock") {
       
       const query = await StorageSchema.find({ id: request.data.id });
       if (query[0]) return new ErrorModel().newBadRequest(`El id del lote ingresado ya existe en el sistema`).send(res);
       
       const storage = new StorageSchema({
-        id: request.data.id,
-        mts: request.data.mts,
+        ...request.data,
         createdAt: Moment.now(),
         state: "Activo",
       });

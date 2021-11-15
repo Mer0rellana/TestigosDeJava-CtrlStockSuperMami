@@ -25,7 +25,6 @@
     <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
     <script defer src="../../../JavaScript Global/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script defer src="../../usuarios/usuarios.js"></script>
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
     <!-- Animaciones -->
@@ -42,7 +41,7 @@
 <body>
     <div class="wrapper">
         <div class="topBar ">
-            <a href="../../home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
         </div>
         <div class=" d-flex align-items-stretch">
             <nav id="sidebar">
@@ -52,9 +51,9 @@
                         <span class="sr-only">Mostrar</span>
                     </button>
                 </div>
-                <div class="p-4">
+                <div class="p-4" id="sideBar-lista">
                     <ul class="list-unstyled components mb-5">
-                        <li class="active">
+                       <!--  <li class="active">
                             <a href="../../articulos/consultar-articulo/ConsultarArticulo.html"><span
                                     class="fa fa-shopping-cart mr-3"></span> Artículos</a>
                         </li>
@@ -91,7 +90,7 @@
                         <li>
                             <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                                 Perfil</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -115,9 +114,9 @@
                                 <option selected disabled value="Rol">Seleccione Rol</option>
                                 <option value="Admin">Administrador </option>
                                 <option value="Gerencia">Gerencia</option>
-                                <option value="Encargado stock">Encargado Stock</option>
-                                <option value="Operario stock">Operario de Stock</option>
-                                <option value="Operario almacenamiento">Operario de almacenamiento</option>
+                                <option value="Encargado stock">Encargado stock</option>
+                                <option value="Operario stock">Operario stock</option>
+                                <option value="Operario almacén">Operario almacén</option>
                             </select>
                         </div>
                         <button id="btnFiltrarUsario" onclick="limpiarFiltros()" type="button"
@@ -175,7 +174,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="">DNI</label>
-                                <input type="text" class="verde form-control" id="modalDNI"
+                                <input type="number" class="verde form-control" id="modalDNI"
                                     placeholder="Ingrese Documento" name="dni">
                             </div>
 
@@ -185,9 +184,9 @@
                                     <option selected disabled value="">Seleccione Rol</option>
                                     <option value="Admin">Administrador </option>
                                     <option value="Gerencia">Gerencia</option>
-                                    <option value="Encargado stock">Encargado Stock</option>
-                                    <option value="Operario stock">Operario de Stock</option>
-                                    <option value="Operario almacén">Operario de almacenamiento</option>
+                                    <option value="Encargado stock">Encargado stock</option>
+                                    <option value="Operario stock">Operario stock</option>
+                                    <option value="Operario almacén">Operario almacén</option>
                                 </select>
                             </div>
                         </div>

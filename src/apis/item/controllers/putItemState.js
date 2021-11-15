@@ -8,7 +8,7 @@ const ItemUpdateState = async (req, res) => {
     const fecha = Moment.now();
     const { id } = req.params;
 
-    if (token.role === "Admin") {
+    if (token.role === "Admin" || token.role === "Operario stock" || token.role === "Encargado stock" ) {
       const doc = await Item.updateOne(
         { code: id },
         { $set: { state: "Eliminado", updatedAt: fecha } });

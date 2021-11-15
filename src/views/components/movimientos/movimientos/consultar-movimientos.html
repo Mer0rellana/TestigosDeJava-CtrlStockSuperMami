@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Consultar Movimientos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- Bootstrap -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"
+        integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
+    <script defer src="../../../JavaScript Global/app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!--   Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+    <!-- extension responsive -->
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../../JavaScript Global/loginValidate.js"></script>
+    <script src="./consultar-movimientos.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="topBar ">
+            <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
+        </div>
+        <div class=" d-flex align-items-stretch">
+            <nav id="sidebar">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Mostrar</span>
+                    </button>
+                </div>
+                <div class="p-4" id="sideBar-lista">
+                    <ul class="list-unstyled components mb-5">
+                        <!-- <li class="active">
+                            <a href="../articulos/consultar-articulo/ConsultarArticulo.html"><span
+                                    class="fa fa-shopping-cart mr-3"></span> Artículos</a>
+                        </li>
+                        <li>
+                            <a href="../depositos/consultar-deposito/consultar-dep.html"><span class="fa fa-archive mr-3"></span>
+                                Depósitos</a>
+                        </li>
+                        <li>
+                            <a href="../pedidos/consultar-pedido.html"><span class="fa fa-list-alt mr-3"></span>
+                                Pedidos</a>
+                        </li>
+                        <li>
+                            <a href=""><span class="fa fa-sticky-note mr-3"></span> Informes</a>
+                        </li>
+                        <li>
+                            <a href="../usuarios/consultar-usuario/consultar-usuario.html"><span
+                                    class="fa fa-users mr-3"></span> Usuarios</a>
+                        </li>
+                        <li>
+                            <a href="../stock/consultar-stock.html"><span class="fas fa-cubes mr-3"></span>Stock</a>
+                        </li>
+                        <li>
+                            <a href="../inventario/consultar-inventario.html"><span
+                                    class="fas fa-dolly-flatbed mr-3"></span>Inventarios</a>
+                        </li>
+                        <li>
+                            <a href="../movimientos/consultar-movimientos.html"><span
+                                    class="fa fa-paper-plane mr-3"></span> Movimientos</a>
+                        </li>
+                        <li>
+                            <a href="../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
+                                Perfil</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </nav>
+
+
+            <!-- Page Content  -->
+
+
+            <div id="content" class="contenedor">
+                <div class="container animate__animated animate__fadeIn">
+                    <form id="formRegistrarU" name="formulario">
+                        <div class="mb-5 mt-3 text-center">
+                            <h1>Movimientos</h1>
+                        </div>
+                        <hr>
+                        <div class="form-row justify-content-center align-items-center">
+                            <div class="form-group col-md-3">
+                                <label for="">Tipo:</label>
+                                <select id="comboTipo" class="form-control" name="Tipo" placeholder="Seleccione un Tipo"
+                                    onchange="FiltroBusqueda()">
+                                    <option selected disabled value="Tipo">Seleccione Tipo</option>
+                                    <option value="Entrada">Entrada </option>
+                                    <option value="Salida">Salida</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-3 ml-2">
+                                <label for="">Fecha creación</label>
+                                <input type="date" onchange="FiltroBusqueda()" class="form-control" id="inputFecha"
+                                    placeholder="Ingrese Fecha" name="inputTipo">
+                            </div>
+                            <button id="btnFiltrarUsario" onclick="limpiarFiltros()" type="button"
+                                class="btn btn-primary ml-4 mt-3">Limpiar Filtros</button>
+
+                        </div>
+                        <div>
+                            <table class="table table-striped table-hover table-bordered  display nowrap"
+                                cellspacing="0" width="100%">
+                                <thead style="background-color: #1E450C; color: white;">
+                                    <tr>
+                                        <th class="text-center">ID</th>
+                                        <th class="text-center">Tipo</th>
+                                        <th class="text-center">Responsable</th>
+                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Información</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-movimientos-body">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=" mb-5 ml-5 mt-4 d-flex justify-content-end">
+                            <button onclick="window.location='./alta-movimiento.html'" type="button"
+                                class="btn btn-primary">Registrar nuevo movimiento</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

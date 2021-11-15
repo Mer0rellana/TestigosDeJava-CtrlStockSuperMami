@@ -22,7 +22,6 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link defer rel="stylesheet" href="../../../style/StyleMSI.css">
   <script defer src="../../../JavaScript Global/app.js"></script>
-  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../crear-articulo/AltaArticulo.css">
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -34,7 +33,7 @@
 <body>
   <div class="wrapper">
     <div class="topBar ">
-      <a href="../../home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
+      <a href="../../home/home/home.html"><img src="../../../../img/logo-super-mami.png" class="logo" alt=""></a>
     </div>
     <div class=" d-flex align-items-stretch">
       <nav id="sidebar">
@@ -44,9 +43,9 @@
             <span class="sr-only">Mostrar</span>
           </button>
         </div>
-        <div class="p-4">
+        <div class="p-4" id="sideBar-lista">
           <ul class="list-unstyled components mb-5">
-            <li class="active">
+            <!-- <li class="active">
               <a href="../consultar-articulo/ConsultarArticulo.html"><span class="fa fa-shopping-cart mr-3"></span>
                 Artículos</a>
             </li>
@@ -82,7 +81,7 @@
             <li>
               <a href="../../usuarios/mi-perfil/miPerfil.html"><span class="fa fa-user mr-3"></span> Mi
                 Perfil</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </nav>
@@ -143,7 +142,7 @@
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
-                        <label>Codigo</label>
+                        <label>Código</label>
                         <input type="text" class="form-control" id="modalCode" disabled required>
                       </div>
                       <div class="form-group">
@@ -173,9 +172,9 @@
                     </div>
                     <div class="modal-footer">
                       <input type="button" class="btn btn-default" value="Cancelar" id="cancelarEdit"
-                            data-dismiss="modal" aria-label="Close">
-                        <button id="btnModificarDeposito" onclick="ModArticulo()" type="button"
-                            class="btn btn-primary">Modificar</button>
+                        data-dismiss="modal" aria-label="Close">
+                      <button id="btnModificarDeposito" onclick="ModArticulo()" type="button"
+                        class="btn btn-primary">Modificar</button>
                     </div>
                   </form>
                 </div>
@@ -195,9 +194,9 @@
                     </div>
                     <div class=" modal-footer">
                       <input type="button" class="btn btn-default" value="Cancelar" id="cancelarDelete"
-                      data-dismiss="modal" aria-label="Close">
-                  <button id="btnModificarDeposito" onclick="DeleteModificar()" type="button"
-                      class="btn btn-primary">Eliminar</button>
+                        data-dismiss="modal" aria-label="Close">
+                      <button id="btnModificarDeposito" onclick="DeleteModificar()" type="button"
+                        class="btn btn-primary">Eliminar</button>
                     </div>
                   </form>
                 </div>
