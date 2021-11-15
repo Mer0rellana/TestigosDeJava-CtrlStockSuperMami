@@ -49,7 +49,7 @@ function agregarBotones(rol) {
   }
   if (["Admin", "Encargado stock", "Operario stock", "Operario almacenamiento"].includes(rol)) {
     botones += `<li>
-  <a href="../../lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
+  <a href="../../lotes/lotes/consultar-lote.html"><span class="fa fa-th mr-3"></span>Lotes</a>
   </li>`;
   }
   if (["Admin", "Encargado stock", "Operario stock"].includes(rol)) {
