@@ -74,7 +74,7 @@ function altaMovimiento() {
         icon: 'success',
         title: 'Movimiento creado correctamente, ¡Bravo!',
       }).then(
-        $('#cancelarAltaMov').click()
+        $('#volver').click()
       )
     })
     .catch((error) => {
@@ -149,7 +149,7 @@ function crearTabla(datos) {
     html += "<td class='text-center'>" + datos[i].storage + "</td>";
     html += "<td class='text-center'>" + datos[i].area + "</td>";
     html += `<td class="text-center">
-      <button class="delete btnEliminar"  style="font-weight: 200; color: #9c0202e8; border: none;"
+      <button class="delete btnEliminar"  style="font-weight: 200; background-color: white; color: #9c0202e8; border: none;"
       data-toggle="modal" data-target="#deleteEmployeeModal" onclick="borrarLote('${datos[i].id}')"  type="button"><i class="fas fa-trash-alt"
       title="Eliminar"></i></button>
     </td>`

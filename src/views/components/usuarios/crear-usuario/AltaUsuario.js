@@ -11,8 +11,6 @@ function AltaUsuario() {
 
   const data = { dni, name, id, mail, password, role, tel }
 
-  console.log(data)
-
   axios({
     url: 'http://localhost:3000/user/add',
     method: 'post',
@@ -28,6 +26,7 @@ function AltaUsuario() {
       limpiarCampos()
     })
     .catch((error) => {
+
       if (error.response.status == 535) {
         swal.fire({
           icon: 'error',
@@ -56,13 +55,7 @@ function AltaUsuario() {
           text: `${error.response.data.message}`,
         })
       }
-      else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Hubo un pequeño problema',
-        })
-      }
+      
     })
 
 }
